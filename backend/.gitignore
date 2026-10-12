@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+.env
+.env.local
+secrets/**
+!secrets/stratify-connection.example.json
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Node tooling of the release pipeline
+node_modules/
+
+# Editors and operating system
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+docs/execution/history
+docs/execution/history/**

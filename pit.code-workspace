@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "name": "Backend",
+      "path": "./backend",
+    },
+    {
+      "name": "Frontend",
+      "path": "./frontend",
+    },
+    {
+      "name": "Documentation",
+      "path": "./docs",
+    },
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.git": true,
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/package-lock.json": true,
+    },
+  },
+}
