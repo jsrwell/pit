@@ -17,10 +17,12 @@ export function FeaturedManager({ products, onChanged }: FeaturedManagerProps) {
 
   return (
     <section className="stack" aria-labelledby="featured-admin-heading">
-      <h3 id="featured-admin-heading">Destaques da vitrine</h3>
+      <h3 className="subsection-title" id="featured-admin-heading">
+        Destaques da vitrine
+      </h3>
       {error && <ErrorMessage message={error} />}
       <div className="panel">
-        <ul className="order-list">
+        <ul className="featured-list">
           {products.map((product) => (
             <li key={product.id}>
               <label className="checkbox">

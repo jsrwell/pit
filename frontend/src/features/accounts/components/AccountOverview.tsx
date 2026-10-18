@@ -17,7 +17,7 @@ export function AccountOverview() {
             <span className="eyebrow">Seus dados</span>
             <h2>{account.name}</h2>
           </div>
-          <dl className="account-overview__data">
+          <dl className="facts">
             <div>
               <dt>E-mail</dt>
               <dd>{account.email}</dd>

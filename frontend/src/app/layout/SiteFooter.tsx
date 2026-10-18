@@ -1,17 +1,44 @@
+import { Link } from 'react-router'
+
 import { ApiStatus } from '@/features/system/components/ApiStatus'
 import { env } from '@/shared/config/env'
+
+import { Brand } from './Brand'
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="container site-footer__inner">
-        <div>
-          <p className="brand__name">Cupcakes Gourmet</p>
-          <p className="site-footer__text">Confeitaria artesanal, feita à mão todos os dias.</p>
+      <div className="container site-footer__grid">
+        <div className="site-footer__about">
+          <Brand tone="light" />
+          <p>
+            Confeitaria artesanal de luxo. Cupcakes autorais preparados à mão todos os dias, com
+            ingredientes nobres e acabamento impecável.
+          </p>
         </div>
-        <div className="site-footer__meta">
+        <nav className="site-footer__column" aria-label="Loja">
+          <h2>Loja</h2>
+          <Link to="/">Vitrine</Link>
+          <Link to="/encomendas">Encomendas especiais</Link>
+          <Link to="/carrinho">Carrinho</Link>
+        </nav>
+        <nav className="site-footer__column" aria-label="Sua conta">
+          <h2>Sua conta</h2>
+          <Link to="/conta">Minha conta</Link>
+          <Link to="/pedidos">Meus pedidos</Link>
+          <Link to="/cadastro">Criar conta</Link>
+        </nav>
+        <div className="site-footer__column">
+          <h2>Atendimento</h2>
+          <p>Retirada na loja ou entrega no seu endereço.</p>
+          <p>Encomendas com antecedência mínima para eventos.</p>
+        </div>
+      </div>
+      <div className="container site-footer__bottom">
+        <p>© {new Date().getFullYear()} Cupcakes Gourmet · Projeto acadêmico</p>
+        <div className="site-footer__status">
           <ApiStatus />
-          <p>Versão {env.appVersion}</p>
+          <span>App {env.appVersion}</span>
         </div>
       </div>
     </footer>

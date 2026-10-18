@@ -56,7 +56,7 @@ export function CartView() {
   }
 
   return (
-    <div className="cart">
+    <div className="two-column">
       <div className="stack">
         {actionError && <ErrorMessage message={actionError} />}
         {cart.has_unavailable && (

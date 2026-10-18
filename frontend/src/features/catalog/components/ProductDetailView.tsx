@@ -31,29 +31,36 @@ export function ProductDetailView({ productId, renderPurchase }: ProductDetailVi
             <Link to="/" className="product-detail__back">
               Voltar à vitrine
             </Link>
-            <div className="row">
-              <span className="eyebrow">{product.category.name}</span>
-              {product.is_featured && <span className="badge badge--gold">Destaque</span>}
-              {product.promotional_price && <span className="badge badge--success">Promoção</span>}
+            <div className="product-detail__heading">
+              <div className="row">
+                <span className="eyebrow">{product.category.name}</span>
+                {product.is_featured && <span className="badge badge--gold">Destaque</span>}
+                {product.promotional_price && (
+                  <span className="badge badge--success">Promoção</span>
+                )}
+              </div>
+              <h1>{product.name}</h1>
+              <p className="product-detail__flavor">Sabor {product.flavor.name}</p>
             </div>
-            <h1>{product.name}</h1>
-            <p className="product-detail__flavor">Sabor {product.flavor.name}</p>
-            <p>
+            <div className="row">
               <PriceTag
                 price={product.price}
                 promotionalPrice={product.promotional_price}
                 className="product-detail__price"
               />
-            </p>
-            {product.is_available ? (
-              <p className="badge badge--success">Disponível para pedido</p>
-            ) : (
+              {product.is_available && (
+                <span className="badge badge--success">Disponível para pedido</span>
+              )}
+            </div>
+            {!product.is_available && (
               <p className="feedback feedback--error" role="note">
                 Este cupcake está indisponível no momento e não pode ser comprado.
               </p>
             )}
             <p className="product-detail__description">{product.description}</p>
-            {renderPurchase?.(product)}
+            {renderPurchase && (
+              <div className="product-detail__purchase">{renderPurchase(product)}</div>
+            )}
             {product.composition !== '' && (
               <section className="product-detail__block">
                 <h2>Composição</h2>

@@ -28,7 +28,7 @@ export function MyOrders() {
           <ul className="order-list">
             {orders.map((order) => (
               <li key={order.id} className="panel order-card">
-                <div className="stack">
+                <div className="order-card__title">
                   <strong>Pedido nº {order.id}</strong>
                   <span className="muted">
                     {formatDateTime(order.created_at)} ·{' '}

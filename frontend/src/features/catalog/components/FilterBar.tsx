@@ -95,7 +95,11 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
         />
       </div>
       {hasFilters && (
-        <button type="button" className="button button--ghost" onClick={() => onChange({})}>
+        <button
+          type="button"
+          className="link-button filter-bar__clear"
+          onClick={() => onChange({})}
+        >
           Limpar filtros
         </button>
       )}

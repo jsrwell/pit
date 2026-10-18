@@ -6,6 +6,7 @@ import { useDebouncedValue } from '@/shared/hooks/use-debounced-value'
 
 import { listProducts, type ProductFilters } from '../api/list-products'
 import type { ProductSummary } from '../api/product'
+import { FeaturedCarousel } from './FeaturedCarousel'
 import { FilterBar } from './FilterBar'
 import { ProductGrid } from './ProductGrid'
 
@@ -29,7 +30,7 @@ export function Storefront({ renderProductAction }: StorefrontProps) {
   return (
     <div className="storefront">
       {!filtering && state.status === 'success' && (
-        <FeaturedSection
+        <FeaturedCarousel
           products={state.data.filter((product) => product.is_featured)}
           renderProductAction={renderProductAction}
         />
@@ -56,24 +57,5 @@ export function Storefront({ renderProductAction }: StorefrontProps) {
         </AsyncContent>
       </section>
     </div>
-  )
-}
-
-interface FeaturedSectionProps extends StorefrontProps {
-  products: ProductSummary[]
-}
-
-function FeaturedSection({ products, renderProductAction }: FeaturedSectionProps) {
-  if (products.length === 0) {
-    return null
-  }
-  return (
-    <section aria-labelledby="featured-heading" className="storefront__section">
-      <div className="section-heading">
-        <span className="eyebrow">Seleção da casa</span>
-        <h2 id="featured-heading">Destaques</h2>
-      </div>
-      <ProductGrid products={products} renderAction={renderProductAction} variant="featured" />
-    </section>
   )
 }

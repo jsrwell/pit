@@ -35,14 +35,12 @@ export function StoreOrdersBoard() {
 
   return (
     <div className="stack">
-      <div className="row" role="group" aria-label="Filtrar por status">
+      <div className="pill-group" role="group" aria-label="Filtrar por status">
         {FILTERS.map((filter) => (
           <button
             key={filter ?? 'all'}
             type="button"
-            className={
-              filter === status ? 'button button--small' : 'button button--ghost button--small'
-            }
+            className="pill"
             aria-pressed={filter === status}
             onClick={() => setStatus(filter)}
           >

@@ -36,13 +36,13 @@ export function CustomOrderReviewCard({ customOrder, onReviewed }: CustomOrderRe
 
   return (
     <article className="panel store-order" aria-label={`Encomenda ${customOrder.id}`}>
-      <header className="row row--between">
+      <header className="store-order__header">
         <h3>
           Encomenda nº {customOrder.id} · {customOrder.quantity} un.
         </h3>
         <span className="badge">{CUSTOM_STATUS_LABELS[customOrder.status]}</span>
       </header>
-      <dl className="order-facts store-order__facts">
+      <dl className="facts">
         <div>
           <dt>Cliente</dt>
           <dd>

@@ -69,10 +69,12 @@ export function PromotionManager({ products }: PromotionManagerProps) {
 
   return (
     <section className="stack" aria-labelledby="promotions-heading">
-      <h3 id="promotions-heading">Campanhas com preço promocional</h3>
+      <h3 className="subsection-title" id="promotions-heading">
+        Campanhas com preço promocional
+      </h3>
       <form className="form panel" onSubmit={handleSubmit} noValidate aria-label="Nova campanha">
         {save.error && <ErrorMessage message={save.error} />}
-        <div className="form-grid">
+        <div className="form-grid form-grid--two">
           <TextField
             id="promotion-name"
             label="Nome da campanha"
@@ -95,6 +97,8 @@ export function PromotionManager({ products }: PromotionManagerProps) {
               ))}
             </select>
           </div>
+        </div>
+        <div className="form-grid form-grid--three">
           <TextField
             id="promotion-price"
             label="Preço promocional (R$)"
@@ -132,7 +136,7 @@ export function PromotionManager({ products }: PromotionManagerProps) {
       <AsyncContent state={state} loadingLabel="Carregando campanhas...">
         {(promotions) =>
           promotions.length === 0 ? (
-            <p className="muted">Nenhuma campanha cadastrada.</p>
+            <p className="empty-panel">Nenhuma campanha cadastrada.</p>
           ) : (
             <div className="table-wrap panel">
               <table className="table">

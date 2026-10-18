@@ -26,8 +26,8 @@ export function OrderTracking({ orderId }: { orderId: number }) {
   return (
     <AsyncContent state={state} loadingLabel="Carregando o pedido...">
       {(order) => (
-        <div className="order-detail">
-          <div className="stack">
+        <div className="two-column">
+          <div className="stack stack--loose">
             <section className="panel stack" aria-labelledby="order-status-heading">
               <span className="eyebrow">Status atual</span>
               <h2 id="order-status-heading">{STATUS_LABELS[order.status]}</h2>
@@ -35,7 +35,7 @@ export function OrderTracking({ orderId }: { orderId: number }) {
               <StatusTimeline order={order} />
             </section>
             <section className="panel">
-              <dl className="order-facts">
+              <dl className="facts">
                 <div>
                   <dt>Recebimento</dt>
                   <dd>{FULFILLMENT_LABELS[order.fulfillment_method]}</dd>

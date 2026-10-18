@@ -35,11 +35,13 @@ export function CustomOrders() {
         <AsyncContent state={state} loadingLabel="Carregando encomendas...">
           {(customOrders) =>
             customOrders.length === 0 ? (
-              <p className="muted">Nenhuma encomenda solicitada ainda.</p>
+              <p className="empty-panel">
+                Nenhuma encomenda solicitada ainda. Envie sua primeira ideia ao lado.
+              </p>
             ) : (
               <ul className="order-list">
                 {customOrders.map((item) => (
-                  <li key={item.id} className="panel stack">
+                  <li key={item.id} className="panel custom-order">
                     <div className="row row--between">
                       <strong>
                         Encomenda nº {item.id} · {item.quantity} unidades

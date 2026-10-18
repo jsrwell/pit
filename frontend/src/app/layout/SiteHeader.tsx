@@ -1,12 +1,21 @@
-import { NavLink, useNavigate } from 'react-router'
+import { useEffect, useState } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router'
 
 import { signOut } from '@/features/accounts/api/sign-in'
 import { CartNavLink } from '@/features/cart/components/CartNavLink'
 import { useSession } from '@/shared/auth/use-session'
 
+import { Brand } from './Brand'
+
 export function SiteHeader() {
   const session = useSession()
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
 
   function handleSignOut() {
     signOut()
@@ -14,13 +23,20 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="site-header">
+    <header className={open ? 'site-header site-header--open' : 'site-header'}>
       <div className="container site-header__inner">
-        <NavLink to="/" className="brand" aria-label="Cupcakes Gourmet, página inicial">
-          <span className="brand__name">Cupcakes Gourmet</span>
-          <span className="brand__tagline">Maison de confeitaria</span>
-        </NavLink>
-        <nav className="site-nav" aria-label="Navegação principal">
+        <Brand />
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={open}
+          aria-controls="site-nav"
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          onClick={() => setOpen((current) => !current)}
+        >
+          <span aria-hidden="true" />
+        </button>
+        <nav id="site-nav" className="site-nav" aria-label="Navegação principal">
           <NavLink to="/" end>
             Vitrine
           </NavLink>
@@ -28,7 +44,9 @@ export function SiteHeader() {
           {session === null ? (
             <>
               <NavLink to="/entrar">Entrar</NavLink>
-              <NavLink to="/cadastro">Criar conta</NavLink>
+              <NavLink to="/cadastro" className="site-nav__cta">
+                Criar conta
+              </NavLink>
             </>
           ) : (
             <>
@@ -36,7 +54,7 @@ export function SiteHeader() {
               <NavLink to="/pedidos">Pedidos</NavLink>
               <NavLink to="/conta">Minha conta</NavLink>
               <CartNavLink />
-              <button type="button" onClick={handleSignOut}>
+              <button type="button" className="site-nav__signout" onClick={handleSignOut}>
                 Sair
               </button>
             </>

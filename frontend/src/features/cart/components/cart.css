@@ -1,13 +1,17 @@
 .add-to-cart {
   display: grid;
-  gap: 0.4rem;
+  gap: var(--space-2);
   justify-items: end;
 }
 
 .add-to-cart--full {
   justify-items: start;
   width: 100%;
-  padding: 1.25rem 0;
+}
+
+.add-to-cart--full .row {
+  flex-wrap: nowrap;
+  gap: var(--space-3);
 }
 
 .add-to-cart__feedback {
@@ -20,16 +24,9 @@
   color: var(--color-gold-dark);
 }
 
-.cart {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
-  align-items: start;
-}
-
 .cart__lines {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -37,22 +34,23 @@
 
 .cart-line {
   display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
-  gap: 1rem 1.25rem;
+  grid-template-columns: 6rem minmax(0, 1fr) auto;
+  gap: var(--space-4) var(--space-5);
   align-items: center;
-  padding: 1rem;
-  background: var(--color-surface);
+  padding: var(--space-4);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .cart-line--unavailable {
-  border-color: var(--color-danger-soft);
+  border-color: rgb(156 52 52 / 30%);
 }
 
 .cart-line__image {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: var(--radius);
   object-fit: cover;
   background: var(--color-cream);
@@ -60,37 +58,50 @@
 
 .cart-line__info {
   display: grid;
-  gap: 0.35rem;
+  gap: var(--space-1);
+  min-width: 0;
 }
 
 .cart-line__info h3 {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
+}
+
+.cart-line__info .muted {
+  font-size: 0.88rem;
 }
 
 .cart-line__controls {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--space-3);
   justify-items: end;
+  padding-right: var(--space-2);
 }
 
-@media (max-width: 52rem) {
-  .cart {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
+@media (max-width: 40rem) {
   .cart-line {
-    grid-template-columns: 4.5rem minmax(0, 1fr);
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+    gap: var(--space-3) var(--space-4);
   }
 
   .cart-line__image {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 4.75rem;
+    height: 4.75rem;
   }
 
   .cart-line__controls {
     grid-column: 1 / -1;
-    justify-items: start;
     grid-auto-flow: column;
+    justify-content: space-between;
     align-items: center;
+    padding: var(--space-3) 0 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .add-to-cart--full .row {
+    width: 100%;
+  }
+
+  .add-to-cart--full .row .button {
+    flex: 1;
   }
 }

@@ -83,7 +83,9 @@ export function ComboManager({ products }: ComboManagerProps) {
 
   return (
     <section className="stack" aria-labelledby="combos-admin-heading">
-      <h3 id="combos-admin-heading">Combos promocionais</h3>
+      <h3 className="subsection-title" id="combos-admin-heading">
+        Combos promocionais
+      </h3>
       <form className="form panel" onSubmit={handleSubmit} noValidate aria-label="Novo combo">
         {save.error && <ErrorMessage message={save.error} />}
         <div className="form-grid">
@@ -156,7 +158,6 @@ export function ComboManager({ products }: ComboManagerProps) {
                 value={item.quantity}
                 onChange={(event) => updateItem(index, { ...item, quantity: event.target.value })}
               />
-              <span />
             </div>
           ))}
           {save.fields.items && <span className="field-error">{save.fields.items}</span>}
@@ -180,7 +181,7 @@ export function ComboManager({ products }: ComboManagerProps) {
       <AsyncContent state={state} loadingLabel="Carregando combos...">
         {(combos) =>
           combos.length === 0 ? (
-            <p className="muted">Nenhum combo cadastrado.</p>
+            <p className="empty-panel">Nenhum combo cadastrado.</p>
           ) : (
             <ul className="order-list">
               {combos.map((combo) => (

@@ -22,14 +22,14 @@ export function StoreOrderCard({ order, onChanged }: StoreOrderCardProps) {
 
   return (
     <article className="panel store-order" aria-label={`Pedido ${order.id}`}>
-      <header className="row row--between">
-        <div className="stack">
+      <header className="store-order__header">
+        <div>
           <h3>Pedido nº {order.id}</h3>
           <span className="muted">{formatDateTime(order.created_at)}</span>
         </div>
         <StatusBadge status={order.status} />
       </header>
-      <dl className="order-facts store-order__facts">
+      <dl className="facts">
         <div>
           <dt>Cliente</dt>
           <dd>
@@ -83,7 +83,7 @@ export function StoreOrderCard({ order, onChanged }: StoreOrderCardProps) {
           </li>
         ))}
       </ul>
-      <footer className="row row--between">
+      <footer className="store-order__footer">
         <strong>Total {formatPrice(order.total)}</strong>
         <div className="row">
           {order.next_statuses.map((status) => (

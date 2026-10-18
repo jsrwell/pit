@@ -76,8 +76,8 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
   }
 
   return (
-    <div className="checkout">
-      <div className="checkout__steps">
+    <div className="two-column">
+      <div className="stack stack--loose">
         <section className="panel stack" aria-label="Modalidade de recebimento">
           <FulfillmentSelector value={method} onChange={setMethod} />
           {method === 'pickup' && state.status === 'success' && (
