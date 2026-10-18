@@ -32,3 +32,16 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   }
   return body as T
 }
+
+export type WriteMethod = 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+
+export function sendJson<T>(path: string, method: WriteMethod, payload?: unknown): Promise<T> {
+  if (payload === undefined) {
+    return request<T>(path, { method })
+  }
+  return request<T>(path, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+}

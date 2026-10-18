@@ -9,6 +9,8 @@ const MESSAGES: Record<string, string> = {
   'CS-CAT-0001': 'Imagem não encontrada.',
   'CS-CAT-0003': 'Produto não encontrado ou fora do catálogo.',
   'CS-CAT-0002': 'O preço mínimo não pode ser maior que o preço máximo.',
+  'CS-ACC-0001': 'Já existe uma conta cadastrada com este e-mail.',
+  'CS-ACC-0002': 'A senha precisa ter no mínimo 8 caracteres, com letras e números.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

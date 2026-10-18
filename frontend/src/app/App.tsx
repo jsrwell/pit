@@ -4,6 +4,7 @@ import { AppLayout } from './layout/AppLayout'
 import { HomePage } from './routes/HomePage'
 import { NotFoundPage } from './routes/NotFoundPage'
 import { ProductPage } from './routes/ProductPage'
+import { RegisterPage } from './routes/RegisterPage'
 
 export function App() {
   return (
@@ -12,6 +13,7 @@ export function App() {
         <Route element={<AppLayout />}>
           <Route index element={<HomePage />} />
           <Route path="produtos/:productId" element={<ProductPage />} />
+          <Route path="cadastro" element={<RegisterPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

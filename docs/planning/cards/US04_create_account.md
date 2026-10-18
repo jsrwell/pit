@@ -1,7 +1,7 @@
 ---
 code: "US04"
 name: "Criar conta para comprar e acompanhar pedidos"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ O cadastro organiza relacionamento, histórico de compras, endereços e acompanh
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de cadastro com validação de unicidade de e-mail | 6h | A fazer |
-| 2 | Desenvolver tela de cadastro com validação de campos | 8h | A fazer |
-| 3 | Implementar hash de senha e armazenamento seguro | 4h | A fazer |
-| 4 | Escrever testes de cadastro | 4h | A fazer |
+| 1 | Implementar endpoint de cadastro com validação de unicidade de e-mail | 6h | Concluída |
+| 2 | Desenvolver tela de cadastro com validação de campos | 8h | Concluída |
+| 3 | Implementar hash de senha e armazenamento seguro | 4h | Concluída |
+| 4 | Escrever testes de cadastro | 4h | Concluída |
 | **Total** | | **22h** | |
 
 ## Relacionamentos

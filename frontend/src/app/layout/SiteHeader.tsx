@@ -12,6 +12,7 @@ export function SiteHeader() {
           <NavLink to="/" end>
             Vitrine
           </NavLink>
+          <NavLink to="/cadastro">Criar conta</NavLink>
         </nav>
       </div>
     </header>
