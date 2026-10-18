@@ -4,6 +4,7 @@ import { AdminLayout } from './layout/AdminLayout'
 import { AppLayout } from './layout/AppLayout'
 import { AccountPage } from './routes/AccountPage'
 import { CartPage } from './routes/CartPage'
+import { CheckoutPage } from './routes/CheckoutPage'
 import { AdminProductFormPage } from './routes/admin/AdminProductFormPage'
 import { AdminProductsPage } from './routes/admin/AdminProductsPage'
 import { HomePage } from './routes/HomePage'
@@ -25,6 +26,7 @@ export function App() {
           <Route element={<RequireAuth />}>
             <Route path="conta" element={<AccountPage />} />
             <Route path="carrinho" element={<CartPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
           </Route>
           <Route element={<RequireAuth role="admin" />}>
             <Route path="admin" element={<AdminLayout />}>

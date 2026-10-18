@@ -1,5 +1,6 @@
 """Application settings resolved from environment variables."""
 
+from decimal import Decimal
 from functools import lru_cache
 
 from pydantic import BaseModel, Field, field_validator
@@ -73,6 +74,14 @@ class CatalogSettings(BaseModel):
     max_image_bytes: int = 2_000_000
 
 
+class StoreSettings(BaseModel):
+    """Operational rules of the shop."""
+
+    delivery_fee: Decimal = Decimal('12.00')
+    pickup_address: str = 'Rua das Confeitarias, 100 - Centro, São Paulo'
+    custom_order_lead_days: int = 2
+
+
 class SeedSettings(BaseModel):
     """Data loaded by ``src/seed.py`` on an empty database."""
 
@@ -99,6 +108,7 @@ class Settings(BaseSettings):
     auth: AuthSettings = Field(default_factory=AuthSettings)
     admin: AdminSettings = Field(default_factory=AdminSettings)
     catalog: CatalogSettings = Field(default_factory=CatalogSettings)
+    store: StoreSettings = Field(default_factory=StoreSettings)
 
 
 @lru_cache

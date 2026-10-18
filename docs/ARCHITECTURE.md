@@ -75,6 +75,9 @@ As duas aplicações são configuradas apenas por variáveis de ambiente, com pa
 | `AUTH__LOCKOUT_MINUTES` | backend | `15`                                                           | `15`: duração do bloqueio                                       |
 | `ADMIN__EMAIL`, `ADMIN__PASSWORD`, `ADMIN__NAME` | backend | vazios (sem administrador)                     | vazios; quando definidos, o seed cria ou promove o administrador |
 | `CATALOG__MAX_IMAGE_BYTES` | backend | `2000000`                                                  | `2000000`: tamanho máximo das imagens enviadas                  |
+| `STORE__DELIVERY_FEE` | backend  | `12.00`                                                          | `12.00`: taxa cobrada em pedidos com entrega                    |
+| `STORE__PICKUP_ADDRESS` | backend | endereço de exemplo                                             | endereço exibido para retirada na loja                          |
+| `STORE__CUSTOM_ORDER_LEAD_DAYS` | backend | `2`                                                     | `2`: antecedência mínima, em dias, das encomendas especiais     |
 | `RUN_MIGRATIONS`      | backend   | não se aplica                                                    | `true`: aplica as migrações antes de servir                     |
 | `RUN_SEED`            | backend   | não se aplica (`python src/seed.py` manual)                      | `true`: executa o seed idempotente antes de servir              |
 | `SEED__DEMO_CATALOG`  | backend   | `true`                                                           | `true`: o seed carrega o catálogo de demonstração se vazio      |

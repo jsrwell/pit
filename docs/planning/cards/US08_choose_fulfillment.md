@@ -1,7 +1,7 @@
 ---
 code: "US08"
 name: "Definir a modalidade de recebimento"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Altera o fluxo do pedido e impacta valor final, coleta de dados e operação log
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar lógica de modalidade de recebimento no backend | 4h | A fazer |
-| 2 | Desenvolver seletor de retirada/entrega com adaptação de fluxo | 6h | A fazer |
-| 3 | Implementar cálculo condicional de taxa de entrega | 4h | A fazer |
-| 4 | Escrever testes de modalidade | 3h | A fazer |
+| 1 | Implementar lógica de modalidade de recebimento no backend | 4h | Concluída |
+| 2 | Desenvolver seletor de retirada/entrega com adaptação de fluxo | 6h | Concluída |
+| 3 | Implementar cálculo condicional de taxa de entrega | 4h | Concluída |
+| 4 | Escrever testes de modalidade | 3h | Concluída |
 | **Total** | | **17h** | |
 
 ## Relacionamentos
