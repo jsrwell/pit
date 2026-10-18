@@ -23,6 +23,7 @@ class DomainError(Exception):
     title: ClassVar[str]
     internal: ClassVar[bool] = False
     deprecated: ClassVar[bool] = False
+    keeps_changes: ClassVar[bool] = False
 
     def __init__(self, detail: str | None = None) -> None:
         super().__init__(detail or self.title)

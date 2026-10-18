@@ -69,6 +69,11 @@ As duas aplicações são configuradas apenas por variáveis de ambiente, com pa
 | `SERVER__RELOAD`      | backend   | `false`                                                          | `false`                                                         |
 | `CORS__ALLOW_ORIGINS` | backend   | `["http://localhost:5173"]`                                      | `["http://localhost:8080"]`                                     |
 | `APP__VERSION`        | backend   | `0.0.0-dev`                                                      | versão do release, gravada no build                             |
+| `AUTH__SECRET_KEY`    | backend   | segredo de desenvolvimento                                       | segredo de desenvolvimento; **sempre sobrescrever em produção** |
+| `AUTH__ACCESS_TOKEN_MINUTES` | backend | `120`                                                   | `120`: validade da sessão                                       |
+| `AUTH__MAX_FAILED_ATTEMPTS` | backend | `5`                                                      | `5`: tentativas de login antes do bloqueio                      |
+| `AUTH__LOCKOUT_MINUTES` | backend | `15`                                                           | `15`: duração do bloqueio                                       |
+| `ADMIN__EMAIL`, `ADMIN__PASSWORD`, `ADMIN__NAME` | backend | vazios (sem administrador)                     | vazios; quando definidos, o seed cria ou promove o administrador |
 | `RUN_MIGRATIONS`      | backend   | não se aplica                                                    | `true`: aplica as migrações antes de servir                     |
 | `RUN_SEED`            | backend   | não se aplica (`python src/seed.py` manual)                      | `true`: executa o seed idempotente antes de servir              |
 | `SEED__DEMO_CATALOG`  | backend   | `true`                                                           | `true`: o seed carrega o catálogo de demonstração se vazio      |

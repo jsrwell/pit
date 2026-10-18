@@ -1,21 +1,20 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
+import { signIn } from '@/features/accounts/api/sign-in'
 import { RegisterForm } from '@/features/accounts/components/RegisterForm'
 
 export function RegisterPage() {
-  const [registeredName, setRegisteredName] = useState<string | null>(null)
+  const navigate = useNavigate()
 
   return (
     <div className="container page">
-      {registeredName === null ? (
-        <RegisterForm onRegistered={(registration) => setRegisteredName(registration.name)} />
-      ) : (
-        <div className="panel auth-card empty-state" role="status">
-          <span className="eyebrow">Conta criada</span>
-          <h1>Seja bem-vindo, {registeredName}</h1>
-          <p>Seu cadastro foi concluído. Agora você já pode entrar na sua conta.</p>
-        </div>
-      )}
+      <RegisterForm
+        onRegistered={({ email, password }) => {
+          signIn({ email, password })
+            .then(() => navigate('/conta', { replace: true }))
+            .catch(() => navigate('/entrar', { replace: true }))
+        }}
+      />
     </div>
   )
 }

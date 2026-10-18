@@ -1,6 +1,8 @@
 """Person who signs in to buy or to run the store."""
 
-from sqlalchemy import String
+from datetime import datetime
+
+from sqlalchemy import DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.shared.database.base import Base
@@ -18,3 +20,7 @@ class User(TimestampMixin, Base):
     phone: Mapped[str] = mapped_column(String(20))
     password_hash: Mapped[str] = mapped_column(String(100))
     role: Mapped[str] = mapped_column(String(20), server_default='customer')
+    failed_login_attempts: Mapped[int] = mapped_column(server_default='0')
+    locked_until: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True)
+    )

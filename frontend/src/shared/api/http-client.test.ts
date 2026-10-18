@@ -1,3 +1,5 @@
+import { sessionStore } from '@/shared/auth/session-store'
+
 import { ApiError } from './api-error'
 import { request } from './http-client'
 
@@ -38,5 +40,24 @@ describe('request', () => {
     respondWith('<html>Bad gateway</html>', 502, 'text/html')
 
     await expect(request('/health')).rejects.toMatchObject({ code: 'CS-SYS-0001', status: 502 })
+  })
+
+  it('sends the bearer token and drops the session when the API refuses it', async () => {
+    sessionStore.save({
+      accessToken: 'token-abc',
+      expiresAt: '2999-01-01T00:00:00Z',
+      account: { id: 1, name: 'Ana', email: 'ana@example.com', role: 'customer' },
+    })
+    const problem = { type: 'urn:x', title: 'Auth', status: 401, code: 'CS-SYS-0005' }
+    respondWith(JSON.stringify(problem), 401, 'application/problem+json')
+
+    await expect(request('/accounts/me')).rejects.toMatchObject({ code: 'CS-SYS-0005' })
+    expect(fetch).toHaveBeenCalledWith(
+      '/api/accounts/me',
+      expect.objectContaining({
+        headers: expect.objectContaining({ Authorization: 'Bearer token-abc' }),
+      }),
+    )
+    expect(sessionStore.get()).toBeNull()
   })
 })

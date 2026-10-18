@@ -1,7 +1,7 @@
 ---
 code: "US05"
 name: "Acessar a conta de forma segura"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ O login sustenta a continuidade da jornada. Precisa equilibrar segurança com fl
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de autenticação com geração de token | 6h | A fazer |
-| 2 | Desenvolver tela de login com feedback de erro | 6h | A fazer |
-| 3 | Implementar proteção contra tentativas excessivas | 4h | A fazer |
-| 4 | Escrever testes de autenticação | 3h | A fazer |
+| 1 | Implementar endpoint de autenticação com geração de token | 6h | Concluída |
+| 2 | Desenvolver tela de login com feedback de erro | 6h | Concluída |
+| 3 | Implementar proteção contra tentativas excessivas | 4h | Concluída |
+| 4 | Escrever testes de autenticação | 3h | Concluída |
 | **Total** | | **19h** | |
 
 ## Relacionamentos

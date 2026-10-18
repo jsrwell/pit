@@ -25,7 +25,7 @@ export function RegisterForm({ onRegistered }: RegisterFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (await submit(values)) {
+    if ((await submit(values)) !== null) {
       onRegistered(values)
     }
   }

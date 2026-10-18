@@ -1,15 +1,11 @@
 """US01: storefront listing."""
 
-from collections.abc import Callable
-
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
+from support.factories import ProductFactory
 
-from app.modules.catalog.models.product import Product
 from app.modules.catalog.services.cupcake_illustration import SVG_CONTENT_TYPE
 from app.modules.catalog.services.seed_demo_catalog import seed_demo_catalog
-
-type ProductFactory = Callable[..., Product]
 
 
 def listed_ids(client: TestClient) -> list[int]:

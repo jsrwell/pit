@@ -22,3 +22,27 @@
   color: var(--color-gold-dark);
   font-weight: 600;
 }
+
+.account-overview {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.account-overview__data {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  margin: 0;
+}
+
+.account-overview__data dt {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.account-overview__data dd {
+  margin: 0.2rem 0 0;
+}

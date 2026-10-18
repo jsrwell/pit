@@ -1,12 +1,7 @@
 """US03: product detail."""
 
-from collections.abc import Callable
-
 from fastapi.testclient import TestClient
-
-from app.modules.catalog.models.product import Product
-
-type ProductFactory = Callable[..., Product]
+from support.factories import ProductFactory
 
 
 def test_detail_shows_full_information(

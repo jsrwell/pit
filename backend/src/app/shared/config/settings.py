@@ -50,6 +50,23 @@ class CorsSettings(BaseModel):
     allow_origins: list[str] = ['http://localhost:5173']
 
 
+class AuthSettings(BaseModel):
+    """Signing of access tokens and protection against guessing."""
+
+    secret_key: str = 'dev-only-secret-change-me-in-production'
+    access_token_minutes: int = 120
+    max_failed_attempts: int = 5
+    lockout_minutes: int = 15
+
+
+class AdminSettings(BaseModel):
+    """Store administrator created by ``src/seed.py`` when missing."""
+
+    name: str = 'Administrador'
+    email: str | None = None
+    password: str | None = None
+
+
 class SeedSettings(BaseModel):
     """Data loaded by ``src/seed.py`` on an empty database."""
 
@@ -73,6 +90,8 @@ class Settings(BaseSettings):
     database: DatabaseSettings = Field(default_factory=DatabaseSettings)
     cors: CorsSettings = Field(default_factory=CorsSettings)
     seed: SeedSettings = Field(default_factory=SeedSettings)
+    auth: AuthSettings = Field(default_factory=AuthSettings)
+    admin: AdminSettings = Field(default_factory=AdminSettings)
 
 
 @lru_cache

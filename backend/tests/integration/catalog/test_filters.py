@@ -1,13 +1,9 @@
 """US02: storefront filters and text search."""
 
-from collections.abc import Callable
 from decimal import Decimal
 
 from fastapi.testclient import TestClient
-
-from app.modules.catalog.models.product import Product
-
-type ProductFactory = Callable[..., Product]
+from support.factories import ProductFactory
 
 
 def search_ids(client: TestClient, **params: object) -> set[int]:

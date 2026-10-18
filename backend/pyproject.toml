@@ -13,6 +13,7 @@ dependencies = [
     "pydantic-settings (>=2.8,<3)",
     "bcrypt (>=4.2,<6)",
     "email-validator (>=2.2,<3)",
+    "pyjwt (>=2.10,<3)",
 ]
 
 [tool.poetry]
@@ -37,7 +38,7 @@ src = ["src"]
 select = ["E", "F", "W", "I", "B", "UP", "SIM"]
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
+pythonpath = ["src", "tests"]
 testpaths = ["tests"]
 addopts = "-ra"
 

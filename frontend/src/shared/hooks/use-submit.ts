@@ -9,28 +9,28 @@ export interface SubmitState {
   fields: FieldErrors
 }
 
-export interface SubmitResult<A extends unknown[]> extends SubmitState {
-  submit: (...args: A) => Promise<boolean>
+export interface SubmitResult<A extends unknown[], R> extends SubmitState {
+  submit: (...args: A) => Promise<R | null>
   reset: () => void
 }
 
 const IDLE: SubmitState = { submitting: false, error: null, fields: {} }
 
-export function useSubmit<A extends unknown[]>(
-  action: (...args: A) => Promise<unknown>,
-): SubmitResult<A> {
+export function useSubmit<A extends unknown[], R>(
+  action: (...args: A) => Promise<R>,
+): SubmitResult<A, R> {
   const [state, setState] = useState<SubmitState>(IDLE)
 
-  async function submit(...args: A): Promise<boolean> {
+  async function submit(...args: A): Promise<R | null> {
     setState({ submitting: true, error: null, fields: {} })
     try {
-      await action(...args)
+      const result = await action(...args)
       setState(IDLE)
-      return true
+      return result
     } catch (caught: unknown) {
       const error = ApiError.from(caught)
       setState({ submitting: false, error: error.message, fields: fieldErrors(error) })
-      return false
+      return null
     }
   }
 

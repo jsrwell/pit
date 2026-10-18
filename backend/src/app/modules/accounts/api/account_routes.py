@@ -13,9 +13,12 @@ from app.modules.accounts.schemas.account_read import AccountRead
 from app.modules.accounts.schemas.account_registration import (
     AccountRegistration,
 )
+from app.modules.accounts.services.get_account import get_account
 from app.modules.accounts.services.register_customer import register_customer
 from app.shared.database.session import get_session
+from app.shared.errors.authentication_required import AuthenticationRequired
 from app.shared.errors.invalid_request import InvalidRequest
+from app.shared.http.authentication import CurrentPrincipal
 from app.shared.http.problem_responses import problem_responses
 
 router = APIRouter(prefix='/accounts', tags=['Accounts'])
@@ -35,3 +38,12 @@ def create_account(
     """Sign up a new customer."""
     user = register_customer(session, **registration.model_dump())
     return AccountRead.model_validate(user)
+
+
+@router.get('/me', responses=problem_responses(AuthenticationRequired))
+def read_my_account(
+    principal: CurrentPrincipal,
+    session: Annotated[Session, Depends(get_session)],
+) -> AccountRead:
+    """Show the account of the signed-in caller."""
+    return AccountRead.model_validate(get_account(session, principal.user_id))

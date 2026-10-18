@@ -1,16 +1,22 @@
 export const UNEXPECTED_ERROR_CODE = 'CS-SYS-0001'
 export const NETWORK_ERROR_CODE = 'CS-NET-0001'
+export const AUTHENTICATION_REQUIRED_CODE = 'CS-SYS-0005'
 
 const MESSAGES: Record<string, string> = {
   [UNEXPECTED_ERROR_CODE]: 'Ocorreu um erro inesperado. Tente novamente em instantes.',
   'CS-SYS-0002': 'Alguns campos estão inválidos. Revise e tente novamente.',
   'CS-SYS-0003': 'O recurso solicitado não foi encontrado.',
   'CS-SYS-0004': 'Operação não permitida.',
+  [AUTHENTICATION_REQUIRED_CODE]: 'Sua sessão expirou ou você não está conectado. Entre novamente.',
+  'CS-SYS-0006': 'Você não tem permissão para realizar esta ação.',
   'CS-CAT-0001': 'Imagem não encontrada.',
-  'CS-CAT-0003': 'Produto não encontrado ou fora do catálogo.',
   'CS-CAT-0002': 'O preço mínimo não pode ser maior que o preço máximo.',
+  'CS-CAT-0003': 'Produto não encontrado ou fora do catálogo.',
   'CS-ACC-0001': 'Já existe uma conta cadastrada com este e-mail.',
   'CS-ACC-0002': 'A senha precisa ter no mínimo 8 caracteres, com letras e números.',
+  'CS-ACC-0003': 'E-mail ou senha incorretos.',
+  'CS-ACC-0004':
+    'Muitas tentativas sem sucesso. Por segurança, o acesso foi bloqueado por alguns minutos.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

@@ -1,6 +1,17 @@
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
+
+import { signOut } from '@/features/accounts/api/sign-in'
+import { useSession } from '@/shared/auth/use-session'
 
 export function SiteHeader() {
+  const session = useSession()
+  const navigate = useNavigate()
+
+  function handleSignOut() {
+    signOut()
+    navigate('/')
+  }
+
   return (
     <header className="site-header">
       <div className="container site-header__inner">
@@ -12,7 +23,20 @@ export function SiteHeader() {
           <NavLink to="/" end>
             Vitrine
           </NavLink>
-          <NavLink to="/cadastro">Criar conta</NavLink>
+          {session === null ? (
+            <>
+              <NavLink to="/entrar">Entrar</NavLink>
+              <NavLink to="/cadastro">Criar conta</NavLink>
+            </>
+          ) : (
+            <>
+              {session.account.role === 'admin' && <NavLink to="/admin">Painel</NavLink>}
+              <NavLink to="/conta">Minha conta</NavLink>
+              <button type="button" onClick={handleSignOut}>
+                Sair
+              </button>
+            </>
+          )}
         </nav>
       </div>
     </header>

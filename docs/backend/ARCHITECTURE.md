@@ -117,6 +117,14 @@ sequenceDiagram
 ```
 
 - `get_session` abre uma transação por requisição: confirma quando a rota retorna e desfaz quando algo é lançado. Services e repositórios nunca chamam `commit`.
+- Um erro de domínio com `keeps_changes = True` confirma a transação antes de virar resposta de erro. É usado quando a falha precisa deixar rastro, como a contagem de tentativas de login inválidas.
+
+## Autenticação
+
+- `POST /api/accounts/sessions` troca e-mail e senha por um JWT (HS256) assinado com `AUTH__SECRET_KEY` e com expiração; o token carrega o id e o papel da conta.
+- Rotas protegidas recebem `CurrentPrincipal` ou `AdminPrincipal` (`app/shared/http/authentication.py`), que validam o cabeçalho `Authorization: Bearer` sem consultar o banco.
+- Senhas são guardadas com bcrypt; após `AUTH__MAX_FAILED_ATTEMPTS` falhas seguidas a conta fica bloqueada por `AUTH__LOCKOUT_MINUTES`.
+- O administrador é criado pelo seed a partir de `ADMIN__EMAIL` e `ADMIN__PASSWORD`; não há cadastro público de administradores.
 - Rotas são `def` (síncronas); o FastAPI as executa em thread pool.
 
 ## Persistência
@@ -148,6 +156,8 @@ As regras obrigatórias resumidas ficam em `.claude/rules/error-handling.md`; es
 | `CS-SYS-0002` | `InvalidRequest`   | 422    | Falha de validação do schema de entrada |
 | `CS-SYS-0003` | `RouteNotFound`    | 404    | Caminho inexistente                     |
 | `CS-SYS-0004` | `MethodNotAllowed` | 405    | Método HTTP não aceito pelo caminho     |
+| `CS-SYS-0005` | `AuthenticationRequired` | 401 | Token ausente, inválido ou expirado |
+| `CS-SYS-0006` | `AccessDenied`     | 403    | Conta sem o papel exigido pela rota     |
 
 ### Problem Details
 
