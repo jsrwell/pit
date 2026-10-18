@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.0](https://github.com/jsrwell/pit/compare/v1.4.0...v1.5.0) (2026-10-18)
+
+### Features
+
+* **US16:** run promotions, featured products and combos ([caa6408](https://github.com/jsrwell/pit/commit/caa6408f2b703d22818856522e0e54b5f261b715))
+
 ## [1.4.0](https://github.com/jsrwell/pit/compare/v1.3.0...v1.4.0) (2026-10-18)
 
 ### Features
