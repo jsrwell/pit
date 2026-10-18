@@ -1,7 +1,7 @@
 ---
 code: "US03"
 name: "Analisar o produto antes da compra"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,9 +37,9 @@ O detalhe do produto é a camada onde o interesse se converte em intenção de c
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de detalhe do produto | 4h | A fazer |
-| 2 | Desenvolver tela de detalhe com imagem ampliada, descrição e composição | 8h | A fazer |
-| 3 | Escrever testes da tela de detalhe | 3h | A fazer |
+| 1 | Implementar endpoint de detalhe do produto | 4h | Concluída |
+| 2 | Desenvolver tela de detalhe com imagem ampliada, descrição e composição | 8h | Concluída |
+| 3 | Escrever testes da tela de detalhe | 3h | Concluída |
 | **Total** | | **15h** | |
 
 ## Relacionamentos

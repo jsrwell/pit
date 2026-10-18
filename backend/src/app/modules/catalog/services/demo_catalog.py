@@ -230,3 +230,75 @@ DEMO_PRODUCTS: tuple[DemoProduct, ...] = (
         ),
     ),
 )
+
+
+class DemoDetails(NamedTuple):
+    """Composition and selling points shown on the product page."""
+
+    composition: str
+    highlights: str
+
+
+DEMO_DETAILS: dict[str, DemoDetails] = {
+    'Chocolate Belga Supremo': DemoDetails(
+        'Farinha de trigo, chocolate belga 54%, cacau 70%, manteiga, ovos, '
+        'açúcar, creme de leite fresco.',
+        'Chocolate Callebaut importado\nGanache feito no dia\n'
+        'Pérola de chocolate dourada',
+    ),
+    'Red Velvet Imperial': DemoDetails(
+        'Farinha de trigo, leitelho, cacau, manteiga, ovos, açúcar, cream '
+        'cheese, baunilha.',
+        'Receita tradicional americana\nCream cheese artesanal\n'
+        'Corante natural de beterraba',
+    ),
+    'Pistache e Rosas': DemoDetails(
+        'Farinha de trigo, pistache siciliano, manteiga, ovos, açúcar, '
+        'pétalas de rosa cristalizadas.',
+        'Pistache de Bronte\nPétalas comestíveis\nLevemente floral',
+    ),
+    'Baunilha de Madagascar': DemoDetails(
+        'Farinha de trigo, favas de baunilha bourbon, manteiga, ovos, '
+        'açúcar, claras.',
+        'Favas inteiras de Madagascar\nButtercream suíço\nSuave e elegante',
+    ),
+    'Frutas Vermelhas Royale': DemoDetails(
+        'Farinha de trigo, morango, framboesa, amora, manteiga, ovos, '
+        'açúcar, creme de leite.',
+        'Geleia artesanal da casa\nFrutas frescas da estação\n'
+        'Equilíbrio entre doce e ácido',
+    ),
+    'Limão Siciliano': DemoDetails(
+        'Farinha de trigo, limão siciliano, manteiga, ovos, açúcar, claras.',
+        'Curd preparado diariamente\nMerengue maçaricado\nRefrescante',
+    ),
+    'Caramelo Salgado Flor de Sal': DemoDetails(
+        'Farinha de trigo, açúcar mascavo, manteiga, ovos, creme de leite, '
+        'doce de leite, flor de sal.',
+        'Flor de sal de Guérande\nCaramelo cozido lentamente\n'
+        'Contraste doce e salgado',
+    ),
+    'Café Espresso Noir': DemoDetails(
+        'Farinha de trigo, café espresso, cacau, manteiga, ovos, açúcar, '
+        'mascarpone.',
+        'Café especial torrado na semana\nMascarpone italiano\n'
+        'Grãos caramelizados crocantes',
+    ),
+    'Coco Vegano': DemoDetails(
+        'Farinha de trigo, leite de coco, óleo de coco, açúcar demerara, '
+        'coco ralado.',
+        'Sem ingredientes de origem animal\nCocada cremosa\n'
+        'Coco tostado na hora',
+    ),
+    'Morango Silvestre Vegano': DemoDetails(
+        'Farinha de trigo, bebida de amêndoas, morangos silvestres, óleo '
+        'vegetal, castanha de caju.',
+        'Sem ingredientes de origem animal\nCompota artesanal\n'
+        'Creme de castanhas',
+    ),
+    'Trufa de Ouro': DemoDetails(
+        'Farinha de trigo, chocolate belga 70%, manteiga, ovos, açúcar, '
+        'creme de leite, folha de ouro 23k.',
+        'Edição limitada\nFolha de ouro comestível\nCoração de trufa',
+    ),
+}

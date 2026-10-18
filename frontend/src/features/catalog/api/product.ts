@@ -13,3 +13,9 @@ export interface ProductSummary {
   is_available: boolean
   is_featured: boolean
 }
+
+export interface ProductDetail extends ProductSummary {
+  description: string
+  composition: string
+  highlights: string[]
+}

@@ -45,6 +45,10 @@ class ProductRepository:
         )
         return list(self.session.scalars(statement))
 
+    def get(self, product_id: int) -> Product | None:
+        """Return the product with ``product_id``, if any."""
+        return self.session.get(Product, product_id)
+
     def has_any(self) -> bool:
         """Tell whether the catalog holds at least one product."""
         return bool(self.session.scalar(select(exists().select_from(Product))))

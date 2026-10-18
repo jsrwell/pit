@@ -7,6 +7,7 @@ const MESSAGES: Record<string, string> = {
   'CS-SYS-0003': 'O recurso solicitado não foi encontrado.',
   'CS-SYS-0004': 'Operação não permitida.',
   'CS-CAT-0001': 'Imagem não encontrada.',
+  'CS-CAT-0003': 'Produto não encontrado ou fora do catálogo.',
   'CS-CAT-0002': 'O preço mínimo não pode ser maior que o preço máximo.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }

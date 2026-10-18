@@ -19,6 +19,8 @@ class Product(TimestampMixin, Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(80))
     description: Mapped[str] = mapped_column(Text)
+    composition: Mapped[str] = mapped_column(Text, server_default='')
+    highlights: Mapped[str] = mapped_column(Text, server_default='')
     price: Mapped[Decimal] = mapped_column(Numeric(10, 2))
     category_id: Mapped[int] = mapped_column(ForeignKey('categories.id'))
     flavor_id: Mapped[int] = mapped_column(ForeignKey('flavors.id'))

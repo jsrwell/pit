@@ -18,7 +18,10 @@ from app.modules.catalog.services.cupcake_illustration import (
     SVG_CONTENT_TYPE,
     render_cupcake,
 )
-from app.modules.catalog.services.demo_catalog import DEMO_PRODUCTS
+from app.modules.catalog.services.demo_catalog import (
+    DEMO_DETAILS,
+    DEMO_PRODUCTS,
+)
 
 
 def seed_demo_catalog(session: Session) -> int:
@@ -38,11 +41,14 @@ def seed_demo_catalog(session: Session) -> int:
     flavors = ClassificationRepository(session, Flavor)
     images = ProductImageRepository(session)
     for demo in DEMO_PRODUCTS:
+        details = DEMO_DETAILS[demo.name]
         image = images.add(SVG_CONTENT_TYPE, render_cupcake(demo.palette))
         products.add(
             Product(
                 name=demo.name,
                 description=demo.description,
+                composition=details.composition,
+                highlights=details.highlights,
                 price=demo.price,
                 category=categories.get_or_create(demo.category),
                 flavor=flavors.get_or_create(demo.flavor),
