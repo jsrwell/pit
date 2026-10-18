@@ -46,3 +46,26 @@
 .account-overview__data dd {
   margin: 0.2rem 0 0;
 }
+
+.address-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.address-card {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+}
+
+.address-picker {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

@@ -23,6 +23,7 @@ const MESSAGES: Record<string, string> = {
   'CS-ACC-0003': 'E-mail ou senha incorretos.',
   'CS-ACC-0004':
     'Muitas tentativas sem sucesso. Por segurança, o acesso foi bloqueado por alguns minutos.',
+  'CS-ACC-0005': 'Endereço não encontrado.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

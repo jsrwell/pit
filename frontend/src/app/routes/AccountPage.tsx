@@ -1,4 +1,5 @@
 import { AccountOverview } from '@/features/accounts/components/AccountOverview'
+import { AddressBook } from '@/features/accounts/components/AddressBook'
 
 export function AccountPage() {
   return (
@@ -9,6 +10,7 @@ export function AccountPage() {
         <p>Acompanhe seus dados, endereços e pedidos.</p>
       </div>
       <AccountOverview />
+      <AddressBook />
     </div>
   )
 }

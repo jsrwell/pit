@@ -462,3 +462,30 @@ p {
     position: static;
   }
 }
+
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.choice:has(input:checked) {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 1px var(--color-gold);
+}
+
+.choice input {
+  margin-top: 0.3rem;
+  accent-color: var(--color-ink);
+}
+
+.choice > span {
+  display: grid;
+  gap: 0.2rem;
+}

@@ -1,7 +1,7 @@
 ---
 code: "US09"
 name: "Registrar endereço para entrega"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Endereço mal especificado é fonte direta de erro operacional.
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar CRUD de endereços no backend | 6h | A fazer |
-| 2 | Desenvolver tela de cadastro de endereço com validação | 8h | A fazer |
-| 3 | Implementar seleção de endereço principal | 3h | A fazer |
-| 4 | Escrever testes de endereço | 3h | A fazer |
+| 1 | Implementar CRUD de endereços no backend | 6h | Concluída |
+| 2 | Desenvolver tela de cadastro de endereço com validação | 8h | Concluída |
+| 3 | Implementar seleção de endereço principal | 3h | Concluída |
+| 4 | Escrever testes de endereço | 3h | Concluída |
 | **Total** | | **20h** | |
 
 ## Relacionamentos
