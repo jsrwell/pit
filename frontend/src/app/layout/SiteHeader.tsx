@@ -24,6 +24,7 @@ export function SiteHeader() {
           <NavLink to="/" end>
             Vitrine
           </NavLink>
+          <NavLink to="/encomendas">Encomendas</NavLink>
           {session === null ? (
             <>
               <NavLink to="/entrar">Entrar</NavLink>

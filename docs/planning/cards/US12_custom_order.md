@@ -1,7 +1,7 @@
 ---
 code: "US12"
 name: "Solicitar encomenda personalizada"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Amplia o escopo comercial para ticket médio maior sob demanda.
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar modelo e endpoint de encomenda personalizada | 6h | A fazer |
-| 2 | Desenvolver formulário de solicitação especial | 8h | A fazer |
-| 3 | Implementar fluxo de análise e aprovação pela loja | 6h | A fazer |
-| 4 | Escrever testes de encomenda | 4h | A fazer |
+| 1 | Implementar modelo e endpoint de encomenda personalizada | 6h | Concluída |
+| 2 | Desenvolver formulário de solicitação especial | 8h | Concluída |
+| 3 | Implementar fluxo de análise e aprovação pela loja | 6h | Concluída |
+| 4 | Escrever testes de encomenda | 4h | Concluída |
 | **Total** | | **24h** | |
 
 ## Relacionamentos

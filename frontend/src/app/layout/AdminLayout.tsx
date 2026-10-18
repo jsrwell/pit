@@ -9,6 +9,7 @@ export function AdminLayout() {
       </div>
       <nav className="admin-nav" aria-label="Seções do painel">
         <NavLink to="/admin/pedidos">Pedidos</NavLink>
+        <NavLink to="/admin/encomendas">Encomendas</NavLink>
         <NavLink to="/admin/produtos">Produtos</NavLink>
       </nav>
       <Outlet />

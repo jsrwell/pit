@@ -5,9 +5,11 @@ import { AppLayout } from './layout/AppLayout'
 import { AccountPage } from './routes/AccountPage'
 import { CartPage } from './routes/CartPage'
 import { CheckoutPage } from './routes/CheckoutPage'
+import { AdminCustomOrdersPage } from './routes/admin/AdminCustomOrdersPage'
 import { AdminOrdersPage } from './routes/admin/AdminOrdersPage'
 import { AdminProductFormPage } from './routes/admin/AdminProductFormPage'
 import { AdminProductsPage } from './routes/admin/AdminProductsPage'
+import { CustomOrdersPage } from './routes/CustomOrdersPage'
 import { HomePage } from './routes/HomePage'
 import { LoginPage } from './routes/LoginPage'
 import { NotFoundPage } from './routes/NotFoundPage'
@@ -32,6 +34,7 @@ export function App() {
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="pedidos" element={<OrdersPage />} />
             <Route path="pedidos/:orderId" element={<OrderPage />} />
+            <Route path="encomendas" element={<CustomOrdersPage />} />
           </Route>
           <Route element={<RequireAuth role="admin" />}>
             <Route path="admin" element={<AdminLayout />}>
@@ -40,6 +43,7 @@ export function App() {
               <Route path="produtos/novo" element={<AdminProductFormPage />} />
               <Route path="produtos/:productId" element={<AdminProductFormPage />} />
               <Route path="pedidos" element={<AdminOrdersPage />} />
+              <Route path="encomendas" element={<AdminCustomOrdersPage />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />

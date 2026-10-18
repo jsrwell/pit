@@ -14,8 +14,14 @@ from app.modules.catalog.api.classification_routes import (
 )
 from app.modules.catalog.api.image_routes import router as image_router
 from app.modules.catalog.api.product_routes import router as product_router
+from app.modules.orders.api.custom_order_routes import (
+    router as custom_order_router,
+)
 from app.modules.orders.api.order_routes import router as order_router
 from app.modules.orders.api.quote_routes import router as quote_router
+from app.modules.orders.api.store_custom_order_routes import (
+    router as store_custom_order_router,
+)
 from app.modules.orders.api.store_order_routes import (
     router as store_order_router,
 )
@@ -34,5 +40,7 @@ api_router.include_router(session_router)
 api_router.include_router(address_router)
 api_router.include_router(cart_router)
 api_router.include_router(quote_router)
+api_router.include_router(store_custom_order_router)
 api_router.include_router(store_order_router)
+api_router.include_router(custom_order_router)
 api_router.include_router(order_router)
