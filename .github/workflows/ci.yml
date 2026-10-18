@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      backend: ${{ github.event_name != 'pull_request' || steps.filter.outputs.backend == 'true' }}
+      frontend: ${{ github.event_name != 'pull_request' || steps.filter.outputs.frontend == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: filter
+        if: github.event_name == 'pull_request'
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+              - 'docker/release/backend/**'
+              - '.github/workflows/ci.yml'
+            frontend:
+              - 'frontend/**'
+              - 'docker/release/frontend/**'
+              - '.github/workflows/ci.yml'
+
+  backend:
+    name: Backend
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      database:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: cupcakes
+          POSTGRES_PASSWORD: cupcakes
+          POSTGRES_DB: cupcakes
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U cupcakes -d cupcakes"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE__DSN: postgresql+psycopg://cupcakes:cupcakes@localhost:5432/cupcakes
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install poetry==2.1.4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: poetry
+          cache-dependency-path: backend/poetry.lock
+      - run: poetry install
+      - run: poetry run black --check .
+      - run: poetry run ruff check .
+      - run: poetry run alembic upgrade head
+      - run: poetry run alembic check
+      - run: poetry run pytest
+      - name: Build release image
+        working-directory: .
+        run: docker build --file docker/release/backend/Dockerfile .
+
+  frontend:
+    name: Frontend
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Build release image
+        working-directory: .
+        run: docker build --file docker/release/frontend/Dockerfile .

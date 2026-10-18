@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    "pkief.material-icon-theme",
+    "editorconfig.editorconfig",
+
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-pyright.pyright",
+    "ms-python.black-formatter",
+    "charliermarsh.ruff",
+
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "vitest.explorer",
+
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml",
+    "mikestead.dotenv",
+    "davidanson.vscode-markdownlint",
+    "bierner.markdown-mermaid",
+
+    "ms-azuretools.vscode-containers",
+    "github.vscode-github-actions",
+    "fill-labs.dependi"
+  ]
+}

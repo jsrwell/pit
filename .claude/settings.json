@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(poetry install:*)",
+      "Bash(poetry run pytest:*)",
+      "Bash(poetry run black:*)",
+      "Bash(poetry run ruff:*)",
+      "Bash(poetry run alembic upgrade:*)",
+      "Bash(poetry run alembic revision:*)",
+      "Bash(poetry run alembic check:*)",
+      "Bash(poetry run alembic history:*)",
+      "Bash(poetry run alembic current:*)",
+      "Bash(npm ci:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run format:*)",
+      "Bash(npx prettier:*)",
+      "Bash(npx vitest:*)",
+      "Bash(docker compose -f docker/dev/docker-compose.yml:*)",
+      "Bash(docker build:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/organize_python_imports.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+name: cupcakes-store-dev
+
+services:
+  database:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: cupcakes
+      POSTGRES_PASSWORD: cupcakes
+      POSTGRES_DB: cupcakes
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cupcakes -d cupcakes"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  database-data:

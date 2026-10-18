@@ -1,0 +1,50 @@
+[project]
+name = "cupcakes-store-backend"
+version = "0.0.0"
+description = "REST API of the Cupcakes Store virtual shop."
+authors = [{ name = "Wellington Ramos" }]
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "fastapi (>=0.115,<1)",
+    "uvicorn[standard] (>=0.34,<1)",
+    "sqlalchemy (>=2.0,<3)",
+    "alembic (>=1.15,<2)",
+    "psycopg[binary] (>=3.2,<4)",
+    "pydantic-settings (>=2.8,<3)",
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3"
+httpx = "^0.28"
+black = "^25.1"
+ruff = "^0.11"
+
+[tool.black]
+line-length = 79
+skip-string-normalization = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+extraPaths = ["src"]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "off"

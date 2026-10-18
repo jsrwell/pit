@@ -1,0 +1,56 @@
+{
+  "branches": [
+    "main",
+    {
+      "name": "develop",
+      "channel": "beta",
+      "prerelease": "beta"
+    }
+  ],
+  "tagFormat": "v${version}",
+  "plugins": [
+    ["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],
+    [
+      "@semantic-release/release-notes-generator",
+      { "preset": "conventionalcommits" }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md",
+        "changelogTitle": "# Changelog"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "python3 .github/scripts/semantic-release/update_release_versions.py ${nextRelease.version} ${nextRelease.channel} && bash .github/scripts/semantic-release/release_images.sh build ${nextRelease.version} ${nextRelease.channel}",
+        "publishCmd": "bash .github/scripts/semantic-release/release_images.sh push ${nextRelease.version} ${nextRelease.channel}"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md",
+          "README.md",
+          "package.json",
+          "package-lock.json",
+          "backend/pyproject.toml",
+          "frontend/package.json",
+          "frontend/package-lock.json"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false,
+        "failComment": false,
+        "labels": [],
+        "releasedLabels": []
+      }
+    ]
+  ]
+}

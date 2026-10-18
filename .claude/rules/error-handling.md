@@ -1,13 +1,15 @@
 ---
-globs: ["*.py"]
+paths:
+  - "backend/**"
+  - "frontend/src/shared/api/**"
 ---
 
 # Tratamento de Erros
 
 Raciocínio, exemplos e formato completo em
-`docs/DESIGN_PATTERNS.md`, secções _Domain Errors com Catálogo_,
-_Problem Details_ e _Contrato de Erro no OpenAPI_. Estas regras são o resumo
-obrigatório.
+`docs/backend/ARCHITECTURE.md`, secções _Erros de domínio com catálogo_,
+_Problem Details_ e _Contrato de erro no OpenAPI_. Estas regras são o
+resumo obrigatório.
 
 ## Declaração
 
@@ -15,16 +17,17 @@ obrigatório.
   do módulo dono, uma classe por ficheiro.
 - Atributos obrigatórios: `code`, `status`, `title`.
 - Erro que nunca atravessa HTTP declara `internal = True`.
-- Formato do código: `SA-<MOD>-<NNNN>`, com o prefixo do módulo dono.
+- Formato do código: `CS-<MOD>-<NNNN>`, com o prefixo do módulo dono
+  (tabela de prefixos em `docs/backend/ARCHITECTURE.md`).
 - Um código **nunca** é reutilizado. Retirar é marcar `deprecated = True`,
   nunca apagar nem reaproveitar o número.
 
 ## Lançamento
 
-- Services lançam erros de domínio. `HTTPException` **nunca** é lançada fora
-  de `app/api/`.
+- Services lançam erros de domínio. `HTTPException` **nunca** é lançada:
+  a tradução para HTTP é feita só pelo handler único em `app/shared/http/`.
 - Erros de bibliotecas e sistemas externos são convertidos em erro de domínio
-  dentro do adapter, nunca propagados em cru.
+  dentro do repositório ou adapter, nunca propagados em cru.
 - `detail` explica a ocorrência a um humano. Nunca contém SQL, nomes de
   tabelas, credenciais, caminhos internos ou estado interno.
 
@@ -43,9 +46,17 @@ obrigatório.
 - Acrescentar um `raise` numa rota obriga a acrescentar a classe na
   declaração dessa rota.
 
+## Frontend
+
+- Todo o código novo que atravessa HTTP ganha a mensagem em pt-BR em
+  `frontend/src/shared/api/error-messages.ts`, chaveada pelo `code`.
+- O frontend decide o texto exibido pelo `code`, nunca pelo `title` nem pelo
+  `detail`, que são em inglês e voltados a quem desenvolve.
+
 ## Ordem de trabalho ao criar um erro
 
 1. Declarar a classe em `errors/` do módulo dono.
 2. Declarar a classe na rota que a pode propagar, ou marcar `internal = True`.
 3. Escrever o teste de integração que exercita esse caminho de erro.
 4. Só depois lançar o erro no service.
+5. Acrescentar a mensagem do código no frontend.

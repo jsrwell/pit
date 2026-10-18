@@ -1,0 +1,9 @@
+*
+!frontend/
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/.env
+frontend/.env.*
+frontend/CLAUDE.md
+!docker/release/frontend/default.conf.template

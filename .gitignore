@@ -1,2 +1,9 @@
-planning/
-CLAUDE.md
+/planning/
+node_modules/
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+.idea/
+.DS_Store
+Thumbs.db

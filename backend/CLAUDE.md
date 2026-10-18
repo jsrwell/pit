@@ -1,0 +1,21 @@
+# Backend
+
+- Raiz do projeto Python: Poetry, Black, Ruff, pytest e Alembic leem a configuração de `backend/pyproject.toml` e devem ser executados a partir daqui.
+- O código fica em `src/` e não é um pacote instalado: pytest, Alembic, a imagem e o depurador adicionam `src` ao caminho de import.
+- O único ponto de entrada é `src/run.py`; `app/main.py` só monta a aplicação e expõe `app` para o Uvicorn.
+- Arquitetura, camadas e convenções completas: `docs/backend/ARCHITECTURE.md`; regras de erro: `.claude/rules/error-handling.md`.
+- SQLAlchemy é síncrono de propósito (simplicidade e compatibilidade do psycopg com o Windows); rotas são `def`, não `async def`.
+- A transação é aberta por requisição em `get_session` e confirmada no fim; services e repositórios nunca chamam `commit`.
+- Models e erros são descobertos pelo nome da pasta (`models`, `errors`); basta criar o arquivo, não há registro central.
+- Routers de módulo precisam ser incluídos em `app/api_router.py`; tudo fica sob `/api`, inclusive docs e OpenAPI.
+- `HTTPException` não é usada em lugar nenhum: rotas e services lançam subclasses de `DomainError` e o handler único converte.
+- `problem_responses()` já inclui o erro 500; listar nela só os erros que a rota realmente propaga.
+- Prefixos de código de erro por módulo estão na tabela de módulos da arquitetura; um número nunca é reaproveitado.
+- `DATABASE__DSN` aceita `postgresql://` (formato do Neon) e é convertido para `postgresql+psycopg://` automaticamente.
+- Variáveis de ambiente usam `__` para grupos aninhados; o modelo local é `.env.example` e o padrão já aponta para o banco de `docker/dev/`.
+- Migrações recebem id `AAAAMMDD_HHMM` gerado em `alembic/env.py`; sempre revisar o autogenerate e nunca editar uma migração já aplicada.
+- O CI roda `alembic check`: model alterado sem migração quebra o pipeline.
+- `tests/integration/` usa `TestClient` com `raise_server_exceptions=False`, para que erros 500 sejam verificados como resposta e não como exceção.
+- O teste de catálogo de erros valida formato e unicidade de todo código declarado em `app/`.
+- A imagem de release é definida em `docker/release/backend/`, não aqui; ela aplica as migrações ao iniciar, salvo `RUN_MIGRATIONS=false`.
+- Um hook do Claude organiza e remove imports não usados a cada escrita em arquivo Python deste diretório; escreva o código antes do import.

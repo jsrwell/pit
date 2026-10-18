@@ -1,0 +1,91 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Database: up",
+      "type": "shell",
+      "command": "docker compose -f docker/dev/docker-compose.yml up -d --wait",
+      "problemMatcher": []
+    },
+    {
+      "label": "Database: down",
+      "type": "shell",
+      "command": "docker compose -f docker/dev/docker-compose.yml down",
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: install",
+      "type": "shell",
+      "command": "poetry install",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: migrate",
+      "type": "shell",
+      "command": "poetry run alembic upgrade head",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "dependsOn": "Database: up",
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: lint",
+      "type": "shell",
+      "command": "poetry run black --check . && poetry run ruff check .",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: test",
+      "type": "shell",
+      "command": "poetry run pytest",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: install",
+      "type": "shell",
+      "command": "npm ci",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": { "regexp": "^__never_matches__$" },
+        "background": {
+          "activesBegins": true,
+          "beginsPattern": "VITE v",
+          "endsPattern": "Local:"
+        }
+      }
+    },
+    {
+      "label": "Frontend: lint",
+      "type": "shell",
+      "command": "npm run format:check && npm run lint",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "Frontend: test",
+      "type": "shell",
+      "command": "npm test",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Release images: build",
+      "type": "shell",
+      "command": "docker build -f docker/release/backend/Dockerfile -t cupcakes-store/backend:local . && docker build -f docker/release/frontend/Dockerfile -t cupcakes-store/frontend:local .",
+      "problemMatcher": []
+    }
+  ]
+}

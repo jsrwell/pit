@@ -15,6 +15,8 @@
 | Mensagens de log                     | Inglês                                 |
 | Endpoints (paths de API)             | Inglês                                 |
 | Grupos de endpoints no Swagger       | Inglês                                 |
+| `title` e `detail` de erros da API   | Inglês                                 |
+| Textos da interface do utilizador    | Português do Brasil                    |
 | `README.md`                          | Português do Brasil                    |
 | `CLAUDE.md`                          | Português do Brasil                    |
 | Ficheiros em `docs/`                 | Português do Brasil                    |

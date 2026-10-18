@@ -1,0 +1,8 @@
+*
+!backend/pyproject.toml
+!backend/poetry.lock
+!backend/alembic.ini
+!backend/alembic/
+!backend/src/
+!docker/release/backend/entrypoint.sh
+**/__pycache__/
