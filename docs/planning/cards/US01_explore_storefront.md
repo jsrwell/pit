@@ -1,7 +1,7 @@
 ---
 code: "US01"
 name: "Explorar a vitrine digital da loja"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ O catálogo funciona como vitrine comercial. Deve transmitir organização, apel
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de listagem de produtos ativos | 6h | A fazer |
-| 2 | Desenvolver componente de card de produto na vitrine | 8h | A fazer |
-| 3 | Implementar lógica de destaque de produtos | 4h | A fazer |
-| 4 | Escrever testes de integração da vitrine | 4h | A fazer |
+| 1 | Implementar endpoint de listagem de produtos ativos | 6h | Concluída |
+| 2 | Desenvolver componente de card de produto na vitrine | 8h | Concluída |
+| 3 | Implementar lógica de destaque de produtos | 4h | Concluída |
+| 4 | Escrever testes de integração da vitrine | 4h | Concluída |
 | **Total** | | **22h** | |
 
 ## Relacionamentos

@@ -52,7 +52,7 @@ pit/
 O desenvolvimento roda backend e frontend nativamente, com apenas o banco em contêiner:
 
 1. `docker compose -f docker/dev/docker-compose.yml up -d` sobe o PostgreSQL em `localhost:5432` (usuário, senha e banco `cupcakes`).
-2. O backend lê `backend/.env` (modelo em `backend/.env.example`) e serve em `http://localhost:8000`.
+2. O backend lê `backend/.env` (modelo em `backend/.env.example`), aplica as migrações com `poetry run alembic upgrade head`, carrega os dados iniciais com `poetry run python src/seed.py` e serve em `http://localhost:8000`.
 3. O servidor do Vite serve o frontend em `http://localhost:5173` e encaminha `/api` para o backend, por isso não há CORS em desenvolvimento.
 
 No VS Code, a configuração composta **Full stack** sobe o banco, o backend com depurador e o frontend no Chrome.
@@ -70,6 +70,8 @@ As duas aplicações são configuradas apenas por variáveis de ambiente, com pa
 | `CORS__ALLOW_ORIGINS` | backend   | `["http://localhost:5173"]`                                      | `["http://localhost:8080"]`                                     |
 | `APP__VERSION`        | backend   | `0.0.0-dev`                                                      | versão do release, gravada no build                             |
 | `RUN_MIGRATIONS`      | backend   | não se aplica                                                    | `true`: aplica as migrações antes de servir                     |
+| `RUN_SEED`            | backend   | não se aplica (`python src/seed.py` manual)                      | `true`: executa o seed idempotente antes de servir              |
+| `SEED__DEMO_CATALOG`  | backend   | `true`                                                           | `true`: o seed carrega o catálogo de demonstração se vazio      |
 | `API_UPSTREAM`        | frontend  | não se aplica (proxy do Vite)                                    | `http://backend:8000`                                           |
 | `NGINX_PORT`          | frontend  | não se aplica                                                    | `80`                                                            |
 | `VITE_API_BASE_URL`   | frontend  | `/api`                                                           | `/api`, fixado no build                                         |

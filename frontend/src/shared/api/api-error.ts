@@ -26,6 +26,10 @@ export class ApiError extends Error {
     return new ApiError(localProblem(NETWORK_ERROR_CODE, 'Network error', 0))
   }
 
+  static from(error: unknown): ApiError {
+    return error instanceof ApiError ? error : ApiError.unexpected(0)
+  }
+
   static unexpected(status: number): ApiError {
     return new ApiError(localProblem(UNEXPECTED_ERROR_CODE, 'Unexpected error', status))
   }

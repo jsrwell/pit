@@ -1,12 +1,18 @@
-import { ApiStatus } from '@/features/system/components/ApiStatus'
-import { env } from '@/shared/config/env'
+import { BrowserRouter, Route, Routes } from 'react-router'
+
+import { AppLayout } from './layout/AppLayout'
+import { HomePage } from './routes/HomePage'
+import { NotFoundPage } from './routes/NotFoundPage'
 
 export function App() {
   return (
-    <main className="app">
-      <h1>Cupcakes Gourmet</h1>
-      <ApiStatus />
-      <footer>Versão {env.appVersion}</footer>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }

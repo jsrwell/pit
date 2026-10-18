@@ -25,7 +25,7 @@ Aplicação web da Loja Virtual de Cupcakes Gourmet, desenvolvida no Projeto Int
 Pré-requisitos: Python 3.13, Poetry 2, Node.js 22 e Docker.
 
 1. Suba o banco: `docker compose -f docker/dev/docker-compose.yml up -d`.
-2. Backend, em `backend/`: copie `.env.example` para `.env`, rode `poetry install`, `poetry run alembic upgrade head` e `poetry run python src/run.py`.
+2. Backend, em `backend/`: copie `.env.example` para `.env`, rode `poetry install`, `poetry run alembic upgrade head`, `poetry run python src/seed.py` (dados iniciais) e `poetry run python src/run.py`.
 3. Frontend, em `frontend/`: rode `npm ci` e `npm run dev`, e acesse `http://localhost:5173`.
 
 A documentação interativa da API fica em `http://localhost:8000/api/docs`.

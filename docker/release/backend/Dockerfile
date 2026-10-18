@@ -24,7 +24,9 @@ ENV PATH="/app/.venv/bin:${PATH}" \
     SERVER__PORT=8000 \
     DATABASE__DSN=postgresql+psycopg://cupcakes:cupcakes@database:5432/cupcakes \
     CORS__ALLOW_ORIGINS='["http://localhost:8080"]' \
-    RUN_MIGRATIONS=true
+    RUN_MIGRATIONS=true \
+    RUN_SEED=true \
+    SEED__DEMO_CATALOG=true
 
 RUN useradd --create-home --uid 1000 app
 WORKDIR /app

@@ -31,7 +31,7 @@ frontend/
 ├── tsconfig*.json
 └── src/
     ├── main.tsx                monta a aplicação
-    ├── app/                    composição: App, estilos globais e, no futuro, rotas e layout
+    ├── app/                    composição: App, rotas, layout e estilos globais
     ├── features/
     │   └── <módulo>/
     │       ├── api/            funções de chamada e tipos do contrato do módulo
@@ -40,6 +40,8 @@ frontend/
     ├── shared/
     │   ├── api/                cliente HTTP, ApiError, Problem Details e mensagens de erro
     │   ├── config/             leitura das variáveis VITE_*
+    │   ├── format/             formatação de moeda e datas em pt-BR
+    │   ├── hooks/              estado reutilizado, como o carregamento assíncrono
     │   └── components/         componentes visuais genéricos (botão, campo, alerta)
     └── test/                   setup do Vitest
 ```
@@ -62,6 +64,7 @@ Regras de dependência:
 - `features/<a>` nunca importa de `features/<b>`; o que for comum sobe para `shared/`.
 - `shared/` nunca importa de `features/` nem de `app/`.
 - `app/` compõe as features (rotas e layout) e não contém regra de tela.
+- Quando uma tela precisa de uma ação de outra feature (por exemplo, o botão de adicionar ao carrinho dentro do card da vitrine), a tela expõe uma propriedade de renderização (`renderProductAction`) e `app/routes/` encaixa ali o componente da outra feature.
 
 ## Comunicação com a API
 

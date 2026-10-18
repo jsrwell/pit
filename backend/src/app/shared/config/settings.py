@@ -50,6 +50,12 @@ class CorsSettings(BaseModel):
     allow_origins: list[str] = ['http://localhost:5173']
 
 
+class SeedSettings(BaseModel):
+    """Data loaded by ``src/seed.py`` on an empty database."""
+
+    demo_catalog: bool = True
+
+
 class Settings(BaseSettings):
     """Root settings, read from the environment and from ``.env``.
 
@@ -66,6 +72,7 @@ class Settings(BaseSettings):
     server: ServerSettings = Field(default_factory=ServerSettings)
     database: DatabaseSettings = Field(default_factory=DatabaseSettings)
     cors: CorsSettings = Field(default_factory=CorsSettings)
+    seed: SeedSettings = Field(default_factory=SeedSettings)
 
 
 @lru_cache

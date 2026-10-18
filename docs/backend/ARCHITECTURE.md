@@ -66,7 +66,7 @@ Cada módulo corresponde a um conjunto de histórias de usuário de [Planejament
 | `orders`     | `ORD`   | Modalidade de recebimento, checkout, pagamento, status e encomendas | US08, US10, US11, US12, US15 |
 | `promotions` | `PRM`   | Campanhas e combinações promocionais                                | US16                         |
 
-Só `system` existe hoje; os demais são criados quando o primeiro cartão do módulo for implementado.
+Cada módulo é criado quando o primeiro cartão dele é implementado.
 
 ## Anatomia de um módulo
 
@@ -125,6 +125,8 @@ sequenceDiagram
 - Tabelas em inglês, `snake_case` e no plural (`products`, `order_items`); chave primária `id`; datas `created_at` e `updated_at` com fuso horário; valores monetários em `Numeric(10, 2)`.
 - Migrações são geradas com `poetry run alembic revision --autogenerate -m "<descrição>"` e sempre revisadas antes do commit. O identificador é `AAAAMMDD_HHMM` (com segundos em caso de colisão) e o arquivo é `AAAAMMDD_HHMM_slug.py`.
 - Uma migração aplicada em qualquer ambiente nunca é editada; corrige-se com uma nova.
+- Migrações são sempre geradas pelo `autogenerate` e mantidas exatamente como saem dele; nunca são escritas nem ajustadas à mão. Se a saída gerada não passar no lint, corrige-se o modelo `alembic/script.py.mako`.
+- Migrações só alteram esquema. Dados iniciais, como o catálogo de demonstração, são carregados por `src/seed.py`, idempotente: cada seed só insere quando o dado ainda não existe. A imagem o executa ao iniciar, salvo `RUN_SEED=false`.
 - O CI aplica todas as migrações num banco limpo e roda `alembic check`, que falha se algum model não tiver migração.
 - O projeto físico e o dicionário de dados exigidos pelo PIT devem refletir exatamente as migrações.
 
@@ -185,7 +187,7 @@ Toda resposta de erro segue a RFC 9457, com `Content-Type: application/problem+j
 - `tests/unit/` testa funções e services isolados; `tests/integration/` exercita a API pelo `TestClient`.
 - A estrutura de pastas espelha os módulos (`tests/integration/catalog/...`).
 - Todo erro de domínio declarado tem um teste de integração que percorre o caminho que o lança.
-- Testes que precisam de banco usam o PostgreSQL de `docker/dev/` localmente e o serviço PostgreSQL no CI, com o mesmo `DATABASE__DSN`.
+- Testes que precisam de banco usam o PostgreSQL de `docker/dev/` localmente e o serviço PostgreSQL no CI, com o mesmo `DATABASE__DSN`. Cada teste roda dentro de uma transação desfeita ao final (fixture `db_session`), por isso a suíte não deixa dados no banco de desenvolvimento.
 - Cada critério de aceitação (CA) e regra de negócio (RN) do cartão vira ao menos um teste, o que alimenta a matriz requisito x caso de teste da Situação-Problema 3.
 
 ## Implementando um cartão
