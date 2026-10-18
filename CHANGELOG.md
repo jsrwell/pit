@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/jsrwell/pit/compare/v1.2.0...v1.3.0) (2026-10-18)
+
+### Features
+
+* **US05:** sign in securely with expiring sessions ([20685bf](https://github.com/jsrwell/pit/commit/20685bf6fcc7507fe45094eda36973325210bae5))
+* **US13:** manage the product catalog from the admin panel ([e4e0f0c](https://github.com/jsrwell/pit/commit/e4e0f0cc2403d7851ea181e4f7b9101aca7865a8))
+
 ## [1.2.0](https://github.com/jsrwell/pit/compare/v1.1.0...v1.2.0) (2026-10-18)
 
 ### Features
