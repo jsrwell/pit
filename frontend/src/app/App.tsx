@@ -1,7 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 
+import { AdminLayout } from './layout/AdminLayout'
 import { AppLayout } from './layout/AppLayout'
 import { AccountPage } from './routes/AccountPage'
+import { AdminProductFormPage } from './routes/admin/AdminProductFormPage'
+import { AdminProductsPage } from './routes/admin/AdminProductsPage'
 import { HomePage } from './routes/HomePage'
 import { LoginPage } from './routes/LoginPage'
 import { NotFoundPage } from './routes/NotFoundPage'
@@ -20,6 +23,14 @@ export function App() {
           <Route path="entrar" element={<LoginPage />} />
           <Route element={<RequireAuth />}>
             <Route path="conta" element={<AccountPage />} />
+          </Route>
+          <Route element={<RequireAuth role="admin" />}>
+            <Route path="admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="produtos" replace />} />
+              <Route path="produtos" element={<AdminProductsPage />} />
+              <Route path="produtos/novo" element={<AdminProductFormPage />} />
+              <Route path="produtos/:productId" element={<AdminProductFormPage />} />
+            </Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>

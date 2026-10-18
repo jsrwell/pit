@@ -74,6 +74,7 @@ As duas aplicações são configuradas apenas por variáveis de ambiente, com pa
 | `AUTH__MAX_FAILED_ATTEMPTS` | backend | `5`                                                      | `5`: tentativas de login antes do bloqueio                      |
 | `AUTH__LOCKOUT_MINUTES` | backend | `15`                                                           | `15`: duração do bloqueio                                       |
 | `ADMIN__EMAIL`, `ADMIN__PASSWORD`, `ADMIN__NAME` | backend | vazios (sem administrador)                     | vazios; quando definidos, o seed cria ou promove o administrador |
+| `CATALOG__MAX_IMAGE_BYTES` | backend | `2000000`                                                  | `2000000`: tamanho máximo das imagens enviadas                  |
 | `RUN_MIGRATIONS`      | backend   | não se aplica                                                    | `true`: aplica as migrações antes de servir                     |
 | `RUN_SEED`            | backend   | não se aplica (`python src/seed.py` manual)                      | `true`: executa o seed idempotente antes de servir              |
 | `SEED__DEMO_CATALOG`  | backend   | `true`                                                           | `true`: o seed carrega o catálogo de demonstração se vazio      |

@@ -1,7 +1,7 @@
 ---
 code: "US13"
 name: "Manter o catálogo atualizado"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ O catálogo é a interface entre marketing e operação. Desatualizado, o sistem
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar CRUD completo de produtos no backend | 8h | A fazer |
-| 2 | Desenvolver painel administrativo de catálogo | 10h | A fazer |
-| 3 | Implementar upload e gerenciamento de imagens | 6h | A fazer |
-| 4 | Escrever testes do CRUD de produtos | 4h | A fazer |
+| 1 | Implementar CRUD completo de produtos no backend | 8h | Concluída |
+| 2 | Desenvolver painel administrativo de catálogo | 10h | Concluída |
+| 3 | Implementar upload e gerenciamento de imagens | 6h | Concluída |
+| 4 | Escrever testes do CRUD de produtos | 4h | Concluída |
 | **Total** | | **28h** | |
 
 ## Relacionamentos

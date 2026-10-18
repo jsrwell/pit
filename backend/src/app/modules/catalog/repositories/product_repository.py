@@ -45,6 +45,11 @@ class ProductRepository:
         )
         return list(self.session.scalars(statement))
 
+    def list_all(self) -> list[Product]:
+        """Return every product, active or not, ordered by name."""
+        statement = select(Product).order_by(Product.name)
+        return list(self.session.scalars(statement))
+
     def get(self, product_id: int) -> Product | None:
         """Return the product with ``product_id``, if any."""
         return self.session.get(Product, product_id)

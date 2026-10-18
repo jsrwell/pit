@@ -67,6 +67,12 @@ class AdminSettings(BaseModel):
     password: str | None = None
 
 
+class CatalogSettings(BaseModel):
+    """Limits applied to the product catalog."""
+
+    max_image_bytes: int = 2_000_000
+
+
 class SeedSettings(BaseModel):
     """Data loaded by ``src/seed.py`` on an empty database."""
 
@@ -92,6 +98,7 @@ class Settings(BaseSettings):
     seed: SeedSettings = Field(default_factory=SeedSettings)
     auth: AuthSettings = Field(default_factory=AuthSettings)
     admin: AdminSettings = Field(default_factory=AdminSettings)
+    catalog: CatalogSettings = Field(default_factory=CatalogSettings)
 
 
 @lru_cache
