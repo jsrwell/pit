@@ -435,3 +435,30 @@ p {
   text-align: center;
   font-weight: 600;
 }
+
+.summary {
+  position: sticky;
+  top: 6rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary__total {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+@media (max-width: 52rem) {
+  .summary {
+    position: static;
+  }
+}

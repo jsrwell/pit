@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 import { AdminLayout } from './layout/AdminLayout'
 import { AppLayout } from './layout/AppLayout'
 import { AccountPage } from './routes/AccountPage'
+import { CartPage } from './routes/CartPage'
 import { AdminProductFormPage } from './routes/admin/AdminProductFormPage'
 import { AdminProductsPage } from './routes/admin/AdminProductsPage'
 import { HomePage } from './routes/HomePage'
@@ -23,6 +24,7 @@ export function App() {
           <Route path="entrar" element={<LoginPage />} />
           <Route element={<RequireAuth />}>
             <Route path="conta" element={<AccountPage />} />
+            <Route path="carrinho" element={<CartPage />} />
           </Route>
           <Route element={<RequireAuth role="admin" />}>
             <Route path="admin" element={<AdminLayout />}>

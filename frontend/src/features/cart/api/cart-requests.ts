@@ -9,3 +9,11 @@ export function getCart(): Promise<Cart> {
 export function addToCart(productId: number, quantity: number): Promise<Cart> {
   return sendJson<Cart>('/cart/items', 'POST', { product_id: productId, quantity })
 }
+
+export function changeQuantity(productId: number, quantity: number): Promise<Cart> {
+  return sendJson<Cart>(`/cart/items/${productId}`, 'PATCH', { quantity })
+}
+
+export function removeFromCart(productId: number): Promise<Cart> {
+  return sendJson<Cart>(`/cart/items/${productId}`, 'DELETE')
+}

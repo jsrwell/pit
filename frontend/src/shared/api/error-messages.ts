@@ -17,6 +17,7 @@ const MESSAGES: Record<string, string> = {
   'CS-CAT-0006': 'A imagem é grande demais. Envie um arquivo de até 2 MB.',
   'CS-CAT-0007': 'Este cupcake está indisponível no momento.',
   'CS-CRT-0001': 'Limite de 50 unidades por produto em um pedido.',
+  'CS-CRT-0002': 'Este item não está mais no carrinho.',
   'CS-ACC-0001': 'Já existe uma conta cadastrada com este e-mail.',
   'CS-ACC-0002': 'A senha precisa ter no mínimo 8 caracteres, com letras e números.',
   'CS-ACC-0003': 'E-mail ou senha incorretos.',

@@ -1,7 +1,7 @@
 ---
 code: "US07"
 name: "Ajustar o pedido antes do fechamento"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Reduz erros de compra e evita abandono por falta de flexibilidade.
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoints de edição e remoção de itens do carrinho | 4h | A fazer |
-| 2 | Desenvolver tela de revisão do carrinho com controles de quantidade | 6h | A fazer |
-| 3 | Implementar recálculo automático do total | 3h | A fazer |
-| 4 | Escrever testes de edição do carrinho | 3h | A fazer |
+| 1 | Implementar endpoints de edição e remoção de itens do carrinho | 4h | Concluída |
+| 2 | Desenvolver tela de revisão do carrinho com controles de quantidade | 6h | Concluída |
+| 3 | Implementar recálculo automático do total | 3h | Concluída |
+| 4 | Escrever testes de edição do carrinho | 3h | Concluída |
 | **Total** | | **16h** | |
 
 ## Relacionamentos
