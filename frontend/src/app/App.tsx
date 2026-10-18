@@ -5,6 +5,7 @@ import { AppLayout } from './layout/AppLayout'
 import { AccountPage } from './routes/AccountPage'
 import { CartPage } from './routes/CartPage'
 import { CheckoutPage } from './routes/CheckoutPage'
+import { AdminOrdersPage } from './routes/admin/AdminOrdersPage'
 import { AdminProductFormPage } from './routes/admin/AdminProductFormPage'
 import { AdminProductsPage } from './routes/admin/AdminProductsPage'
 import { HomePage } from './routes/HomePage'
@@ -34,10 +35,11 @@ export function App() {
           </Route>
           <Route element={<RequireAuth role="admin" />}>
             <Route path="admin" element={<AdminLayout />}>
-              <Route index element={<Navigate to="produtos" replace />} />
+              <Route index element={<Navigate to="pedidos" replace />} />
               <Route path="produtos" element={<AdminProductsPage />} />
               <Route path="produtos/novo" element={<AdminProductFormPage />} />
               <Route path="produtos/:productId" element={<AdminProductFormPage />} />
+              <Route path="pedidos" element={<AdminOrdersPage />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />

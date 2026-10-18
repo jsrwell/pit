@@ -22,6 +22,15 @@ class OrderRepository:
         """Return the order with ``order_id``, if any."""
         return self.session.get(Order, order_id)
 
+    def list_all(self, status: str | None = None) -> list[Order]:
+        """Return every order, newest first, optionally of one status."""
+        statement = select(Order).order_by(
+            Order.created_at.desc(), Order.id.desc()
+        )
+        if status is not None:
+            statement = statement.where(Order.status == status)
+        return list(self.session.scalars(statement))
+
     def list_for(self, user_id: int) -> list[Order]:
         """Return the orders of ``user_id``, newest first."""
         statement = (

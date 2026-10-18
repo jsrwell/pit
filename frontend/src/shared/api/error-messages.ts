@@ -31,6 +31,7 @@ const MESSAGES: Record<string, string> = {
   'CS-ORD-0005':
     'O pagamento foi recusado pela operadora. Tente outro cartão ou forma de pagamento.',
   'CS-ORD-0006': 'Pedido não encontrado.',
+  'CS-ORD-0007': 'Este pedido não pode ir para esse status. Siga as etapas na ordem.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

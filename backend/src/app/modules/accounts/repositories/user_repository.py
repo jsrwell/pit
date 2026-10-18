@@ -20,6 +20,14 @@ class UserRepository:
         """Return the user with ``user_id``, if any."""
         return self.session.get(User, user_id)
 
+    def list_by_ids(self, user_ids: set[int]) -> list[User]:
+        """Return the users whose id is in ``user_ids``."""
+        if not user_ids:
+            return []
+        return list(
+            self.session.scalars(select(User).where(User.id.in_(user_ids)))
+        )
+
     def get_by_email(self, email: str) -> User | None:
         """Return the user owning ``email``, compared case-insensitively."""
         statement = select(User).where(User.email == email.lower())

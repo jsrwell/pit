@@ -1,7 +1,7 @@
 ---
 code: "US15"
 name: "Orquestrar a operação dos pedidos"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Espinha dorsal interna do app. Conecta venda, produção, embalagem, prontidão 
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoints de listagem e atualização de status de pedidos | 8h | A fazer |
-| 2 | Desenvolver painel operacional de gestão de pedidos | 10h | A fazer |
-| 3 | Implementar máquina de estados do pedido | 6h | A fazer |
-| 4 | Escrever testes do fluxo operacional | 4h | A fazer |
+| 1 | Implementar endpoints de listagem e atualização de status de pedidos | 8h | Concluída |
+| 2 | Desenvolver painel operacional de gestão de pedidos | 10h | Concluída |
+| 3 | Implementar máquina de estados do pedido | 6h | Concluída |
+| 4 | Escrever testes do fluxo operacional | 4h | Concluída |
 | **Total** | | **28h** | |
 
 ## Relacionamentos

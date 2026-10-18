@@ -16,6 +16,9 @@ from app.modules.catalog.api.image_routes import router as image_router
 from app.modules.catalog.api.product_routes import router as product_router
 from app.modules.orders.api.order_routes import router as order_router
 from app.modules.orders.api.quote_routes import router as quote_router
+from app.modules.orders.api.store_order_routes import (
+    router as store_order_router,
+)
 from app.modules.system.api.health_routes import router as health_router
 
 API_PREFIX = '/api'
@@ -31,4 +34,5 @@ api_router.include_router(session_router)
 api_router.include_router(address_router)
 api_router.include_router(cart_router)
 api_router.include_router(quote_router)
+api_router.include_router(store_order_router)
 api_router.include_router(order_router)
