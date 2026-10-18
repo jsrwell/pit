@@ -1,5 +1,7 @@
 """Queries and persistence of products."""
 
+from decimal import Decimal
+
 from sqlalchemy import exists, select
 from sqlalchemy.orm import Session
 
@@ -12,12 +14,34 @@ class ProductRepository:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-    def list_active(self) -> list[Product]:
-        """Return active products, featured first, then by name."""
-        statement = (
-            select(Product)
-            .where(Product.is_active)
-            .order_by(Product.is_featured.desc(), Product.name)
+    def list_active(
+        self,
+        *,
+        category_id: int | None = None,
+        flavor_id: int | None = None,
+        min_price: Decimal | None = None,
+        max_price: Decimal | None = None,
+        search: str | None = None,
+    ) -> list[Product]:
+        """Return active products matching every given criterion.
+
+        Featured products come first, then the rest ordered by name.
+        """
+        statement = select(Product).where(Product.is_active)
+        if category_id is not None:
+            statement = statement.where(Product.category_id == category_id)
+        if flavor_id is not None:
+            statement = statement.where(Product.flavor_id == flavor_id)
+        if min_price is not None:
+            statement = statement.where(Product.price >= min_price)
+        if max_price is not None:
+            statement = statement.where(Product.price <= max_price)
+        if search and search.strip():
+            statement = statement.where(
+                Product.name.ilike(f'%{search.strip()}%')
+            )
+        statement = statement.order_by(
+            Product.is_featured.desc(), Product.name
         )
         return list(self.session.scalars(statement))
 

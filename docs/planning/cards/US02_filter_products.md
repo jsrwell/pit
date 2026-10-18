@@ -1,7 +1,7 @@
 ---
 code: "US02"
 name: "Refinar a busca por cupcakes"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,9 +37,9 @@ A busca reduz ruído e acelera a decisão. Diminui abandono por excesso de opç�
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de filtro por categoria, sabor e faixa de preço | 6h | A fazer |
-| 2 | Desenvolver componente de barra de filtros e busca textual | 6h | A fazer |
-| 3 | Escrever testes dos filtros e busca | 4h | A fazer |
+| 1 | Implementar endpoint de filtro por categoria, sabor e faixa de preço | 6h | Concluída |
+| 2 | Desenvolver componente de barra de filtros e busca textual | 6h | Concluída |
+| 3 | Escrever testes dos filtros e busca | 4h | Concluída |
 | **Total** | | **16h** | |
 
 ## Relacionamentos
