@@ -85,6 +85,7 @@ def apply_input(
     product.image_id = data.image_id
     product.is_active = data.is_active
     product.is_available = data.is_available
+    product.show_when_unavailable = data.show_when_unavailable
     product.is_featured = data.is_featured
 
 

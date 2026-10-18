@@ -38,6 +38,7 @@ function initialValues(product?: AdminProduct): FormValues {
     image_id: product?.image_id ?? null,
     is_active: product?.is_active ?? true,
     is_available: product?.is_available ?? true,
+    show_when_unavailable: product?.show_when_unavailable ?? true,
     is_featured: product?.is_featured ?? false,
   }
 }
@@ -199,6 +200,14 @@ export function ProductForm({ product, onSaved }: ProductFormProps) {
                 onChange={(event) => update('is_available', event.target.checked)}
               />
               Disponível para compra
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                checked={values.show_when_unavailable}
+                onChange={(event) => update('show_when_unavailable', event.target.checked)}
+              />
+              Exibir na vitrine quando indisponível
             </label>
             <label className="checkbox">
               <input

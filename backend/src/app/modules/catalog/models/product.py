@@ -29,6 +29,7 @@ class Product(TimestampMixin, Base):
     )
     is_active: Mapped[bool] = mapped_column(server_default=true())
     is_available: Mapped[bool] = mapped_column(server_default=true())
+    show_when_unavailable: Mapped[bool] = mapped_column(server_default=true())
     is_featured: Mapped[bool] = mapped_column(server_default='false')
 
     category: Mapped[Category] = relationship(lazy='joined')

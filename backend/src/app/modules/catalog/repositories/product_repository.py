@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 
-from sqlalchemy import exists, select
+from sqlalchemy import exists, or_, select
 from sqlalchemy.orm import Session
 
 from app.modules.catalog.models.product import Product
@@ -23,11 +23,14 @@ class ProductRepository:
         max_price: Decimal | None = None,
         search: str | None = None,
     ) -> list[Product]:
-        """Return active products matching every given criterion.
+        """Return the storefront products matching every given criterion.
 
         Featured products come first, then the rest ordered by name.
         """
-        statement = select(Product).where(Product.is_active)
+        statement = select(Product).where(
+            Product.is_active,
+            or_(Product.is_available, Product.show_when_unavailable),
+        )
         if category_id is not None:
             statement = statement.where(Product.category_id == category_id)
         if flavor_id is not None:

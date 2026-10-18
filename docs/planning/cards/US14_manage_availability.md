@@ -1,7 +1,7 @@
 ---
 code: "US14"
 name: "Controlar disponibilidade operacional dos produtos"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Não é controle industrial complexo, mas preserva coerência entre vitrine e ca
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de controle de disponibilidade | 4h | A fazer |
-| 2 | Desenvolver controle de disponibilidade no painel administrativo | 6h | A fazer |
-| 3 | Implementar propagação para vitrine e carrinho | 4h | A fazer |
-| 4 | Escrever testes de disponibilidade | 3h | A fazer |
+| 1 | Implementar endpoint de controle de disponibilidade | 4h | Concluída |
+| 2 | Desenvolver controle de disponibilidade no painel administrativo | 6h | Concluída |
+| 3 | Implementar propagação para vitrine e carrinho | 4h | Concluída |
+| 4 | Escrever testes de disponibilidade | 3h | Concluída |
 | **Total** | | **17h** | |
 
 ## Relacionamentos

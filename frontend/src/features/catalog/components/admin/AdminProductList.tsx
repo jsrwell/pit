@@ -6,11 +6,12 @@ import { useAsync } from '@/shared/hooks/use-async'
 
 import { listAdminProducts } from '../../api/admin-products'
 import { ProductImage } from '../ProductImage'
+import { AvailabilityToggle } from './AvailabilityToggle'
 
 import '../catalog.css'
 
 export function AdminProductList() {
-  const { state } = useAsync(listAdminProducts)
+  const { state, reload } = useAsync(listAdminProducts)
 
   return (
     <AsyncContent state={state} loadingLabel="Carregando produtos...">
@@ -23,6 +24,7 @@ export function AdminProductList() {
                 <th scope="col">Categoria</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Situação</th>
+                <th scope="col">Disponibilidade</th>
                 <th scope="col">
                   <span className="visually-hidden">Ações</span>
                 </th>
@@ -55,6 +57,9 @@ export function AdminProductList() {
                       )}
                       {product.is_featured && <span className="badge badge--gold">Destaque</span>}
                     </div>
+                  </td>
+                  <td>
+                    <AvailabilityToggle product={product} onChanged={reload} />
                   </td>
                   <td>
                     <Link

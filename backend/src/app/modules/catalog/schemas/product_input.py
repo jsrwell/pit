@@ -30,4 +30,5 @@ class ProductInput(BaseModel):
     image_id: int | None = None
     is_active: bool = True
     is_available: bool = True
+    show_when_unavailable: bool = True
     is_featured: bool = False

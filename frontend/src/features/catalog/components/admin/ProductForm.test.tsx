@@ -17,6 +17,7 @@ const saved: adminApi.AdminProduct = {
   is_available: true,
   is_featured: false,
   is_active: true,
+  show_when_unavailable: true,
   description: 'Massa de avelã.',
   composition: 'Farinha, avelã.',
   highlights: ['Avelã piemontesa'],

@@ -9,5 +9,6 @@ class AdminProduct(ProductDetail):
     """Full product data plus publication state and audit dates."""
 
     is_active: bool
+    show_when_unavailable: bool
     created_at: datetime
     updated_at: datetime

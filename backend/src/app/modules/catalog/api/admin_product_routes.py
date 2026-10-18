@@ -11,6 +11,7 @@ from app.modules.catalog.errors.product_incomplete import ProductIncomplete
 from app.modules.catalog.errors.product_not_found import ProductNotFound
 from app.modules.catalog.errors.unsupported_image import UnsupportedImage
 from app.modules.catalog.schemas.admin_product import AdminProduct
+from app.modules.catalog.schemas.availability_input import AvailabilityInput
 from app.modules.catalog.schemas.product_input import ProductInput
 from app.modules.catalog.schemas.uploaded_image import UploadedImage
 from app.modules.catalog.services.list_all_products import list_all_products
@@ -19,6 +20,7 @@ from app.modules.catalog.services.save_product import (
     get_any_product,
     update_product,
 )
+from app.modules.catalog.services.set_availability import set_availability
 from app.modules.catalog.services.upload_product_image import (
     upload_product_image,
 )
@@ -82,6 +84,18 @@ def edit_product(
     return AdminProduct.model_validate(
         update_product(session, product_id, data)
     )
+
+
+@router.patch(
+    '/products/{product_id}/availability',
+    responses=problem_responses(ProductNotFound, *AUTH_ERRORS),
+)
+def change_availability(
+    product_id: int, data: AvailabilityInput, session: DbSession
+) -> AdminProduct:
+    """Mark a product as available or unavailable for purchase."""
+    product = set_availability(session, product_id, **data.model_dump())
+    return AdminProduct.model_validate(product)
 
 
 @router.post(

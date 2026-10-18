@@ -4,6 +4,7 @@ import type { ProductDetail } from './product'
 
 export interface AdminProduct extends ProductDetail {
   is_active: boolean
+  show_when_unavailable: boolean
   created_at: string
   updated_at: string
 }
@@ -19,7 +20,13 @@ export interface ProductInput {
   image_id: number | null
   is_active: boolean
   is_available: boolean
+  show_when_unavailable: boolean
   is_featured: boolean
+}
+
+export interface AvailabilityInput {
+  is_available: boolean
+  show_when_unavailable: boolean
 }
 
 export interface UploadedImage {
@@ -41,6 +48,13 @@ export function createProduct(input: ProductInput): Promise<AdminProduct> {
 
 export function updateProduct(productId: number, input: ProductInput): Promise<AdminProduct> {
   return sendJson<AdminProduct>(`/catalog/admin/products/${productId}`, 'PUT', input)
+}
+
+export function setAvailability(
+  productId: number,
+  input: AvailabilityInput,
+): Promise<AdminProduct> {
+  return sendJson<AdminProduct>(`/catalog/admin/products/${productId}/availability`, 'PATCH', input)
 }
 
 export function uploadImage(file: File): Promise<UploadedImage> {
