@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.0](https://github.com/jsrwell/pit/compare/v1.6.0...v1.7.0) (2026-10-18)
+
+### Features
+
+* **ui:** refine layout spacing and visual polish across pages ([ed4f692](https://github.com/jsrwell/pit/commit/ed4f692c84c0ac8f8e285c878bf725205258d299))
+
 ## [1.6.0](https://github.com/jsrwell/pit/compare/v1.5.0...v1.6.0) (2026-10-18)
 
 ### Features

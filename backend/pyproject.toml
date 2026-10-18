@@ -1,6 +1,6 @@
 [project]
 name = "cupcakes-store-backend"
-version = "1.6.0"
+version = "1.7.0"
 description = "REST API of the Cupcakes Store virtual shop."
 authors = [{ name = "Wellington Ramos" }]
 requires-python = ">=3.13,<3.14"
