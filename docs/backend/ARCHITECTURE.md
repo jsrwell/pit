@@ -127,6 +127,13 @@ sequenceDiagram
 - O administrador é criado pelo seed a partir de `ADMIN__EMAIL` e `ADMIN__PASSWORD`; não há cadastro público de administradores.
 - Rotas são `def` (síncronas); o FastAPI as executa em thread pool.
 
+## Pagamento
+
+- O checkout fala com o meio de pagamento pela porta `PaymentGateway` (`modules/orders/services/payment_gateway.py`), injetada na rota por `get_payment_gateway`, o que permite trocar o provedor sem mudar o caso de uso.
+- O MVP usa `SimulatedPaymentGateway`: Pix é aprovado na hora, dinheiro fica pendente até a entrega ou retirada e cartão é validado (Luhn, validade e CVV) e aprovado, exceto o número de teste terminado em `0002`, sempre recusado.
+- O total é recalculado no servidor a partir do carrinho; o número do cartão nunca é gravado, só os quatro últimos dígitos na referência do pagamento.
+- Pagamento recusado lança erro antes de qualquer gravação, então nenhum pedido fica criado e o carrinho é mantido.
+
 ## Persistência
 
 - Todo model herda de `Base` (`app/shared/database/base.py`), cuja convenção de nomes gera nomes determinísticos para chaves, índices e restrições, o que mantém as migrações estáveis.

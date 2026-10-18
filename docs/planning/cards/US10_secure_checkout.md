@@ -1,7 +1,7 @@
 ---
 code: "US10"
 name: "Concluir a compra com segurança"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Ponto de fechamento comercial. O sistema precisa eliminar ambiguidade e transmit
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de finalização de pedido com validações | 8h | A fazer |
-| 2 | Desenvolver tela de checkout com resumo, total e seleção de pagamento | 10h | A fazer |
-| 3 | Implementar integração com meio de pagamento | 10h | A fazer |
-| 4 | Escrever testes do fluxo de checkout | 6h | A fazer |
+| 1 | Implementar endpoint de finalização de pedido com validações | 8h | Concluída |
+| 2 | Desenvolver tela de checkout com resumo, total e seleção de pagamento | 10h | Concluída |
+| 3 | Implementar integração com meio de pagamento | 10h | Concluída |
+| 4 | Escrever testes do fluxo de checkout | 6h | Concluída |
 | **Total** | | **34h** | |
 
 ## Relacionamentos

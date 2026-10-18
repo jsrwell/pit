@@ -27,6 +27,9 @@ const MESSAGES: Record<string, string> = {
   'CS-ORD-0001': 'Escolha um endereço de entrega cadastrado.',
   'CS-ORD-0002': 'Seu carrinho está vazio.',
   'CS-ORD-0003': 'Há itens indisponíveis no carrinho. Remova-os para continuar.',
+  'CS-ORD-0004': 'Confira o número, a validade e o código de segurança do cartão.',
+  'CS-ORD-0005':
+    'O pagamento foi recusado pela operadora. Tente outro cartão ou forma de pagamento.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

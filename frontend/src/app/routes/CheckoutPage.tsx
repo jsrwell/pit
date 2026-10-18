@@ -1,4 +1,5 @@
 import { AddressPicker } from '@/features/accounts/components/AddressPicker'
+import { cartStore } from '@/features/cart/hooks/cart-store'
 import { CheckoutView } from '@/features/orders/components/CheckoutView'
 
 export function CheckoutPage() {
@@ -12,6 +13,9 @@ export function CheckoutPage() {
         renderAddressPicker={({ selectedId, onSelect }) => (
           <AddressPicker selectedId={selectedId} onSelect={onSelect} />
         )}
+        onPlaced={() => {
+          cartStore.refresh().catch(() => cartStore.set(null))
+        }}
       />
     </div>
   )
