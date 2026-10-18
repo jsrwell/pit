@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.0](https://github.com/jsrwell/pit/compare/v1.5.0...v1.6.0) (2026-10-18)
+
+### Features
+
+* **launcher:** add static wake-up page for the hosted demo ([e437ac0](https://github.com/jsrwell/pit/commit/e437ac0b85cc7bfbe3e04517f689df010fe16294))
+
 ## [1.5.0](https://github.com/jsrwell/pit/compare/v1.4.0...v1.5.0) (2026-10-18)
 
 ### Features
