@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 
-import { formatPrice } from '@/shared/format/currency'
+import { PriceTag } from '@/shared/components/PriceTag'
 
 import type { ProductSummary } from '../api/product'
 import { ProductImage } from './ProductImage'
@@ -22,6 +22,7 @@ export function ProductCard({ product, action }: ProductCardProps) {
         <ProductImage imageId={product.image_id} name={product.name} />
         <span className="product-card__badges">
           {product.is_featured && <span className="badge badge--gold">Destaque</span>}
+          {product.promotional_price && <span className="badge badge--success">Promoção</span>}
           {!product.is_available && <span className="badge badge--muted">Indisponível</span>}
         </span>
       </Link>
@@ -32,7 +33,7 @@ export function ProductCard({ product, action }: ProductCardProps) {
         </h3>
         <p className="product-card__flavor">{product.flavor.name}</p>
         <div className="product-card__footer">
-          <span className="price">{formatPrice(product.price)}</span>
+          <PriceTag price={product.price} promotionalPrice={product.promotional_price} />
           {action}
         </div>
       </div>

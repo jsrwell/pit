@@ -31,6 +31,7 @@ export interface Quote {
   fulfillment_method: FulfillmentMethod
   address: DeliveryAddress | null
   subtotal: string
+  discount: string
   delivery_fee: string
   total: string
   pickup_address: string

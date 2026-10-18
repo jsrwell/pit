@@ -17,7 +17,15 @@ const line = {
   line_total: '20.00',
   is_available: true,
 }
-const cart: Cart = { lines: [line], item_count: 2, subtotal: '20.00', has_unavailable: false }
+const cart: Cart = {
+  lines: [line],
+  item_count: 2,
+  subtotal: '20.00',
+  discount: '0.00',
+  total: '20.00',
+  applied_combos: [],
+  has_unavailable: false,
+}
 
 describe('CartView', () => {
   afterEach(() => cartStore.set(null))
@@ -28,6 +36,9 @@ describe('CartView', () => {
       lines: [{ ...line, quantity: 3, line_total: '30.00' }],
       item_count: 3,
       subtotal: '30.00',
+      discount: '0.00',
+      total: '30.00',
+      applied_combos: [],
       has_unavailable: false,
     })
     const user = userEvent.setup()
@@ -46,6 +57,9 @@ describe('CartView', () => {
       lines: [],
       item_count: 0,
       subtotal: '0.00',
+      discount: '0.00',
+      total: '0.00',
+      applied_combos: [],
       has_unavailable: false,
     })
     const user = userEvent.setup()

@@ -70,6 +70,7 @@ export function OrderTracking({ orderId }: { orderId: number }) {
               line_total: item.line_total,
             }))}
             subtotal={order.subtotal}
+            discount={order.discount}
             deliveryFee={order.delivery_fee}
             total={order.total}
           />

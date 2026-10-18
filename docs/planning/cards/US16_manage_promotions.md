@@ -1,7 +1,7 @@
 ---
 code: "US16"
 name: "Potencializar venda por campanhas e combinações"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Introduz camada de estratégia comercial. A vitrine deixa de ser estática.
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar modelo de promoções e combos no backend | 6h | A fazer |
-| 2 | Desenvolver painel de configuração de campanhas | 8h | A fazer |
-| 3 | Implementar lógica de vigência e preço promocional na vitrine | 6h | A fazer |
-| 4 | Escrever testes de promoções | 4h | A fazer |
+| 1 | Implementar modelo de promoções e combos no backend | 6h | Concluída |
+| 2 | Desenvolver painel de configuração de campanhas | 8h | Concluída |
+| 3 | Implementar lógica de vigência e preço promocional na vitrine | 6h | Concluída |
+| 4 | Escrever testes de promoções | 4h | Concluída |
 | **Total** | | **24h** | |
 
 ## Relacionamentos

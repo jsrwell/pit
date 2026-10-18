@@ -8,9 +8,15 @@ from sqlalchemy.orm import Session
 from app.modules.cart.repositories.cart_item_repository import (
     CartItemRepository,
 )
+from app.modules.catalog.services.pricing import effective_prices
 from app.modules.catalog.services.purchasable_products import (
     get_products_by_id,
     is_purchasable,
+)
+from app.modules.promotions.services.promotional_pricing import (
+    AppliedCombo,
+    PricedUnits,
+    combo_discounts,
 )
 
 MAX_QUANTITY = 50
@@ -39,6 +45,7 @@ class CartSummary:
     """Every line of the cart and the totals of the purchasable ones."""
 
     lines: list[CartLine]
+    applied_combos: list[AppliedCombo]
 
     @property
     def purchasable_lines(self) -> list[CartLine]:
@@ -49,6 +56,16 @@ class CartSummary:
     def subtotal(self) -> Decimal:
         """Sum of the purchasable lines; unavailable ones never count."""
         return sum((line.line_total for line in self.purchasable_lines), ZERO)
+
+    @property
+    def discount(self) -> Decimal:
+        """Savings of the combos completed by the purchasable lines."""
+        return sum((combo.discount for combo in self.applied_combos), ZERO)
+
+    @property
+    def total(self) -> Decimal:
+        """Subtotal minus combo savings."""
+        return self.subtotal - self.discount
 
     @property
     def item_count(self) -> int:
@@ -65,19 +82,26 @@ def summarize_cart(session: Session, user_id: int) -> CartSummary:
     """Price the cart of ``user_id`` with current prices and availability.
 
     The availability of the product right now always wins over the
-    moment it was added to the cart.
+    moment it was added to the cart, and running campaigns set the unit
+    price. Combos completed by purchasable lines become a discount.
     """
     items = CartItemRepository(session).list_for(user_id)
     products = get_products_by_id(session, (item.product_id for item in items))
+    prices = effective_prices(session, list(products.values()))
     lines = [
         CartLine(
             product_id=item.product_id,
             name=products[item.product_id].name,
             image_id=products[item.product_id].image_id,
-            unit_price=products[item.product_id].price,
+            unit_price=prices[item.product_id],
             quantity=item.quantity,
             is_available=is_purchasable(products[item.product_id]),
         )
         for item in items
     ]
-    return CartSummary(lines)
+    units = {
+        line.product_id: PricedUnits(line.unit_price, line.quantity)
+        for line in lines
+        if line.is_available
+    }
+    return CartSummary(lines, combo_discounts(session, units))

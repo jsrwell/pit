@@ -53,6 +53,7 @@ def quote_order(
             'fulfillment_method': priced.fulfillment_method,
             'address': priced.address,
             'subtotal': priced.subtotal,
+            'discount': priced.discount,
             'delivery_fee': priced.delivery_fee,
             'total': priced.total,
             'pickup_address': settings.store.pickup_address,

@@ -8,7 +8,15 @@ import * as cartApi from '../api/cart-requests'
 import { cartStore } from '../hooks/cart-store'
 import { AddToCart } from './AddToCart'
 
-const cart = { lines: [], item_count: 3, subtotal: '37.50', has_unavailable: false }
+const cart = {
+  lines: [],
+  item_count: 3,
+  subtotal: '37.50',
+  discount: '0.00',
+  total: '37.50',
+  applied_combos: [],
+  has_unavailable: false,
+}
 
 describe('AddToCart', () => {
   afterEach(() => {

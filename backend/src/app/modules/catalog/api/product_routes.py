@@ -16,6 +16,7 @@ from app.modules.catalog.services.get_storefront_product import (
 from app.modules.catalog.services.list_storefront_products import (
     list_storefront_products,
 )
+from app.modules.catalog.services.pricing import running_promotional_prices
 from app.shared.database.session import get_session
 from app.shared.http.problem_responses import problem_responses
 
@@ -29,7 +30,13 @@ def list_products(
 ) -> list[ProductSummary]:
     """List the storefront products matching the filters."""
     products = list_storefront_products(session, filters)
-    return [ProductSummary.model_validate(product) for product in products]
+    promotional = running_promotional_prices(session, products)
+    return [
+        ProductSummary.model_validate(product).model_copy(
+            update={'promotional_price': promotional.get(product.id)}
+        )
+        for product in products
+    ]
 
 
 @router.get('/{product_id}', responses=problem_responses(ProductNotFound))
@@ -39,4 +46,7 @@ def read_product(
 ) -> ProductDetail:
     """Show the full details of a published product."""
     product = get_storefront_product(session, product_id)
-    return ProductDetail.model_validate(product)
+    promotional = running_promotional_prices(session, [product])
+    return ProductDetail.model_validate(product).model_copy(
+        update={'promotional_price': promotional.get(product.id)}
+    )

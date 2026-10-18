@@ -29,12 +29,13 @@ class PricedOrder:
     fulfillment_method: FulfillmentMethod
     address: DeliveryAddress | None
     subtotal: Decimal
+    discount: Decimal
     delivery_fee: Decimal
 
     @property
     def total(self) -> Decimal:
         """Amount the customer pays."""
-        return self.subtotal + self.delivery_fee
+        return self.subtotal - self.discount + self.delivery_fee
 
 
 def price_order(
@@ -77,5 +78,6 @@ def price_order(
         fulfillment_method=fulfillment_method,
         address=address,
         subtotal=cart.subtotal,
+        discount=cart.discount,
         delivery_fee=delivery_fee,
     )

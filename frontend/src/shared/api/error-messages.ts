@@ -35,6 +35,10 @@ const MESSAGES: Record<string, string> = {
   'CS-ORD-0008': 'A data escolhida não respeita a antecedência mínima para encomendas.',
   'CS-ORD-0009': 'Encomenda não encontrada.',
   'CS-ORD-0010': 'Esta encomenda já foi analisada.',
+  'CS-PRM-0001': 'O fim da vigência precisa ser posterior ao início.',
+  'CS-PRM-0002': 'Promoção não encontrada.',
+  'CS-PRM-0003': 'Combo não encontrado.',
+  'CS-PRM-0004': 'Produto da promoção não encontrado.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

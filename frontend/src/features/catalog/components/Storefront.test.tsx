@@ -10,6 +10,7 @@ const sampleProduct: ProductSummary = {
   id: 1,
   name: 'Red Velvet Imperial',
   price: '16.90',
+  promotional_price: null,
   image_id: 7,
   category: { id: 1, name: 'Clássicos' },
   flavor: { id: 1, name: 'Red Velvet' },

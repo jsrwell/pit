@@ -10,6 +10,7 @@ const product: ProductDetail = {
   id: 4,
   name: 'Pistache e Rosas',
   price: '21.90',
+  promotional_price: null,
   image_id: 2,
   category: { id: 1, name: 'Gourmet' },
   flavor: { id: 2, name: 'Pistache' },

@@ -11,6 +11,7 @@ const saved: adminApi.AdminProduct = {
   id: 9,
   name: 'Cupcake de Avelã',
   price: '19.90',
+  promotional_price: null,
   image_id: 5,
   category: { id: 1, name: 'Gourmet' },
   flavor: { id: 1, name: 'Avelã' },

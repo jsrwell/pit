@@ -12,12 +12,20 @@ interface SummaryLine {
 interface OrderSummaryProps {
   lines: SummaryLine[]
   subtotal: string
+  discount: string
   deliveryFee: string
   total: string
   children?: ReactNode
 }
 
-export function OrderSummary({ lines, subtotal, deliveryFee, total, children }: OrderSummaryProps) {
+export function OrderSummary({
+  lines,
+  subtotal,
+  discount,
+  deliveryFee,
+  total,
+  children,
+}: OrderSummaryProps) {
   return (
     <aside className="panel summary" aria-label="Resumo do pedido">
       <h2>Resumo</h2>
@@ -35,6 +43,12 @@ export function OrderSummary({ lines, subtotal, deliveryFee, total, children }: 
         <span>Subtotal</span>
         <span>{formatPrice(subtotal)}</span>
       </div>
+      {Number(discount) > 0 && (
+        <div className="summary__row summary__discount">
+          <span>Descontos de combos</span>
+          <span>− {formatPrice(discount)}</span>
+        </div>
+      )}
       <div className="summary__row">
         <span>Taxa de entrega</span>
         <span data-testid="delivery-fee">

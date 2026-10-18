@@ -19,6 +19,16 @@ class CartLineRead(BaseModel):
     is_available: bool
 
 
+class AppliedComboRead(BaseModel):
+    """Combo completed in the cart and how much it saves."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    name: str
+    times: int
+    discount: Decimal
+
+
 class CartRead(BaseModel):
     """Lines, unit count and subtotal of the cart."""
 
@@ -27,4 +37,7 @@ class CartRead(BaseModel):
     lines: list[CartLineRead]
     item_count: int
     subtotal: Decimal
+    discount: Decimal
+    total: Decimal
+    applied_combos: list[AppliedComboRead]
     has_unavailable: bool

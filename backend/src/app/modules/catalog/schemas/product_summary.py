@@ -15,6 +15,7 @@ class ProductSummary(BaseModel):
     id: int
     name: str
     price: Decimal
+    promotional_price: Decimal | None = None
     image_id: int | None
     category: NamedItem
     flavor: NamedItem

@@ -59,6 +59,7 @@ def place_order(
         payment_status=payment.status,
         payment_reference=payment.reference,
         subtotal=priced.subtotal,
+        discount=priced.discount,
         delivery_fee=priced.delivery_fee,
         total=priced.total,
         notes=notes.strip(),

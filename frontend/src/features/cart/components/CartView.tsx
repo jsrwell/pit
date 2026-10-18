@@ -84,9 +84,22 @@ export function CartView() {
           <span>Itens</span>
           <span>{cart.item_count}</span>
         </div>
-        <div className="summary__row summary__total">
+        <div className="summary__row">
           <span>Subtotal</span>
           <span data-testid="cart-subtotal">{formatPrice(cart.subtotal)}</span>
+        </div>
+        {cart.applied_combos.map((combo) => (
+          <div key={combo.name} className="summary__row summary__discount">
+            <span>
+              Combo {combo.name}
+              {combo.times > 1 && ` (${combo.times}×)`}
+            </span>
+            <span>− {formatPrice(combo.discount)}</span>
+          </div>
+        ))}
+        <div className="summary__row summary__total">
+          <span>Total</span>
+          <span data-testid="cart-total">{formatPrice(cart.total)}</span>
         </div>
         <p className="field-hint">Modalidade de recebimento e pagamento na próxima etapa.</p>
         {cart.has_unavailable ? (

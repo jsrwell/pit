@@ -8,6 +8,7 @@ const product: adminApi.AdminProduct = {
   id: 2,
   name: 'Trufa de Ouro',
   price: '24.90',
+  promotional_price: null,
   image_id: 1,
   category: { id: 1, name: 'Especial' },
   flavor: { id: 1, name: 'Chocolate' },

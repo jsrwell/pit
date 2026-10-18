@@ -11,6 +11,7 @@ export function AdminLayout() {
         <NavLink to="/admin/pedidos">Pedidos</NavLink>
         <NavLink to="/admin/encomendas">Encomendas</NavLink>
         <NavLink to="/admin/produtos">Produtos</NavLink>
+        <NavLink to="/admin/promocoes">Promoções</NavLink>
       </nav>
       <Outlet />
     </div>

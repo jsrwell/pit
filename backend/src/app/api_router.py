@@ -25,6 +25,12 @@ from app.modules.orders.api.store_custom_order_routes import (
 from app.modules.orders.api.store_order_routes import (
     router as store_order_router,
 )
+from app.modules.promotions.api.promotion_routes import (
+    admin_router as promotion_admin_router,
+)
+from app.modules.promotions.api.promotion_routes import (
+    router as promotion_router,
+)
 from app.modules.system.api.health_routes import router as health_router
 
 API_PREFIX = '/api'
@@ -44,3 +50,5 @@ api_router.include_router(store_custom_order_router)
 api_router.include_router(store_order_router)
 api_router.include_router(custom_order_router)
 api_router.include_router(order_router)
+api_router.include_router(promotion_router)
+api_router.include_router(promotion_admin_router)

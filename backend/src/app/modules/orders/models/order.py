@@ -26,6 +26,9 @@ class Order(TimestampMixin, Base):
     payment_status: Mapped[str] = mapped_column(String(20))
     payment_reference: Mapped[str] = mapped_column(String(40))
     subtotal: Mapped[Decimal] = mapped_column(Numeric(10, 2))
+    discount: Mapped[Decimal] = mapped_column(
+        Numeric(10, 2), server_default='0'
+    )
     delivery_fee: Mapped[Decimal] = mapped_column(Numeric(10, 2))
     total: Mapped[Decimal] = mapped_column(Numeric(10, 2))
     notes: Mapped[str] = mapped_column(Text, server_default='')

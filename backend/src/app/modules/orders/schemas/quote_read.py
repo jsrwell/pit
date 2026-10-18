@@ -32,6 +32,7 @@ class QuoteRead(BaseModel):
     fulfillment_method: FulfillmentMethod
     address: DeliveryAddressRead | None
     subtotal: Decimal
+    discount: Decimal
     delivery_fee: Decimal
     total: Decimal
     pickup_address: str

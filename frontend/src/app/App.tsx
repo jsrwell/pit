@@ -7,6 +7,7 @@ import { CartPage } from './routes/CartPage'
 import { CheckoutPage } from './routes/CheckoutPage'
 import { AdminCustomOrdersPage } from './routes/admin/AdminCustomOrdersPage'
 import { AdminOrdersPage } from './routes/admin/AdminOrdersPage'
+import { AdminPromotionsPage } from './routes/admin/AdminPromotionsPage'
 import { AdminProductFormPage } from './routes/admin/AdminProductFormPage'
 import { AdminProductsPage } from './routes/admin/AdminProductsPage'
 import { CustomOrdersPage } from './routes/CustomOrdersPage'
@@ -44,6 +45,7 @@ export function App() {
               <Route path="produtos/:productId" element={<AdminProductFormPage />} />
               <Route path="pedidos" element={<AdminOrdersPage />} />
               <Route path="encomendas" element={<AdminCustomOrdersPage />} />
+              <Route path="promocoes" element={<AdminPromotionsPage />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />

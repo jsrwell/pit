@@ -30,6 +30,7 @@ export interface Order {
   payment_status: PaymentStatus
   payment_reference: string
   subtotal: string
+  discount: string
   delivery_fee: string
   total: string
   notes: string

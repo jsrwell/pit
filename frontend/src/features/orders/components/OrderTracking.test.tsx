@@ -14,6 +14,7 @@ const order: Order = {
   payment_status: 'approved',
   payment_reference: 'PIX-1',
   subtotal: '30.00',
+  discount: '0.00',
   delivery_fee: '12.00',
   total: '42.00',
   notes: '',

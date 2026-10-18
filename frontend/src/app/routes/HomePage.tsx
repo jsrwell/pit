@@ -1,5 +1,7 @@
+import { AddBundleToCart } from '@/features/cart/components/AddBundleToCart'
 import { AddToCart } from '@/features/cart/components/AddToCart'
 import { Storefront } from '@/features/catalog/components/Storefront'
+import { ComboShowcase } from '@/features/promotions/components/ComboShowcase'
 
 export function HomePage() {
   return (
@@ -21,6 +23,11 @@ export function HomePage() {
           </div>
         </div>
       </section>
+      <div className="container">
+        <ComboShowcase
+          renderAction={(combo) => <AddBundleToCart name={combo.name} items={combo.items} />}
+        />
+      </div>
       <div id="vitrine" className="container page">
         <Storefront
           renderProductAction={(product) => (

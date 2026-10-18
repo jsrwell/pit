@@ -7,6 +7,7 @@ export interface ProductSummary {
   id: number
   name: string
   price: string
+  promotional_price: string | null
   image_id: number | null
   category: NamedItem
   flavor: NamedItem

@@ -38,6 +38,7 @@ class OrderRead(BaseModel):
     payment_status: PaymentStatus
     payment_reference: str
     subtotal: Decimal
+    discount: Decimal
     delivery_fee: Decimal
     total: Decimal
     notes: str

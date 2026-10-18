@@ -12,6 +12,7 @@ from app.modules.catalog.errors.product_not_found import ProductNotFound
 from app.modules.catalog.errors.unsupported_image import UnsupportedImage
 from app.modules.catalog.schemas.admin_product import AdminProduct
 from app.modules.catalog.schemas.availability_input import AvailabilityInput
+from app.modules.catalog.schemas.featured_input import FeaturedInput
 from app.modules.catalog.schemas.product_input import ProductInput
 from app.modules.catalog.schemas.uploaded_image import UploadedImage
 from app.modules.catalog.services.list_all_products import list_all_products
@@ -21,6 +22,7 @@ from app.modules.catalog.services.save_product import (
     update_product,
 )
 from app.modules.catalog.services.set_availability import set_availability
+from app.modules.catalog.services.set_featured import set_featured
 from app.modules.catalog.services.upload_product_image import (
     upload_product_image,
 )
@@ -95,6 +97,18 @@ def change_availability(
 ) -> AdminProduct:
     """Mark a product as available or unavailable for purchase."""
     product = set_availability(session, product_id, **data.model_dump())
+    return AdminProduct.model_validate(product)
+
+
+@router.patch(
+    '/products/{product_id}/featured',
+    responses=problem_responses(ProductNotFound, *AUTH_ERRORS),
+)
+def change_featured(
+    product_id: int, data: FeaturedInput, session: DbSession
+) -> AdminProduct:
+    """Highlight a product on the storefront, or stop highlighting it."""
+    product = set_featured(session, product_id, data.is_featured)
     return AdminProduct.model_validate(product)
 
 

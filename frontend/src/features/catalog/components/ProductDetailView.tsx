@@ -2,7 +2,7 @@ import { useCallback, type ReactNode } from 'react'
 import { Link } from 'react-router'
 
 import { AsyncContent } from '@/shared/components/AsyncContent'
-import { formatPrice } from '@/shared/format/currency'
+import { PriceTag } from '@/shared/components/PriceTag'
 import { useAsync } from '@/shared/hooks/use-async'
 
 import { getProduct } from '../api/get-product'
@@ -34,10 +34,17 @@ export function ProductDetailView({ productId, renderPurchase }: ProductDetailVi
             <div className="row">
               <span className="eyebrow">{product.category.name}</span>
               {product.is_featured && <span className="badge badge--gold">Destaque</span>}
+              {product.promotional_price && <span className="badge badge--success">Promoção</span>}
             </div>
             <h1>{product.name}</h1>
             <p className="product-detail__flavor">Sabor {product.flavor.name}</p>
-            <p className="price product-detail__price">{formatPrice(product.price)}</p>
+            <p>
+              <PriceTag
+                price={product.price}
+                promotionalPrice={product.promotional_price}
+                className="product-detail__price"
+              />
+            </p>
             {product.is_available ? (
               <p className="badge badge--success">Disponível para pedido</p>
             ) : (

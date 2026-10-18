@@ -115,6 +115,7 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
           <OrderSummary
             lines={quote.lines}
             subtotal={quote.subtotal}
+            discount={quote.discount}
             deliveryFee={quote.delivery_fee}
             total={quote.total}
           >

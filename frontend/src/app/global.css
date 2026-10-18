@@ -449,6 +449,10 @@ p {
   gap: 1rem;
 }
 
+.summary__discount {
+  color: var(--color-success);
+}
+
 .summary__total {
   padding-top: 1rem;
   border-top: 1px solid var(--color-line);
