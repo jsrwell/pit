@@ -1,6 +1,6 @@
 # Cupcakes Gourmet — Loja Virtual
 
-![Versão](https://img.shields.io/badge/versao-1.3.0-blue)
+![Versão](https://img.shields.io/badge/versao-1.4.0-blue)
 
 Aplicação web da Loja Virtual de Cupcakes Gourmet, desenvolvida no Projeto Integrador Transdisciplinar em Engenharia de Software II. O cliente navega pela vitrine, monta o pedido, escolhe retirada ou entrega, paga e acompanha o pedido; o administrador mantém catálogo, disponibilidade, pedidos e promoções.
 

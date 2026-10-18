@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/jsrwell/pit/compare/v1.3.0...v1.4.0) (2026-10-18)
+
+### Features
+
+* **US06:** add products to the cart ([3541c3c](https://github.com/jsrwell/pit/commit/3541c3c14f942e6dfde0b5ed037e0104e89c34c6))
+* **US07:** adjust quantities and remove cart items ([0fcf40e](https://github.com/jsrwell/pit/commit/0fcf40eca63f3f8bdae6c2e283935c6ac1e33a9d))
+* **US08:** choose between store pickup and delivery ([9ae48ec](https://github.com/jsrwell/pit/commit/9ae48ec0c9091f10347d4be88f65d448a20b5bbb))
+* **US09:** manage delivery addresses ([cf08f76](https://github.com/jsrwell/pit/commit/cf08f763cdbb84779140d77366ff22d6dcc6c1f4))
+* **US10:** confirm orders with secure checkout and payment ([0c3594f](https://github.com/jsrwell/pit/commit/0c3594f624afef322c45bf26022f1760b608455f))
+* **US11:** track order status with a timeline ([bceb655](https://github.com/jsrwell/pit/commit/bceb655cb2863830e1d4b904a8aaa42d37381b41))
+* **US12:** request custom orders reviewed by the store ([ee63e2f](https://github.com/jsrwell/pit/commit/ee63e2f3c48b28c775f07505ada7940a52c5c892))
+* **US14:** control product availability from the admin panel ([46cd91a](https://github.com/jsrwell/pit/commit/46cd91a7d5ece00752978fbb21599edb86730110))
+* **US15:** manage orders through the operational panel ([004fcb8](https://github.com/jsrwell/pit/commit/004fcb864ee78bbde31d16a2cb1738b99bde0732))
+
 ## [1.3.0](https://github.com/jsrwell/pit/compare/v1.2.0...v1.3.0) (2026-10-18)
 
 ### Features
