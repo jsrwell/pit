@@ -4,6 +4,7 @@ from fastapi import APIRouter
 
 from app.modules.accounts.api.account_routes import router as account_router
 from app.modules.accounts.api.session_routes import router as session_router
+from app.modules.cart.api.cart_routes import router as cart_router
 from app.modules.catalog.api.admin_product_routes import (
     router as admin_product_router,
 )
@@ -24,3 +25,4 @@ api_router.include_router(classification_router)
 api_router.include_router(admin_product_router)
 api_router.include_router(account_router)
 api_router.include_router(session_router)
+api_router.include_router(cart_router)

@@ -50,6 +50,13 @@ class ProductRepository:
         statement = select(Product).order_by(Product.name)
         return list(self.session.scalars(statement))
 
+    def list_by_ids(self, product_ids: set[int]) -> list[Product]:
+        """Return the products whose id is in ``product_ids``."""
+        if not product_ids:
+            return []
+        statement = select(Product).where(Product.id.in_(product_ids))
+        return list(self.session.scalars(statement))
+
     def get(self, product_id: int) -> Product | None:
         """Return the product with ``product_id``, if any."""
         return self.session.get(Product, product_id)

@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router'
 
 import { signOut } from '@/features/accounts/api/sign-in'
+import { CartNavLink } from '@/features/cart/components/CartNavLink'
 import { useSession } from '@/shared/auth/use-session'
 
 export function SiteHeader() {
@@ -32,6 +33,7 @@ export function SiteHeader() {
             <>
               {session.account.role === 'admin' && <NavLink to="/admin">Painel</NavLink>}
               <NavLink to="/conta">Minha conta</NavLink>
+              <CartNavLink />
               <button type="button" onClick={handleSignOut}>
                 Sair
               </button>

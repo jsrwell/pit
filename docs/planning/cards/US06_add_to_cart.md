@@ -1,7 +1,7 @@
 ---
 code: "US06"
 name: "Iniciar a composição do pedido"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ Primeira materialização da intenção de compra. O carrinho precisa ser simple
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar estrutura de carrinho no backend | 6h | A fazer |
-| 2 | Desenvolver componente de adição ao carrinho com seleção de quantidade | 6h | A fazer |
-| 3 | Implementar cálculo de subtotal | 3h | A fazer |
-| 4 | Escrever testes do carrinho | 3h | A fazer |
+| 1 | Implementar estrutura de carrinho no backend | 6h | Concluída |
+| 2 | Desenvolver componente de adição ao carrinho com seleção de quantidade | 6h | Concluída |
+| 3 | Implementar cálculo de subtotal | 3h | Concluída |
+| 4 | Escrever testes do carrinho | 3h | Concluída |
 | **Total** | | **18h** | |
 
 ## Relacionamentos

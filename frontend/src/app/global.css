@@ -406,3 +406,32 @@ p {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.stepper button {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  background: none;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.stepper button:disabled {
+  color: var(--color-line);
+  cursor: not-allowed;
+}
+
+.stepper output {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 600;
+}

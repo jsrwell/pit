@@ -1,3 +1,4 @@
+import { AddToCart } from '@/features/cart/components/AddToCart'
 import { Storefront } from '@/features/catalog/components/Storefront'
 
 export function HomePage() {
@@ -21,7 +22,15 @@ export function HomePage() {
         </div>
       </section>
       <div id="vitrine" className="container page">
-        <Storefront />
+        <Storefront
+          renderProductAction={(product) => (
+            <AddToCart
+              productId={product.id}
+              productName={product.name}
+              available={product.is_available}
+            />
+          )}
+        />
       </div>
     </>
   )

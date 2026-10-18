@@ -1,0 +1,21 @@
+.add-to-cart {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: end;
+}
+
+.add-to-cart--full {
+  justify-items: start;
+  width: 100%;
+  padding: 1.25rem 0;
+}
+
+.add-to-cart__feedback {
+  font-size: 0.85rem;
+  color: var(--color-success);
+}
+
+.add-to-cart__feedback a {
+  font-weight: 600;
+  color: var(--color-gold-dark);
+}
