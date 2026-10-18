@@ -10,6 +10,7 @@ Aplicação web da Loja Virtual de Cupcakes Gourmet, desenvolvida no Projeto Int
 | ------------------------ | ------------------ | ----------------------------------------------------- |
 | [`backend/`](backend/)   | Model e Controller | Python 3.13, FastAPI, SQLAlchemy, Alembic, PostgreSQL |
 | [`frontend/`](frontend/) | View               | React, TypeScript, Vite                               |
+| [`launcher/`](launcher/) | Entrada da demo    | HTML, CSS e JavaScript estáticos (Cloudflare Pages)   |
 | [`docker/`](docker/)     | Infraestrutura     | Banco de desenvolvimento e imagens de release         |
 | [`docs/`](docs/)         | Documentação       | Arquitetura e planejamento                            |
 
@@ -18,6 +19,7 @@ Aplicação web da Loja Virtual de Cupcakes Gourmet, desenvolvida no Projeto Int
 - [Visão geral da arquitetura](docs/ARCHITECTURE.md): componentes, execução local, configuração, CI e release.
 - [Arquitetura do backend](docs/backend/ARCHITECTURE.md): monolito modular, camadas, persistência e contrato de erros.
 - [Arquitetura do frontend](docs/frontend/ARCHITECTURE.md): organização por funcionalidade, cliente HTTP e tratamento de erros.
+- [Arquitetura do lançador](docs/launcher/ARCHITECTURE.md): página de entrada que acorda os serviços no Render antes de abrir a loja.
 - [Planejamento](docs/planning/README.md): histórias de usuário (US01 a US16) que guiam a implementação.
 
 ## Execução local
@@ -27,6 +29,7 @@ Pré-requisitos: Python 3.13, Poetry 2, Node.js 22 e Docker.
 1. Suba o banco: `docker compose -f docker/dev/docker-compose.yml up -d`.
 2. Backend, em `backend/`: copie `.env.example` para `.env`, rode `poetry install`, `poetry run alembic upgrade head`, `poetry run python src/seed.py` (dados iniciais) e `poetry run python src/run.py`.
 3. Frontend, em `frontend/`: rode `npm ci` e `npm run dev`, e acesse `http://localhost:5173`.
+4. Lançador (opcional), em `launcher/`: copie `.env.example` para `.env`, rode `npm run build` e `npm run serve`, e acesse `http://localhost:4173`.
 
 A documentação interativa da API fica em `http://localhost:8000/api/docs`.
 

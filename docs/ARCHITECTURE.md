@@ -1,12 +1,12 @@
 # Visão geral da arquitetura
 
-Este documento descreve como as partes do sistema se encaixam, como são executadas e como chegam a produção. Os detalhes internos de cada aplicação ficam em [Arquitetura do backend](backend/ARCHITECTURE.md) e [Arquitetura do frontend](frontend/ARCHITECTURE.md).
+Este documento descreve como as partes do sistema se encaixam, como são executadas e como chegam a produção. Os detalhes internos de cada aplicação ficam em [Arquitetura do backend](backend/ARCHITECTURE.md), [Arquitetura do frontend](frontend/ARCHITECTURE.md) e [Arquitetura do lançador](launcher/ARCHITECTURE.md).
 
 ## Componentes
 
 ```mermaid
 flowchart LR
-    user([Cliente ou administrador]) --> frontend
+    user([Cliente ou administrador]) --> launcher[Lançador estático] -. acorda e redireciona .-> frontend
     subgraph frontend [Frontend - View]
         spa[SPA React] --> proxy[nginx /api]
     end
@@ -20,6 +20,7 @@ flowchart LR
 - **Frontend**: SPA em React e TypeScript, servida como arquivos estáticos. Toda chamada à API usa o caminho relativo `/api`.
 - **Backend**: API REST em FastAPI, organizada como monolito modular. Todas as rotas ficam sob `/api`.
 - **Banco de dados**: PostgreSQL, com o esquema versionado por migrações do Alembic.
+- **Lançador**: página estática de entrada da demonstração, sempre no ar, que acorda frontend e backend hospedados em planos gratuitos e redireciona para a loja quando os dois respondem.
 
 ## Mapeamento MVC
 
@@ -37,6 +38,7 @@ O enunciado do PIT indica o padrão MVC. Numa API com frontend separado, as resp
 pit/
 ├── backend/               API (Model e Controller)
 ├── frontend/              SPA (View)
+├── launcher/              página estática que acorda os serviços e leva à loja
 ├── docker/
 │   ├── dev/               banco de dados para desenvolvimento local
 │   └── release/           Dockerfiles de release do backend e do frontend
@@ -67,7 +69,7 @@ As duas aplicações são configuradas apenas por variáveis de ambiente, com pa
 | `SERVER__HOST`        | backend   | `0.0.0.0`                                                        | `0.0.0.0`                                                       |
 | `SERVER__PORT`        | backend   | `8000`                                                           | `8000`                                                          |
 | `SERVER__RELOAD`      | backend   | `false`                                                          | `false`                                                         |
-| `CORS__ALLOW_ORIGINS` | backend   | `["http://localhost:5173"]`                                      | `["http://localhost:8080"]`                                     |
+| `CORS__ALLOW_ORIGINS` | backend   | `["http://localhost:5173","http://localhost:4173"]`                | `["http://localhost:8080"]`                                     |
 | `APP__VERSION`        | backend   | `0.0.0-dev`                                                      | versão do release, gravada no build                             |
 | `AUTH__SECRET_KEY`    | backend   | segredo de desenvolvimento                                       | segredo de desenvolvimento; **sempre sobrescrever em produção** |
 | `AUTH__ACCESS_TOKEN_MINUTES` | backend | `120`                                                   | `120`: validade da sessão                                       |
@@ -83,6 +85,7 @@ As duas aplicações são configuradas apenas por variáveis de ambiente, com pa
 | `SEED__DEMO_CATALOG`  | backend   | `true`                                                           | `true`: o seed carrega o catálogo de demonstração se vazio      |
 | `API_UPSTREAM`        | frontend  | não se aplica (proxy do Vite)                                    | `http://backend:8000`                                           |
 | `NGINX_PORT`          | frontend  | não se aplica                                                    | `80`                                                            |
+| `LAUNCHER_*`          | lançador  | ver [Arquitetura do lançador](launcher/ARCHITECTURE.md#configuração) | definidas no Cloudflare Pages; não há imagem          |
 | `VITE_API_BASE_URL`   | frontend  | `/api`                                                           | `/api`, fixado no build                                         |
 
 - Os padrões das imagens assumem uma rede Docker com os serviços `database` e `backend`; em outro ambiente basta sobrescrever as variáveis.
@@ -110,7 +113,7 @@ flowchart LR
     sr -- sim --> versions[atualiza versões] --> build[build das duas imagens] --> tag[commit e tag] --> push_images[push das duas imagens] --> gh[GitHub Release]
 ```
 
-- **CI** (`.github/workflows/ci.yml`): em pull requests, roda apenas o lado alterado (backend, frontend ou ambos); quando chamado pelo release, roda tudo. Cada lado valida formatação, lint, testes, build e o build da imagem de release; o backend também aplica as migrações num PostgreSQL de serviço e confere com `alembic check` que nenhum model ficou sem migração.
+- **CI** (`.github/workflows/ci.yml`): em pull requests, roda apenas o lado alterado (backend, frontend, lançador ou mais de um); quando chamado pelo release, roda tudo. Cada lado valida formatação, lint, testes, build e o build da imagem de release; o backend também aplica as migrações num PostgreSQL de serviço e confere com `alembic check` que nenhum model ficou sem migração.
 - **Release** (`.github/workflows/release.yml`): a cada push em `main` ou `develop`, roda o CI e depois o semantic-release.
 - **Decisão de versão**: é o semantic-release quem decide, pelas mensagens de commit desde a última tag. `feat` gera minor, `fix` e `perf` geram patch, `BREAKING CHANGE` gera major; os demais tipos não geram versão e, portanto, nenhuma imagem.
 - **Lockstep**: backend e frontend recebem sempre a mesma versão e são publicados juntos, mesmo que só um lado tenha mudado. Uma tag do frontend sempre identifica o backend com o qual foi construído.
@@ -121,8 +124,11 @@ flowchart LR
 
 ## Hospedagem prevista
 
-| Parte    | Serviço          | Observação                                                  |
-| -------- | ---------------- | ----------------------------------------------------------- |
-| Frontend | Cloudflare Pages | Build estático com `VITE_API_BASE_URL` apontando para a API |
-| Backend  | Render           | Imagem do GHCR; a instância gratuita hiberna sem tráfego    |
-| Banco    | Neon             | `DATABASE__DSN` com a URL fornecida pelo Neon               |
+| Parte    | Serviço          | Observação                                                                         |
+| -------- | ---------------- | ---------------------------------------------------------------------------------- |
+| Lançador | Cloudflare Pages | Sempre no ar; endereço divulgado da demonstração                                   |
+| Frontend | Render           | Imagem do GHCR com `API_UPSTREAM` apontando para o backend; hiberna sem tráfego    |
+| Backend  | Render           | Imagem do GHCR; `CORS__ALLOW_ORIGINS` inclui o lançador; hiberna sem tráfego       |
+| Banco    | Neon             | `DATABASE__DSN` com a URL fornecida pelo Neon; suspende sem uso                    |
+
+- Como as instâncias gratuitas do Render levam de um a alguns minutos para acordar, o usuário entra sempre pelo lançador, que acompanha a inicialização e só então redireciona. Motivação e detalhes em [Arquitetura do lançador](launcher/ARCHITECTURE.md).

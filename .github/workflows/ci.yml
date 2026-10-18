@@ -17,6 +17,7 @@ jobs:
     outputs:
       backend: ${{ github.event_name != 'pull_request' || steps.filter.outputs.backend == 'true' }}
       frontend: ${{ github.event_name != 'pull_request' || steps.filter.outputs.frontend == 'true' }}
+      launcher: ${{ github.event_name != 'pull_request' || steps.filter.outputs.launcher == 'true' }}
     steps:
       - uses: actions/checkout@v4
       - id: filter
@@ -31,6 +32,9 @@ jobs:
             frontend:
               - 'frontend/**'
               - 'docker/release/frontend/**'
+              - '.github/workflows/ci.yml'
+            launcher:
+              - 'launcher/**'
               - '.github/workflows/ci.yml'
 
   backend:
@@ -98,3 +102,22 @@ jobs:
       - name: Build release image
         working-directory: .
         run: docker build --file docker/release/frontend/Dockerfile .
+
+  launcher:
+    name: Launcher
+    needs: changes
+    if: needs.changes.outputs.launcher == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: launcher
+    env:
+      LAUNCHER_FRONTEND_URL: https://frontend.example.com
+      LAUNCHER_BACKEND_URL: https://backend.example.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - run: npm run build

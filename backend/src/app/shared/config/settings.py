@@ -48,7 +48,10 @@ class DatabaseSettings(BaseModel):
 class CorsSettings(BaseModel):
     """Origins allowed to call the API from a browser."""
 
-    allow_origins: list[str] = ['http://localhost:5173']
+    allow_origins: list[str] = [
+        'http://localhost:5173',
+        'http://localhost:4173',
+    ]
 
 
 class AuthSettings(BaseModel):

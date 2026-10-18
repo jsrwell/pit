@@ -1,0 +1,14 @@
+{
+  "name": "cupcakes-store-launcher",
+  "private": true,
+  "type": "module",
+  "description": "Static wake-up page that starts the hosted services before opening the store.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test"
+  }
+}

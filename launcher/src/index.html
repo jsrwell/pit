@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f1613" />
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="Cupcakes Gourmet: ambiente de demonstração acadêmica, iniciado sob demanda."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Cupcakes Gourmet</title>
+  </head>
+  <body>
+    <main class="stage">
+      <section class="card" aria-labelledby="brand-name">
+        <header class="brand">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="34" height="34">
+              <path
+                d="M10 24c-2-7 4-11 8-10 0-5 4-8 7-8s7 3 7 8c4-1 10 3 8 10H10z"
+                fill="currentColor"
+                opacity=".85"
+              />
+              <rect x="9" y="23" width="30" height="3" rx="1.5" fill="#dcc394" />
+              <path d="M12 27h24l-3.5 15h-17z" fill="currentColor" />
+              <circle cx="25" cy="7" r="3" fill="#dcc394" />
+            </svg>
+          </span>
+          <span class="eyebrow">Maison de confeitaria</span>
+          <h1 id="brand-name">Cupcakes Gourmet</h1>
+          <p class="muted">Ambiente de demonstração acadêmica</p>
+        </header>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div data-step="welcome" class="step">
+          <h2>Bem-vindo à nossa loja virtual</h2>
+          <p class="muted">
+            Este ambiente fica em repouso quando não há visitas e é ativado sob demanda. Clique
+            abaixo para iniciar a demonstração; isso pode levar até alguns minutos.
+          </p>
+          <button type="button" class="button" data-action="start">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M10 8.5v7l6-3.5z" fill="currentColor" />
+            </svg>
+            Iniciar demonstração
+          </button>
+        </div>
+
+        <div data-step="progress" class="step" hidden>
+          <h2 class="status-title" tabindex="-1" data-role="title" role="status" aria-live="polite">
+            <span class="spinner" data-role="spinner" aria-hidden="true"></span>
+            <span data-role="title-text">Inicializando o ambiente...</span>
+          </h2>
+          <ul class="services" aria-label="Serviços">
+            <li>
+              <span>Loja (frontend)</span>
+              <span class="badge" data-service="frontend"></span>
+            </li>
+            <li>
+              <span>API e banco de dados</span>
+              <span class="badge" data-service="backend"></span>
+            </li>
+          </ul>
+          <div
+            class="bar"
+            data-role="bar"
+            role="progressbar"
+            aria-label="Progresso estimado da inicialização"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span class="bar__fill" data-role="bar-fill"></span>
+          </div>
+          <p class="muted small" data-role="countdown"></p>
+          <p class="hint small" data-role="hint" hidden>
+            Está demorando mais que o normal. O primeiro acesso após um período sem visitas pode
+            levar alguns minutos; continuaremos verificando automaticamente.
+          </p>
+          <a class="button button--gold" data-action="enter" hidden>Entrar na loja</a>
+        </div>
+      </section>
+      <p class="footnote">Projeto Integrador Transdisciplinar em Engenharia de Software II</p>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

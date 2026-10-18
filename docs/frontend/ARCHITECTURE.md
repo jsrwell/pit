@@ -90,6 +90,7 @@ Regras de dependência:
 | `VITE_APP_VERSION`  | `0.0.0-dev` | Preenchida pelo build de release com a versão publicada               |
 
 - Variáveis `VITE_*` são fixadas no momento do build; mudar o valor exige novo build.
+- `public/health.json` é publicado junto com a SPA e servido pelo nginx com CORS liberado; o [lançador](../launcher/ARCHITECTURE.md) o usa para saber se o frontend já acordou.
 - O destino real de `/api` é configurado fora da SPA: `server.proxy` do Vite em desenvolvimento e `API_UPSTREAM` do nginx na imagem de release.
 
 ## Interface

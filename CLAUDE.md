@@ -6,6 +6,7 @@
 - Arquitetura: `docs/ARCHITECTURE.md` (sistema, CI, release), `docs/backend/ARCHITECTURE.md` e `docs/frontend/ARCHITECTURE.md`; ler antes de criar estrutura nova.
 - O enunciado exige MVC: Model e Controller no backend, View no frontend; o mapeamento está documentado e deve continuar verdadeiro.
 - Backend e frontend são projetos independentes (Poetry e npm), cada um com seu `CLAUDE.md`; comandos rodam a partir da pasta do projeto, não da raiz.
+- `launcher/` é a página estática de entrada da demonstração (Cloudflare Pages), sem Docker e fora do release das imagens; ver `launcher/CLAUDE.md`.
 - O `package.json` da raiz serve só ao semantic-release; não adicionar dependências de aplicação nele.
 - Nomes de módulo são os mesmos no backend (`modules/`) e no frontend (`features/`): system, catalog, accounts, cart, orders, promotions.
 - Um cartão é implementado de ponta a ponta (migração, erro, rota, testes, tela) e o arquivo do cartão é atualizado no mesmo commit.
