@@ -1,6 +1,12 @@
+---
+code: "BE-ARCH"
+name: "Arquitetura do backend"
+updated: "2026/10/18"
+---
+
 # Arquitetura do backend
 
-API REST da Loja Virtual de Cupcakes Gourmet. Implementa o Model e o Controller do MVC e é consumida pelo frontend. A visão do sistema como um todo está em [Visão geral da arquitetura](../ARCHITECTURE.md).
+API REST da Loja Virtual de Cupcakes Gourmet. Implementa o Model e o Controller do MVC e é consumida pelo frontend. A visão do sistema como um todo está em [Visão geral da arquitetura](../ARCHITECTURE.md), e as funcionalidades, a API e o banco estão documentados a partir do [índice do backend](README.md).
 
 ## Princípios
 
@@ -118,21 +124,12 @@ sequenceDiagram
 
 - `get_session` abre uma transação por requisição: confirma quando a rota retorna e desfaz quando algo é lançado. Services e repositórios nunca chamam `commit`.
 - Um erro de domínio com `keeps_changes = True` confirma a transação antes de virar resposta de erro. É usado quando a falha precisa deixar rastro, como a contagem de tentativas de login inválidas.
-
-## Autenticação
-
-- `POST /api/accounts/sessions` troca e-mail e senha por um JWT (HS256) assinado com `AUTH__SECRET_KEY` e com expiração; o token carrega o id e o papel da conta.
-- Rotas protegidas recebem `CurrentPrincipal` ou `AdminPrincipal` (`app/shared/http/authentication.py`), que validam o cabeçalho `Authorization: Bearer` sem consultar o banco.
-- Senhas são guardadas com bcrypt; após `AUTH__MAX_FAILED_ATTEMPTS` falhas seguidas a conta fica bloqueada por `AUTH__LOCKOUT_MINUTES`.
-- O administrador é criado pelo seed a partir de `ADMIN__EMAIL` e `ADMIN__PASSWORD`; não há cadastro público de administradores.
 - Rotas são `def` (síncronas); o FastAPI as executa em thread pool.
 
-## Pagamento
+## Autenticação e pagamento
 
-- O checkout fala com o meio de pagamento pela porta `PaymentGateway` (`modules/orders/services/payment_gateway.py`), injetada na rota por `get_payment_gateway`, o que permite trocar o provedor sem mudar o caso de uso.
-- O MVP usa `SimulatedPaymentGateway`: Pix é aprovado na hora, dinheiro fica pendente até a entrega ou retirada e cartão é validado (Luhn, validade e CVV) e aprovado, exceto o número de teste terminado em `0002`, sempre recusado.
-- O total é recalculado no servidor a partir do carrinho; o número do cartão nunca é gravado, só os quatro últimos dígitos na referência do pagamento.
-- Pagamento recusado lança erro antes de qualquer gravação, então nenhum pedido fica criado e o carrinho é mantido.
+- Autenticação por JWT sem estado, com dependências `CurrentPrincipal` e `AdminPrincipal` em `app/shared/http/authentication.py`; detalhes em [Desenho da autenticação](authentication/01_authentication_design.md) e [Estratégia de segurança](authentication/02_security_strategy.md).
+- O checkout usa a porta `PaymentGateway`, injetada por `get_payment_gateway`, com um adaptador simulado no MVP; detalhes em [Checkout e pagamento](orders/02_checkout_and_payment.md).
 
 ## Persistência
 
@@ -143,7 +140,7 @@ sequenceDiagram
 - Migrações são sempre geradas pelo `autogenerate` e mantidas exatamente como saem dele; nunca são escritas nem ajustadas à mão. Se a saída gerada não passar no lint, corrige-se o modelo `alembic/script.py.mako`.
 - Migrações só alteram esquema. Dados iniciais, como o catálogo de demonstração, são carregados por `src/seed.py`, idempotente: cada seed só insere quando o dado ainda não existe. A imagem o executa ao iniciar, salvo `RUN_SEED=false`.
 - O CI aplica todas as migrações num banco limpo e roda `alembic check`, que falha se algum model não tiver migração.
-- O projeto físico e o dicionário de dados exigidos pelo PIT devem refletir exatamente as migrações.
+- O projeto físico e o dicionário de dados exigidos pelo PIT devem refletir exatamente as migrações: [Modelo de dados](database/01_data_model.md), [Dicionário de dados](database/02_data_dictionary.md) e [Dados iniciais](database/03_seed_data.md).
 
 ## Tratamento de erros
 
@@ -156,15 +153,7 @@ As regras obrigatórias resumidas ficam em `.claude/rules/error-handling.md`; es
 - `detail` é passado na instância e descreve a ocorrência em inglês (`"No product with id 42."`), sem expor SQL, tabelas, credenciais ou caminhos.
 - Erros que nunca chegam ao HTTP declaram `internal = True`.
 - O teste `tests/unit/shared/test_error_catalog.py` garante formato e unicidade de todos os códigos.
-
-| Código        | Erro               | Status | Quando                                  |
-| ------------- | ------------------ | ------ | --------------------------------------- |
-| `CS-SYS-0001` | `UnexpectedError`  | 500    | Exceção não tratada                     |
-| `CS-SYS-0002` | `InvalidRequest`   | 422    | Falha de validação do schema de entrada |
-| `CS-SYS-0003` | `RouteNotFound`    | 404    | Caminho inexistente                     |
-| `CS-SYS-0004` | `MethodNotAllowed` | 405    | Método HTTP não aceito pelo caminho     |
-| `CS-SYS-0005` | `AuthenticationRequired` | 401 | Token ausente, inválido ou expirado |
-| `CS-SYS-0006` | `AccessDenied`     | 403    | Conta sem o papel exigido pela rota     |
+- A lista completa de códigos está no [Catálogo de erros](api/02_error_catalog.md).
 
 ### Problem Details
 
@@ -197,7 +186,7 @@ Toda resposta de erro segue a RFC 9457, com `Content-Type: application/problem+j
 
 ## Configuração
 
-`Settings` (`app/shared/config/settings.py`) lê variáveis de ambiente e o arquivo `.env`, com grupos aninhados separados por `__` (`DATABASE__DSN`, `SERVER__PORT`). A tabela completa de variáveis e padrões está em [Visão geral da arquitetura](../ARCHITECTURE.md#configuração-por-ambiente). Rotas recebem as configurações por `Depends(get_settings)`, o que permite substituí-las em testes.
+`Settings` (`app/shared/config/settings.py`) lê variáveis de ambiente e o arquivo `.env`, com grupos aninhados separados por `__` (`DATABASE__DSN`, `SERVER__PORT`). A tabela completa de variáveis e padrões está em [Configuração do backend](operations/01_configuration.md). Rotas recebem as configurações por `Depends(get_settings)`, o que permite substituí-las em testes.
 
 ## Testes
 
@@ -205,7 +194,7 @@ Toda resposta de erro segue a RFC 9457, com `Content-Type: application/problem+j
 - A estrutura de pastas espelha os módulos (`tests/integration/catalog/...`).
 - Todo erro de domínio declarado tem um teste de integração que percorre o caminho que o lança.
 - Testes que precisam de banco usam o PostgreSQL de `docker/dev/` localmente e o serviço PostgreSQL no CI, com o mesmo `DATABASE__DSN`. Cada teste roda dentro de uma transação desfeita ao final (fixture `db_session`), por isso a suíte não deixa dados no banco de desenvolvimento.
-- Cada critério de aceitação (CA) e regra de negócio (RN) do cartão vira ao menos um teste, o que alimenta a matriz requisito x caso de teste da Situação-Problema 3.
+- Cada critério de aceitação (CA) e regra de negócio (RN) do cartão vira ao menos um teste, o que alimenta a matriz requisito x caso de teste da Situação-Problema 3. Estratégia e matriz em [Estratégia de testes](quality/01_test_strategy.md) e [Rastreabilidade de requisitos](quality/02_requirements_traceability.md).
 
 ## Implementando um cartão
 
@@ -215,4 +204,4 @@ Toda resposta de erro segue a RFC 9457, com `Content-Type: application/problem+j
 4. Declarar schemas e a rota com `problem_responses`.
 5. Escrever os testes de integração dos critérios de aceitação e dos caminhos de erro.
 6. Implementar repositório e service até os testes passarem.
-7. Atualizar o cartão (`status` e tabela de tarefas) no mesmo commit, com o código do cartão como âmbito.
+7. Atualizar o cartão (`status` e tabela de tarefas) e a documentação da funcionalidade em `docs/backend/` no mesmo commit, com o código do cartão como âmbito.

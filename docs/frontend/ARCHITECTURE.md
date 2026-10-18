@@ -1,6 +1,12 @@
+---
+code: "FE-ARCH"
+name: "Arquitetura do frontend"
+updated: "2026/10/18"
+---
+
 # Arquitetura do frontend
 
-SPA da Loja Virtual de Cupcakes Gourmet. Implementa a View do MVC e conversa com o backend apenas pela API REST. A visão do sistema como um todo está em [Visão geral da arquitetura](../ARCHITECTURE.md).
+SPA da Loja Virtual de Cupcakes Gourmet. Implementa a View do MVC e conversa com o backend apenas pela API REST. A visão do sistema como um todo está em [Visão geral da arquitetura](../ARCHITECTURE.md), e as telas, o sistema visual e a operação estão documentados a partir do [índice do frontend](README.md).
 
 ## Princípios
 

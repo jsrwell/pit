@@ -16,11 +16,16 @@ Aplicação web da Loja Virtual de Cupcakes Gourmet, desenvolvida no Projeto Int
 
 ## Documentação
 
+O índice completo está em [docs/README.md](docs/README.md). Principais documentos:
+
 - [Visão geral da arquitetura](docs/ARCHITECTURE.md): componentes, execução local, configuração, CI e release.
 - [Arquitetura do backend](docs/backend/ARCHITECTURE.md): monolito modular, camadas, persistência e contrato de erros.
 - [Arquitetura do frontend](docs/frontend/ARCHITECTURE.md): organização por funcionalidade, cliente HTTP e tratamento de erros.
 - [Arquitetura do lançador](docs/launcher/ARCHITECTURE.md): página de entrada que acorda os serviços no Render antes de abrir a loja.
 - [Planejamento](docs/planning/README.md): histórias de usuário (US01 a US16) que guiam a implementação.
+- [Funcionalidades do backend](docs/backend/README.md): API, banco de dados, segurança, regras de negócio e testes por cartão.
+- [Funcionalidades do frontend](docs/frontend/README.md): jornada do cliente, painel administrativo e sistema visual.
+- [Lançador](docs/launcher/README.md): página de entrada da demonstração, publicação e diagnóstico.
 
 ## Execução local
 

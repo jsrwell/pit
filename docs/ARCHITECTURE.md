@@ -1,3 +1,9 @@
+---
+code: "SYS-ARCH"
+name: "Visão geral da arquitetura"
+updated: "2026/10/18"
+---
+
 # Visão geral da arquitetura
 
 Este documento descreve como as partes do sistema se encaixam, como são executadas e como chegam a produção. Os detalhes internos de cada aplicação ficam em [Arquitetura do backend](backend/ARCHITECTURE.md), [Arquitetura do frontend](frontend/ARCHITECTURE.md) e [Arquitetura do lançador](launcher/ARCHITECTURE.md).
@@ -63,30 +69,18 @@ No VS Code, a configuração composta **Full stack** sobe o banco, o backend com
 
 As duas aplicações são configuradas apenas por variáveis de ambiente, com padrões que funcionam sem nenhuma configuração no ambiente correspondente.
 
+As variáveis essenciais para ligar as partes entre si estão abaixo; a referência completa de cada aplicação está em [Configuração do backend](backend/operations/01_configuration.md), [Build e publicação do frontend](frontend/operations/01_build_and_deployment.md) e [Arquitetura do lançador](launcher/ARCHITECTURE.md#configuração).
+
 | Variável              | Aplicação | Padrão local                                                     | Padrão na imagem de release                                     |
 | --------------------- | --------- | ---------------------------------------------------------------- | --------------------------------------------------------------- |
 | `DATABASE__DSN`       | backend   | `postgresql+psycopg://cupcakes:cupcakes@localhost:5432/cupcakes` | `postgresql+psycopg://cupcakes:cupcakes@database:5432/cupcakes` |
-| `SERVER__HOST`        | backend   | `0.0.0.0`                                                        | `0.0.0.0`                                                       |
-| `SERVER__PORT`        | backend   | `8000`                                                           | `8000`                                                          |
-| `SERVER__RELOAD`      | backend   | `false`                                                          | `false`                                                         |
-| `CORS__ALLOW_ORIGINS` | backend   | `["http://localhost:5173","http://localhost:4173"]`                | `["http://localhost:8080"]`                                     |
-| `APP__VERSION`        | backend   | `0.0.0-dev`                                                      | versão do release, gravada no build                             |
+| `CORS__ALLOW_ORIGINS` | backend   | `["http://localhost:5173","http://localhost:4173"]`              | `["http://localhost:8080"]`                                     |
 | `AUTH__SECRET_KEY`    | backend   | segredo de desenvolvimento                                       | segredo de desenvolvimento; **sempre sobrescrever em produção** |
-| `AUTH__ACCESS_TOKEN_MINUTES` | backend | `120`                                                   | `120`: validade da sessão                                       |
-| `AUTH__MAX_FAILED_ATTEMPTS` | backend | `5`                                                      | `5`: tentativas de login antes do bloqueio                      |
-| `AUTH__LOCKOUT_MINUTES` | backend | `15`                                                           | `15`: duração do bloqueio                                       |
-| `ADMIN__EMAIL`, `ADMIN__PASSWORD`, `ADMIN__NAME` | backend | vazios (sem administrador)                     | vazios; quando definidos, o seed cria ou promove o administrador |
-| `CATALOG__MAX_IMAGE_BYTES` | backend | `2000000`                                                  | `2000000`: tamanho máximo das imagens enviadas                  |
-| `STORE__DELIVERY_FEE` | backend  | `12.00`                                                          | `12.00`: taxa cobrada em pedidos com entrega                    |
-| `STORE__PICKUP_ADDRESS` | backend | endereço de exemplo                                             | endereço exibido para retirada na loja                          |
-| `STORE__CUSTOM_ORDER_LEAD_DAYS` | backend | `2`                                                     | `2`: antecedência mínima, em dias, das encomendas especiais     |
-| `RUN_MIGRATIONS`      | backend   | não se aplica                                                    | `true`: aplica as migrações antes de servir                     |
-| `RUN_SEED`            | backend   | não se aplica (`python src/seed.py` manual)                      | `true`: executa o seed idempotente antes de servir              |
-| `SEED__DEMO_CATALOG`  | backend   | `true`                                                           | `true`: o seed carrega o catálogo de demonstração se vazio      |
+| `APP__VERSION`        | backend   | `0.0.0-dev`                                                      | versão do release, gravada no build                             |
+| `RUN_MIGRATIONS`, `RUN_SEED` | backend | não se aplica                                              | `true`: migrações e seed antes de servir                        |
 | `API_UPSTREAM`        | frontend  | não se aplica (proxy do Vite)                                    | `http://backend:8000`                                           |
-| `NGINX_PORT`          | frontend  | não se aplica                                                    | `80`                                                            |
-| `LAUNCHER_*`          | lançador  | ver [Arquitetura do lançador](launcher/ARCHITECTURE.md#configuração) | definidas no Cloudflare Pages; não há imagem          |
 | `VITE_API_BASE_URL`   | frontend  | `/api`                                                           | `/api`, fixado no build                                         |
+| `LAUNCHER_FRONTEND_URL`, `LAUNCHER_BACKEND_URL` | lançador | `http://localhost:5173`, `http://localhost:8000` | definidas no Cloudflare Pages                       |
 
 - Os padrões das imagens assumem uma rede Docker com os serviços `database` e `backend`; em outro ambiente basta sobrescrever as variáveis.
 - `DATABASE__DSN` aceita o formato `postgresql://` entregue por provedores como o Neon; o backend converte para o driver `psycopg`.
@@ -122,7 +116,7 @@ flowchart LR
 - **Registro**: `ghcr.io/<dono>/<repositório>/backend` e `ghcr.io/<dono>/<repositório>/frontend`.
 - **Arquivos versionados**: o commit `chore(release)` atualiza `CHANGELOG.md`, o badge do `README.md`, `backend/pyproject.toml` e os `package.json`/`package-lock.json` da raiz e do frontend. As aplicações não leem esses arquivos em execução.
 
-## Hospedagem prevista
+## Hospedagem
 
 | Parte    | Serviço          | Observação                                                                         |
 | -------- | ---------------- | ---------------------------------------------------------------------------------- |
@@ -132,3 +126,4 @@ flowchart LR
 | Banco    | Neon             | `DATABASE__DSN` com a URL fornecida pelo Neon; suspende sem uso                    |
 
 - Como as instâncias gratuitas do Render levam de um a alguns minutos para acordar, o usuário entra sempre pelo lançador, que acompanha a inicialização e só então redireciona. Motivação e detalhes em [Arquitetura do lançador](launcher/ARCHITECTURE.md).
+- Passo a passo de publicação: [backend no Render](backend/operations/02_render_deployment.md), [frontend no Render](frontend/operations/01_build_and_deployment.md#publicação-no-render) e [lançador no Cloudflare Pages](launcher/operations/01_cloudflare_deployment.md).

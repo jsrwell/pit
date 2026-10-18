@@ -1,3 +1,9 @@
+---
+code: "LN-ARCH"
+name: "Arquitetura do lançador"
+updated: "2026/10/18"
+---
+
 # Arquitetura do lançador
 
 Página de entrada da demonstração da Loja Virtual de Cupcakes Gourmet. É o endereço divulgado para quem vai usar ou avaliar o sistema: ela acorda os serviços hospedados no Render, acompanha a inicialização e só então leva o usuário à loja. A visão do sistema como um todo está em [Visão geral da arquitetura](../ARCHITECTURE.md).
@@ -86,13 +92,9 @@ As variáveis são lidas no build, do ambiente ou de `launcher/.env`, e gravadas
 
 O build falha se uma URL for inválida ou um número não for positivo, para que uma configuração errada nunca seja publicada.
 
-## Publicação no Cloudflare Pages
+## Publicação e diagnóstico
 
-1. Criar um projeto no Cloudflare Pages ligado a este repositório.
-2. Configurar: diretório raiz `launcher`, comando de build `npm run build`, diretório de saída `dist`.
-3. Definir `LAUNCHER_FRONTEND_URL` e `LAUNCHER_BACKEND_URL` com os endereços do Render.
-4. No serviço do backend no Render, incluir a origem do lançador em `CORS__ALLOW_ORIGINS`, por exemplo `["https://cupcakes-frontend.onrender.com","https://cupcakes-gourmet.pages.dev"]`.
-5. No serviço do frontend no Render, apontar `API_UPSTREAM` para o endereço do backend.
+A configuração do projeto no Cloudflare Pages e dos serviços no Render está em [Publicação no Cloudflare Pages](operations/01_cloudflare_deployment.md); problemas comuns e como identificá-los estão em [Diagnóstico](operations/02_troubleshooting.md).
 
 ## Execução local
 
