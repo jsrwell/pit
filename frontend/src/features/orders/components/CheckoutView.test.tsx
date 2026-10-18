@@ -73,7 +73,9 @@ describe('CheckoutView', () => {
       total: '20.00',
       notes: '',
       created_at: '2026-10-18T12:00:00Z',
+      updated_at: '2026-10-18T12:00:00Z',
       items: [],
+      history: [],
     }
     const place = vi.spyOn(placeApi, 'placeOrder').mockResolvedValue(order)
     const onPlaced = vi.fn()

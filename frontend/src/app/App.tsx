@@ -10,6 +10,8 @@ import { AdminProductsPage } from './routes/admin/AdminProductsPage'
 import { HomePage } from './routes/HomePage'
 import { LoginPage } from './routes/LoginPage'
 import { NotFoundPage } from './routes/NotFoundPage'
+import { OrderPage } from './routes/OrderPage'
+import { OrdersPage } from './routes/OrdersPage'
 import { ProductPage } from './routes/ProductPage'
 import { RegisterPage } from './routes/RegisterPage'
 import { RequireAuth } from './routes/RequireAuth'
@@ -27,6 +29,8 @@ export function App() {
             <Route path="conta" element={<AccountPage />} />
             <Route path="carrinho" element={<CartPage />} />
             <Route path="checkout" element={<CheckoutPage />} />
+            <Route path="pedidos" element={<OrdersPage />} />
+            <Route path="pedidos/:orderId" element={<OrderPage />} />
           </Route>
           <Route element={<RequireAuth role="admin" />}>
             <Route path="admin" element={<AdminLayout />}>

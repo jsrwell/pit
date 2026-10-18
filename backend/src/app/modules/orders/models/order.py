@@ -6,6 +6,7 @@ from sqlalchemy import ForeignKey, Numeric, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.modules.orders.models.order_item import OrderItem
+from app.modules.orders.models.order_status_change import OrderStatusChange
 from app.shared.database.base import Base
 from app.shared.database.timestamps import TimestampMixin
 
@@ -31,4 +32,9 @@ class Order(TimestampMixin, Base):
 
     items: Mapped[list[OrderItem]] = relationship(
         cascade='all, delete-orphan', lazy='selectin', order_by=OrderItem.id
+    )
+    history: Mapped[list[OrderStatusChange]] = relationship(
+        cascade='all, delete-orphan',
+        lazy='selectin',
+        order_by=OrderStatusChange.id,
     )

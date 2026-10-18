@@ -11,6 +11,7 @@ from app.modules.orders.models.payment_method import PaymentMethod
 from app.modules.orders.repositories.order_repository import OrderRepository
 from app.modules.orders.services.payment_gateway import Card, PaymentGateway
 from app.modules.orders.services.price_order import price_order
+from app.modules.orders.services.record_status import record_status
 from app.shared.config.settings import StoreSettings
 
 
@@ -47,7 +48,6 @@ def place_order(
     payment = gateway.charge(priced.total, payment_method, card)
     order = Order(
         user_id=user_id,
-        status=OrderStatus.RECEIVED,
         fulfillment_method=fulfillment_method,
         delivery_address=(
             priced.address.formatted() if priced.address else None
@@ -73,6 +73,7 @@ def place_order(
             for line in priced.lines
         ],
     )
+    record_status(order, OrderStatus.RECEIVED)
     OrderRepository(session).add(order)
     clear_cart(session, user_id)
     return order

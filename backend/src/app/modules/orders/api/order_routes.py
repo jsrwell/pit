@@ -12,9 +12,14 @@ from app.modules.orders.errors.cart_has_unavailable_items import (
 )
 from app.modules.orders.errors.empty_cart import EmptyCart
 from app.modules.orders.errors.invalid_card import InvalidCard
+from app.modules.orders.errors.order_not_found import OrderNotFound
 from app.modules.orders.errors.payment_declined import PaymentDeclined
 from app.modules.orders.schemas.checkout_input import CheckoutInput
 from app.modules.orders.schemas.order_read import OrderRead
+from app.modules.orders.services.customer_orders import (
+    get_my_order,
+    list_my_orders,
+)
 from app.modules.orders.services.payment_gateway import (
     Card,
     PaymentGateway,
@@ -30,6 +35,30 @@ from app.shared.http.problem_responses import problem_responses
 router = APIRouter(prefix='/orders', tags=['Orders'])
 
 DbSession = Annotated[Session, Depends(get_session)]
+
+
+@router.get('', responses=problem_responses(AuthenticationRequired))
+def read_my_orders(
+    principal: CurrentPrincipal, session: DbSession
+) -> list[OrderRead]:
+    """List the customer's orders, newest first."""
+    return [
+        OrderRead.model_validate(order)
+        for order in list_my_orders(session, principal.user_id)
+    ]
+
+
+@router.get(
+    '/{order_id}',
+    responses=problem_responses(OrderNotFound, AuthenticationRequired),
+)
+def read_my_order(
+    order_id: int, principal: CurrentPrincipal, session: DbSession
+) -> OrderRead:
+    """Track one of the customer's orders with its status history."""
+    return OrderRead.model_validate(
+        get_my_order(session, principal.user_id, order_id)
+    )
 
 
 @router.post(

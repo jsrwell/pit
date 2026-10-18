@@ -32,6 +32,7 @@ export function SiteHeader() {
           ) : (
             <>
               {session.account.role === 'admin' && <NavLink to="/admin">Painel</NavLink>}
+              <NavLink to="/pedidos">Pedidos</NavLink>
               <NavLink to="/conta">Minha conta</NavLink>
               <CartNavLink />
               <button type="button" onClick={handleSignOut}>

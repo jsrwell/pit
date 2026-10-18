@@ -15,6 +15,11 @@ export interface OrderItem {
   line_total: string
 }
 
+export interface StatusChange {
+  status: OrderStatus
+  changed_at: string
+}
+
 export interface Order {
   id: number
   status: OrderStatus
@@ -29,7 +34,9 @@ export interface Order {
   total: string
   notes: string
   created_at: string
+  updated_at: string
   items: OrderItem[]
+  history: StatusChange[]
 }
 
 export const PAYMENT_LABELS: Record<PaymentMethod, string> = {

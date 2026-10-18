@@ -9,6 +9,7 @@ from app.modules.orders.models.fulfillment_method import FulfillmentMethod
 from app.modules.orders.models.order_status import OrderStatus
 from app.modules.orders.models.payment_method import PaymentMethod
 from app.modules.orders.models.payment_status import PaymentStatus
+from app.modules.orders.schemas.status_change_read import StatusChangeRead
 
 
 class OrderItemRead(BaseModel):
@@ -41,4 +42,6 @@ class OrderRead(BaseModel):
     total: Decimal
     notes: str
     created_at: datetime
+    updated_at: datetime
     items: list[OrderItemRead]
+    history: list[StatusChangeRead]

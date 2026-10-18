@@ -1,7 +1,7 @@
 ---
 code: "US11"
 name: "Acompanhar a evolução do pedido"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -37,10 +37,10 @@ A pós-compra precisa continuar transmitindo controle. Reduz ansiedade e diminui
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Implementar endpoint de consulta de status do pedido | 4h | A fazer |
-| 2 | Desenvolver tela de acompanhamento com timeline de status | 8h | A fazer |
-| 3 | Implementar registro de histórico de mudanças de status | 4h | A fazer |
-| 4 | Escrever testes de acompanhamento | 3h | A fazer |
+| 1 | Implementar endpoint de consulta de status do pedido | 4h | Concluída |
+| 2 | Desenvolver tela de acompanhamento com timeline de status | 8h | Concluída |
+| 3 | Implementar registro de histórico de mudanças de status | 4h | Concluída |
+| 4 | Escrever testes de acompanhamento | 3h | Concluída |
 | **Total** | | **19h** | |
 
 ## Relacionamentos
