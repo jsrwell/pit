@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0](https://github.com/jsrwell/pit/compare/v1.1.0...v1.2.0) (2026-10-18)
+
+### Features
+
+* **US04:** let visitors create a customer account ([5c6ff63](https://github.com/jsrwell/pit/commit/5c6ff6338d4bb826b069580ba0ff37a5321d388b))
+
 ## [1.1.0](https://github.com/jsrwell/pit/compare/v1.0.0...v1.1.0) (2026-10-18)
 
 ### Features
