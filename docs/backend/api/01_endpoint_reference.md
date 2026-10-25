@@ -45,6 +45,9 @@ Legenda de acesso: **Público** não exige sessão; **Cliente** exige `Authoriza
 | POST   | `/accounts`                                    | Público | Cadastro de cliente                |
 | POST   | `/accounts/sessions`                           | Público | Login; devolve token e conta       |
 | GET    | `/accounts/me`                                 | Cliente | Dados da conta autenticada         |
+| PUT    | `/accounts/me`                                 | Cliente | Edição de nome, e-mail e telefone  |
+| PUT    | `/accounts/me/password`                        | Cliente | Troca de senha com a senha atual   |
+| DELETE | `/accounts/me`                                 | Cliente | Exclusão lógica da própria conta   |
 | GET    | `/accounts/me/addresses`                       | Cliente | Endereços, principal primeiro      |
 | POST   | `/accounts/me/addresses`                       | Cliente | Novo endereço                      |
 | PUT    | `/accounts/me/addresses/{address_id}`          | Cliente | Edição de endereço                 |

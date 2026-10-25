@@ -24,6 +24,9 @@ const MESSAGES: Record<string, string> = {
   'CS-ACC-0004':
     'Muitas tentativas sem sucesso. Por segurança, o acesso foi bloqueado por alguns minutos.',
   'CS-ACC-0005': 'Endereço não encontrado.',
+  'CS-ACC-0006': 'A senha atual não confere. Digite-a novamente.',
+  'CS-ACC-0007':
+    'Você tem pedidos em andamento. A conta pode ser excluída quando eles forem concluídos ou cancelados.',
   'CS-ORD-0001': 'Escolha um endereço de entrega cadastrado.',
   'CS-ORD-0002': 'Seu carrinho está vazio.',
   'CS-ORD-0003': 'Há itens indisponíveis no carrinho. Remova-os para continuar.',

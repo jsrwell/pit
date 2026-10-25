@@ -24,3 +24,11 @@ class User(TimestampMixin, Base):
     locked_until: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True)
     )
+    deleted_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True)
+    )
+
+    @property
+    def is_deleted(self) -> bool:
+        """Tell whether the customer deleted the account."""
+        return self.deleted_at is not None

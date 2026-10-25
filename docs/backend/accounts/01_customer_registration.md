@@ -33,7 +33,7 @@ Os tipos `Name` e `Phone` ficam em `modules/accounts/schemas/contact_fields.py`,
 
 ## Consulta da própria conta
 
-`GET /api/accounts/me` devolve os dados da conta do token. Se a conta tiver sido removida, a resposta é `CS-SYS-0005` e o cliente precisa entrar de novo.
+`GET /api/accounts/me` devolve os dados da conta do token. Se a conta tiver sido removida ou excluída pelo cliente, a resposta é `CS-SYS-0005` e o cliente precisa entrar de novo. Edição, troca de senha e exclusão estão em [Manutenção da própria conta](03_account_self_service.md).
 
 ## Componentes
 

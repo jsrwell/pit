@@ -20,6 +20,7 @@ Colunas de todas as tabelas, conforme as migrações. Todas as colunas são obri
 | `role`                  | varchar(20)    | padrão `customer`; `customer` ou `admin` | Papel de acesso                    |
 | `failed_login_attempts` | integer        | padrão `0`                               | Falhas seguidas de login           |
 | `locked_until`          | timestamptz    | opcional                                 | Fim do bloqueio de login           |
+| `deleted_at`            | timestamptz    | opcional                                 | Exclusão pelo cliente; nome, e-mail e telefone ficam anonimizados (IMP08) |
 
 ## `addresses` (auditoria)
 

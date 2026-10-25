@@ -34,6 +34,12 @@ class AddressRepository:
         self.session.flush()
         return address
 
+    def remove_all_for(self, user_id: int) -> None:
+        """Delete every address of ``user_id``."""
+        for address in self.list_for(user_id):
+            self.session.delete(address)
+        self.session.flush()
+
     def remove(self, address: Address) -> None:
         """Delete an address."""
         self.session.delete(address)

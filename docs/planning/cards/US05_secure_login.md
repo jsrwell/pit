@@ -2,7 +2,9 @@
 code: "US05"
 name: "Acessar a conta de forma segura"
 status: "implemented"
-history: []
+history:
+  - date: "2026/10/25"
+    description: "Inclusão da RN#3: conta excluída pelo próprio cliente não pode mais entrar, conforme a melhoria IMP08 originada nos testes com usuários."
 ---
 
 # US05 — Acessar a conta de forma segura
@@ -28,6 +30,7 @@ O login sustenta a continuidade da jornada. Precisa equilibrar segurança com fl
 
 - **RN#1:** Tentativas inválidas sucessivas devem acionar proteção adicional.
 - **RN#2:** Sessões expiradas devem exigir novo login.
+- **RN#3:** Contas excluídas não podem mais entrar no sistema ([IMP08](../revision/IMP08_manage_own_account.md)).
 
 ## Requisito não funcional
 

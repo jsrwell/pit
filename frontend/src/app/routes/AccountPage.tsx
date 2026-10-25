@@ -1,7 +1,9 @@
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 import { AccountOverview } from '@/features/accounts/components/AccountOverview'
 import { AddressBook } from '@/features/accounts/components/AddressBook'
+import { DeleteAccount } from '@/features/accounts/components/DeleteAccount'
+import { PasswordForm } from '@/features/accounts/components/PasswordForm'
 
 const SHORTCUTS = [
   { to: '/pedidos', title: 'Meus pedidos', text: 'Acompanhe o status e o histórico.' },
@@ -10,12 +12,14 @@ const SHORTCUTS = [
 ]
 
 export function AccountPage() {
+  const navigate = useNavigate()
+
   return (
     <div className="container page">
       <div className="page-title">
         <span className="eyebrow">Minha conta</span>
         <h1>Sua área pessoal</h1>
-        <p>Acompanhe seus dados, endereços e pedidos.</p>
+        <p>Mantenha seus dados, endereços e senha em dia e acompanhe seus pedidos.</p>
       </div>
       <div className="stack stack--loose">
         <AccountOverview />
@@ -28,6 +32,10 @@ export function AccountPage() {
           ))}
         </nav>
         <AddressBook />
+        <div className="account-settings">
+          <PasswordForm />
+          <DeleteAccount onDeleted={() => navigate('/', { replace: true })} />
+        </div>
       </div>
     </div>
   )

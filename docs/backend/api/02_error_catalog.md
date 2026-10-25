@@ -28,6 +28,8 @@ Toda falha da API é respondida em Problem Details (RFC 9457) com o campo `code`
 | `CS-ACC-0003` | 401  | `InvalidCredentials`     | E-mail ou senha incorretos (conta a tentativa)        |
 | `CS-ACC-0004` | 429  | `AccountLocked`          | Conta bloqueada após tentativas seguidas              |
 | `CS-ACC-0005` | 404  | `AddressNotFound`        | Endereço inexistente ou de outro cliente              |
+| `CS-ACC-0006` | 422  | `WrongCurrentPassword`   | Senha atual não confere na troca de senha             |
+| `CS-ACC-0007` | 409  | `AccountHasOpenOrders`   | Exclusão de conta com pedido em andamento             |
 
 ## Catálogo (`CAT`)
 

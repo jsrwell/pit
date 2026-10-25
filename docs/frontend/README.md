@@ -14,7 +14,7 @@ SPA da Loja Virtual de Cupcakes Gourmet, em React e TypeScript com Vite. Impleme
 | -------------------------- | ----------------------------------------------------------------------- | ---------------- | ------------------------------------------------------- |
 | Vitrine                    | Explora destaques, combos e o catálogo; filtra, busca e favorita        | US01, US02, US16, IMP02 | [Jornada do cliente](journeys/01_customer_journey.md)   |
 | Produto                    | Vê detalhes, composição e diferenciais e adiciona ao carrinho           | US03, US06       | [Jornada do cliente](journeys/01_customer_journey.md)   |
-| Conta                      | Cria conta, entra, mantém dados e endereços                             | US04, US05, US09 | [Jornada do cliente](journeys/01_customer_journey.md)   |
+| Conta                      | Cria conta, entra, edita dados e senha, exclui a conta e mantém endereços | US04, US05, US09, IMP08 | [Jornada do cliente](journeys/01_customer_journey.md)   |
 | Compra                     | Ajusta o carrinho, escolhe recebimento e pagamento, aplica cupom e confirma | US06, US07, US08, US10, IMP06 | [Jornada do cliente](journeys/01_customer_journey.md) |
 | Pós-compra                 | Acompanha pedidos, solicita encomendas especiais e fala com a loja      | US11, US12, IMP05 | [Jornada do cliente](journeys/01_customer_journey.md)   |
 | Painel da loja             | Opera pedidos, analisa encomendas, mantém catálogo, disponibilidade e promoções | US12 a US16 | [Painel administrativo](journeys/02_admin_panel.md)   |

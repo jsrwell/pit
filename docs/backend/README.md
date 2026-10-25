@@ -14,6 +14,7 @@ API REST da Loja Virtual de Cupcakes Gourmet, em Python 3.13 com FastAPI, SQLAlc
 | ------------------------------------------------ | ---------------- | ------------------------------------------------------------------ |
 | Vitrine com destaques, filtros, busca e detalhe  | US01, US02, US03 | [Vitrine, busca e detalhe](catalog/01_storefront_and_search.md)    |
 | Cadastro de clientes                             | US04             | [Cadastro de clientes](accounts/01_customer_registration.md)       |
+| Edição de dados, troca de senha e exclusão da conta | US04, US05, IMP08 | [Manutenção da própria conta](accounts/03_account_self_service.md) |
 | Login com sessão expirável e bloqueio            | US05             | [Desenho da autenticação](authentication/01_authentication_design.md) |
 | Carrinho com recálculo e combos                  | US06, US07       | [Carrinho e precificação](cart/01_cart_and_pricing.md)             |
 | Retirada ou entrega com taxa                     | US08             | [Modalidade e cotação](orders/01_fulfillment_and_quote.md)         |
@@ -41,6 +42,7 @@ API REST da Loja Virtual de Cupcakes Gourmet, em Python 3.13 com FastAPI, SQLAlc
 | BE-AUTH-02  | [Estratégia de segurança](authentication/02_security_strategy.md)          |
 | BE-ACC-01   | [Cadastro de clientes](accounts/01_customer_registration.md)               |
 | BE-ACC-02   | [Endereços de entrega](accounts/02_delivery_addresses.md)                  |
+| BE-ACC-03   | [Manutenção da própria conta](accounts/03_account_self_service.md)         |
 | BE-CAT-01   | [Vitrine, busca e detalhe do produto](catalog/01_storefront_and_search.md) |
 | BE-CAT-02   | [Gestão do catálogo](catalog/02_catalog_management.md)                     |
 | BE-CAT-03   | [Controle de disponibilidade](catalog/03_availability_control.md)          |

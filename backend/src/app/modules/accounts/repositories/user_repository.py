@@ -35,6 +35,10 @@ class UserRepository:
 
     def add(self, user: User) -> User:
         """Persist a new user, translating an e-mail clash."""
+        return self.save(user)
+
+    def save(self, user: User) -> User:
+        """Persist a new or changed user, translating an e-mail clash."""
         try:
             with self.session.begin_nested():
                 self.session.add(user)

@@ -36,11 +36,12 @@ def authenticate(
     password.
 
     Raises:
-        InvalidCredentials: Unknown e-mail or wrong password.
+        InvalidCredentials: Unknown e-mail, deleted account or wrong
+            password.
         AccountLocked: The account is inside its lockout window.
     """
     user = UserRepository(session).get_by_email(email)
-    if user is None:
+    if user is None or user.is_deleted:
         raise InvalidCredentials('E-mail or password is incorrect.')
 
     now = datetime.now(UTC)

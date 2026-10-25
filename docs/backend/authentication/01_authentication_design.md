@@ -1,7 +1,7 @@
 ---
 code: "BE-AUTH-01"
 name: "Desenho da autenticação"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Desenho da autenticação
@@ -63,5 +63,7 @@ Não existe cadastro público de administradores. O seed também promove a `admi
 ## Isolamento entre clientes
 
 Recursos do cliente são sempre buscados pelo id da conta presente no token, nunca por um id vindo da requisição. Pedidos e endereços de outra pessoa respondem como inexistentes (`CS-ORD-0006`, `CS-ACC-0005`), sem confirmar que o recurso existe (US11, RN#1).
+
+Contas excluídas pelo cliente (IMP08) têm `deleted_at` preenchido: o login as trata como credencial inválida e `GET /api/accounts/me` responde `CS-SYS-0005`; ver [Manutenção da própria conta](../accounts/03_account_self_service.md).
 
 Proteções de senha, bloqueio por tentativas e demais medidas estão em [Estratégia de segurança](02_security_strategy.md).

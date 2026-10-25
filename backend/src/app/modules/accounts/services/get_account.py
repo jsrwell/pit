@@ -10,6 +10,6 @@ from app.shared.errors.authentication_required import AuthenticationRequired
 def get_account(session: Session, user_id: int) -> User:
     """Return the account or ask to sign in again if it vanished."""
     user = UserRepository(session).get(user_id)
-    if user is None:
+    if user is None or user.is_deleted:
         raise AuthenticationRequired('The account no longer exists.')
     return user

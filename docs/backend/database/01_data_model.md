@@ -73,5 +73,6 @@ erDiagram
 | `20261018_1701`   | Encomendas especiais                        | US12   |
 | `20261018_1706`   | Promoções, combos e desconto no pedido      | US16   |
 | `20261025_1420`   | Cupons e cupom aplicado no pedido           | IMP06  |
+| `20261025_1438`   | Exclusão lógica de usuários                 | IMP08  |
 
 Migrações são sempre geradas por `alembic revision --autogenerate` e nunca editadas à mão; o CI confere com `alembic check` que nenhum model ficou sem migração.

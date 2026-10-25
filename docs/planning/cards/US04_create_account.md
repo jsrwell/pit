@@ -5,6 +5,8 @@ status: "implemented"
 history:
   - date: "2026/10/25"
     description: "CA#2 ampliado para validar também o formato de e-mail e telefone (10 ou 11 dígitos com DDD, gravado só com dígitos) e os limites de tamanho dos campos, conforme a melhoria IMP04 originada nos testes com usuários."
+  - date: "2026/10/25"
+    description: "Inclusão do CA#4 para que o cliente altere os próprios dados e senha e exclua a conta de forma lógica, preservando pedidos, conforme a melhoria IMP08 originada nos testes com usuários."
 ---
 
 # US04 — Criar conta para comprar e acompanhar pedidos
@@ -25,10 +27,11 @@ O cadastro organiza relacionamento, histórico de compras, endereços e acompanh
 - **CA#1:** O sistema deve permitir cadastro com nome, e-mail, telefone e senha.
 - **CA#2:** O sistema deve validar campos obrigatórios, o formato de e-mail e telefone e o tamanho máximo dos campos antes de concluir o cadastro ([IMP04](../revision/IMP04_validate_signup_fields.md)).
 - **CA#3:** O sistema deve impedir duplicidade de cadastro com o mesmo e-mail.
+- **CA#4:** O sistema deve permitir que o cliente altere nome, e-mail, telefone e senha e exclua a própria conta ([IMP08](../revision/IMP08_manage_own_account.md)).
 
 ## Regras de negócio
 
-- **RN#1:** O e-mail do cliente deve ser único no sistema.
+- **RN#1:** O e-mail do cliente deve ser único no sistema, inclusive ao ser alterado.
 - **RN#2:** A senha deve obedecer a um padrão mínimo de segurança.
 
 ## Requisito não funcional

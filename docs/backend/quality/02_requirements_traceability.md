@@ -25,6 +25,10 @@ Matriz entre os critérios de aceitação (CA) e regras de negócio (RN) dos car
 | US04   | RN#2                 | `accounts/test_registration.py::test_weak_password_is_rejected`            |
 | IMP04  | CA#4, RN#1           | `accounts/test_registration.py::test_phone_is_stored_with_digits_only`, `test_invalid_phone_is_rejected`, `test_landline_phone_is_accepted` |
 | IMP04  | CA#1, CA#3           | `accounts/test_registration.py::test_malformed_or_oversized_fields_are_rejected` |
+| IMP08  | CA#1, RN#1           | `accounts/test_manage_account.py::test_edits_name_email_and_phone`, `test_edit_reuses_sign_up_validation`, `test_new_email_must_stay_unique` |
+| IMP08  | CA#2, RN#2, RNF#1    | `accounts/test_manage_account.py::test_changes_password_with_the_current_one`, `test_wrong_current_password_is_refused`, `test_new_password_follows_the_policy`, `test_account_changes_require_a_session` |
+| IMP08  | CA#3, CA#4, RN#3     | `accounts/test_manage_account.py::test_deleted_account_is_anonymized_and_cannot_sign_in` |
+| IMP08  | RN#4                 | `accounts/test_manage_account.py::test_open_orders_block_the_deletion`, `test_administrators_cannot_delete_themselves` |
 | US05   | CA#1, CA#3           | `accounts/test_login.py::test_valid_credentials_return_a_token`            |
 | US05   | CA#2                 | `accounts/test_login.py::test_wrong_password_is_reported`                  |
 | US05   | RN#1                 | `accounts/test_login.py::test_repeated_failures_lock_the_account`          |

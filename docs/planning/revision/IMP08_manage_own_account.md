@@ -1,7 +1,7 @@
 ---
 code: "IMP08"
 name: "Editar os dados e excluir a própria conta"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -40,10 +40,10 @@ A tela "Minha conta" apenas exibe os dados. A exclusão é lógica: a conta é d
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Adicionar `deleted_at` ao usuário com migração e bloquear o login de contas excluídas | 2h | Pendente |
-| 2 | Implementar rotas de edição de dados, troca de senha e exclusão da própria conta | 4h | Pendente |
-| 3 | Desenvolver formulários de edição, troca de senha e confirmação de exclusão em "Minha conta" | 4h | Pendente |
-| 4 | Escrever testes de API e de interface dos três fluxos | 4h | Pendente |
+| 1 | Adicionar `deleted_at` ao usuário com migração e bloquear o login de contas excluídas | 2h | Concluída |
+| 2 | Implementar rotas de edição de dados, troca de senha e exclusão da própria conta | 4h | Concluída |
+| 3 | Desenvolver formulários de edição, troca de senha e confirmação de exclusão em "Minha conta" | 4h | Concluída |
+| 4 | Escrever testes de API e de interface dos três fluxos | 4h | Concluída |
 | **Total** | | **14h** | |
 
 ## Relacionamentos

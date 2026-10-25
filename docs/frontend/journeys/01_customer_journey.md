@@ -16,7 +16,7 @@ Telas usadas por visitantes e clientes, na ordem natural de uso. Rotas marcadas 
 | `/produtos/:id`     | Detalhe do produto        | Público    | US03, US06       |
 | `/cadastro`         | Criar conta               | Público    | US04             |
 | `/entrar`           | Entrar                    | Público    | US05             |
-| `/conta`            | Minha conta               | Protegida  | US04, US09       |
+| `/conta`            | Minha conta               | Protegida  | US04, US09, IMP08 |
 | `/carrinho`         | Carrinho                  | Protegida  | US06, US07       |
 | `/checkout`         | Finalizar pedido          | Protegida  | US08, US09, US10 |
 | `/pedidos`          | Meus pedidos              | Protegida  | US11             |
@@ -41,6 +41,7 @@ Imagem ampliada, categoria, nome com o coração de favorito ao lado, sabor, pre
 - **Cadastro:** nome, e-mail, telefone e senha, com erro indicado em cada campo. Antes do envio, o formulário recusa e-mail sem usuário, `@` e domínio e telefone sem DDD, leva o foco ao primeiro campo inválido e descreve o erro no próprio campo; o telefone aceita só dígitos, recebe a máscara `(00) 00000-0000` e para em 11 dígitos, e nome, e-mail e senha param no limite da API (IMP04). Concluído o cadastro, o cliente já entra logado.
 - **Entrar:** e-mail e senha; tentativas excessivas mostram o aviso de bloqueio temporário. Clientes vão para "Minha conta" e administradores para o painel.
 - **Minha conta:** dados do cliente, atalhos para pedidos, encomendas e carrinho, e o caderno de endereços, com cadastro, edição, exclusão e escolha do principal. Cada campo de endereço para no tamanho aceito pela API (IMP07).
+- **Manter a conta (IMP08):** "Editar dados" abre nome, e-mail e telefone no próprio painel, com as validações e a máscara do cadastro; "Trocar senha" pede a senha atual, a nova e a confirmação, avisando quando as duas não coincidem; "Excluir conta" explica o que acontece com dados e pedidos e só libera o botão definitivo depois da caixa "Entendo que a exclusão não pode ser desfeita". Excluída a conta, a sessão é apagada e o cliente volta à vitrine.
 - **Sair:** limpa a sessão do navegador. Sessão expirada leva automaticamente ao login.
 
 ## Carrinho (US06, US07)

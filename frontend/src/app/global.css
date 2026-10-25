@@ -467,6 +467,7 @@ blockquote {
   display: grid;
   gap: var(--space-5);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-items: start;
 }
 
 .form-grid--two {
