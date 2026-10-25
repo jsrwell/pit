@@ -14,6 +14,8 @@ Este diretório concentra a continuação do planejamento do APP Loja Virtual de
 - `README.md`: convenções e índice do planejamento.
 - `original/SP01.md`: entrega original consolidada do primeiro PIT.
 - `cards/`: um arquivo Markdown por história do usuário, incluindo requisitos, tarefas, vínculos e navegação.
+- `revision/ORIGINAL_REVISIONS.md`: respostas originais dos revisores, uma tabela por revisão com código `REVnn`; documento histórico, nunca reescrito.
+- `revision/`: um cartão de melhoria `IMPnn` por sugestão dos revisores, no mesmo formato dos cartões e com a origem `REVnn` referenciada.
 
 ## Cartões
 
@@ -24,6 +26,18 @@ Este diretório concentra a continuação do planejamento do APP Loja Virtual de
 | Carrinho e pedido | [US06](./cards/US06_add_to_cart.md), [US07](./cards/US07_update_cart.md), [US08](./cards/US08_choose_fulfillment.md), [US10](./cards/US10_secure_checkout.md), [US12](./cards/US12_custom_order.md) |
 | Entrega e logística | [US09](./cards/US09_manage_delivery_address.md), [US11](./cards/US11_track_order.md) |
 | Administração | [US13](./cards/US13_manage_catalog.md), [US14](./cards/US14_manage_availability.md), [US15](./cards/US15_manage_orders.md), [US16](./cards/US16_manage_promotions.md) |
+
+## Melhorias da revisão
+
+As sugestões dos testes com usuários estão em [Revisões originais](./revision/ORIGINAL_REVISIONS.md) e foram convertidas nos cartões abaixo.
+
+| Eixo | Cartões |
+| --- | --- |
+| Vitrine e descoberta | [IMP01](./revision/IMP01_round_add_buttons.md), [IMP02](./revision/IMP02_favorite_products.md), [IMP03](./revision/IMP03_filter_loading_feedback.md), [IMP09](./revision/IMP09_header_search.md), [IMP10](./revision/IMP10_sort_products_by_price.md) |
+| Autenticação e perfil | [IMP04](./revision/IMP04_validate_signup_fields.md), [IMP08](./revision/IMP08_manage_own_account.md) |
+| Carrinho e pedido | [IMP06](./revision/IMP06_discount_coupons.md), [IMP07](./revision/IMP07_limit_text_fields.md) |
+| Entrega e logística | [IMP11](./revision/IMP11_autofill_address_by_zip.md) |
+| Atendimento | [IMP05](./revision/IMP05_store_contact_channel.md) |
 
 ## Cabeçalho YAML obrigatório
 
