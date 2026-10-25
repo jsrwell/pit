@@ -53,7 +53,7 @@ export function AddBundleToCart({ name, items }: AddBundleToCartProps) {
     <div className="add-to-cart">
       <button
         type="button"
-        className="button button--small"
+        className="button button--small add-to-cart__button"
         disabled={busy}
         onClick={handleAdd}
         aria-label={`Adicionar combo ${name} ao carrinho`}

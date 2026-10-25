@@ -1,7 +1,7 @@
 ---
 code: "FE-UI-02"
 name: "Layout e componentes"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Layout e componentes
@@ -24,6 +24,17 @@ updated: "2026/10/18"
 | `--header-height` | 4,75rem (4,25rem no celular)  | Altura do cabeçalho fixo              |
 
 Espaçamentos internos usam propriedades lógicas (`padding-inline`, `padding-block`) para que classes combinadas num mesmo elemento não se anulem.
+
+## Raios
+
+| Token             | Valor | Uso                                                                    |
+| ----------------- | ----- | ---------------------------------------------------------------------- |
+| `--radius-sm`     | 6px   | Botões, campos e alertas                                               |
+| `--radius`        | 10px  | Opções em cartão, miniaturas e cards no celular                        |
+| `--radius-lg`     | 18px  | Painéis, cards de produto e barra de filtros                           |
+| `--radius-action` | 12px  | Botões de adicionar ao carrinho e seletor de quantidade ao lado (IMP01) |
+
+Os botões de adicionar (`add-to-cart__button`), na vitrine, no detalhe e nos combos, usam `--radius-action` para um traço mais suave que o dos demais botões, sem mudar altura, contraste nem área de toque.
 
 ## Classes de layout
 

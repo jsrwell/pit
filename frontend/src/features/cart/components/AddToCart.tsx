@@ -32,7 +32,7 @@ export function AddToCart({
 
   if (!available) {
     return (
-      <button type="button" className="button button--small" disabled>
+      <button type="button" className="button button--small add-to-cart__button" disabled>
         Indisponível
       </button>
     )
@@ -63,7 +63,9 @@ export function AddToCart({
         )}
         <button
           type="button"
-          className={withQuantity ? 'button' : 'button button--small'}
+          className={
+            withQuantity ? 'button add-to-cart__button' : 'button button--small add-to-cart__button'
+          }
           disabled={submitting}
           onClick={handleAdd}
           aria-label={`Adicionar ${productName} ao carrinho`}

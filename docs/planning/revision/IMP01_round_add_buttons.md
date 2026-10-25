@@ -1,7 +1,7 @@
 ---
 code: "IMP01"
 name: "Arredondar as bordas dos botões de adicionar produtos"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -35,8 +35,8 @@ Hoje todos os botões usam o mesmo raio pequeno (`--radius-sm`), inclusive os de
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Criar token de raio para os botões de adicionar e aplicá-lo nos componentes do carrinho | 1h | Pendente |
-| 2 | Verificar o resultado na vitrine e no detalhe em larguras de desktop e celular | 1h | Pendente |
+| 1 | Criar token de raio para os botões de adicionar e aplicá-lo nos componentes do carrinho | 1h | Concluída |
+| 2 | Verificar o resultado na vitrine e no detalhe em larguras de desktop e celular | 1h | Concluída |
 | **Total** | | **2h** | |
 
 ## Relacionamentos
