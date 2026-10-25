@@ -44,6 +44,7 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | IMP02  | Marcar e desmarcar, persistência no navegador e falha do armazenamento     | `catalog/hooks/favorites-store.test.ts`         |
 | IMP02  | Coração no card e no detalhe; opção "Favoritos" e estado vazio             | `catalog/components/Storefront.test.tsx`, `catalog/components/ProductDetailView.test.tsx` |
 | IMP03  | Grade atenuada, `aria-busy` e anúncio durante a busca; uma consulta por pausa na digitação | `catalog/components/Storefront.test.tsx` |
+| IMP05  | WhatsApp com mensagem inicial, telefone e e-mail como links no rodapé      | `app/layout/SiteFooter.test.tsx`                |
 | US16   | Preço promocional, vitrine de combos e cadastro de campanha                | `shared/components/PriceTag.test.tsx`, `promotions/components/ComboShowcase.test.tsx`, `promotions/components/admin/PromotionManager.test.tsx` |
 
-Os caminhos são relativos a `frontend/src/features/`, exceto os que começam com `shared/`, relativos a `frontend/src/`.
+Os caminhos são relativos a `frontend/src/features/`, exceto os que começam com `shared/` ou `app/`, relativos a `frontend/src/`.

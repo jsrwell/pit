@@ -47,7 +47,7 @@ frontend/
     ├── shared/
     │   ├── api/                cliente HTTP, ApiError, Problem Details e mensagens de erro
     │   ├── auth/               sessão do usuário (token, expiração e conta) guardada no navegador
-    │   ├── config/             leitura das variáveis VITE_*
+    │   ├── config/             leitura das variáveis VITE_* e contatos da loja
     │   ├── format/             formatação de moeda, datas e telefone em pt-BR
     │   ├── hooks/              estado reutilizado, como o carregamento assíncrono
     │   └── components/         componentes visuais genéricos (botão, campo, alerta)
@@ -97,6 +97,7 @@ Regras de dependência:
 | `VITE_API_BASE_URL` | `/api`      | Só muda em hospedagem estática sem proxy, apontando para a URL da API |
 | `VITE_APP_VERSION`  | `0.0.0-dev` | Preenchida pelo build de release com a versão publicada               |
 
+- Os canais de atendimento da loja (`VITE_STORE_*`) são lidos num único ponto, `shared/config/store-contact.ts`, que monta os links de WhatsApp, telefone e e-mail; a lista completa de variáveis está em [Build e publicação](operations/01_build_and_deployment.md).
 - Variáveis `VITE_*` são fixadas no momento do build; mudar o valor exige novo build.
 - `public/health.json` é publicado junto com a SPA e servido pelo nginx com CORS liberado; o [lançador](../launcher/ARCHITECTURE.md) o usa para saber se o frontend já acordou.
 - O destino real de `/api` é configurado fora da SPA: `server.proxy` do Vite em desenvolvimento e `API_UPSTREAM` do nginx na imagem de release.

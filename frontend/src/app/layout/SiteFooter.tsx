@@ -4,6 +4,7 @@ import { ApiStatus } from '@/features/system/components/ApiStatus'
 import { env } from '@/shared/config/env'
 
 import { Brand } from './Brand'
+import { ContactChannels } from './ContactChannels'
 
 export function SiteFooter() {
   return (
@@ -28,11 +29,14 @@ export function SiteFooter() {
           <Link to="/pedidos">Meus pedidos</Link>
           <Link to="/cadastro">Criar conta</Link>
         </nav>
-        <div className="site-footer__column">
-          <h2>Atendimento</h2>
-          <p>Retirada na loja ou entrega no seu endereço.</p>
-          <p>Encomendas com antecedência mínima para eventos.</p>
-        </div>
+        <section
+          className="site-footer__column site-footer__contact"
+          aria-labelledby="footer-contact"
+        >
+          <h2 id="footer-contact">Atendimento</h2>
+          <ContactChannels />
+          <p className="site-footer__note">Retirada na loja ou entrega no seu endereço.</p>
+        </section>
       </div>
       <div className="container site-footer__bottom">
         <p>© {new Date().getFullYear()} Cupcakes Gourmet · Projeto acadêmico</p>

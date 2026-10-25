@@ -1,7 +1,7 @@
 ---
 code: "IMP05"
 name: "Oferecer canal de contato direto com a loja"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -36,9 +36,9 @@ O rodapé possui a coluna "Atendimento", mas ela traz apenas textos informativos
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Centralizar os dados de contato da loja em configuração | 1h | Pendente |
-| 2 | Exibir os canais de contato no rodapé | 1h | Pendente |
-| 3 | Escrever teste do rodapé com os links de contato | 1h | Pendente |
+| 1 | Centralizar os dados de contato da loja em configuração | 1h | Concluída |
+| 2 | Exibir os canais de contato no rodapé | 1h | Concluída |
+| 3 | Escrever teste do rodapé com os links de contato | 1h | Concluída |
 | **Total** | | **3h** | |
 
 ## Relacionamentos

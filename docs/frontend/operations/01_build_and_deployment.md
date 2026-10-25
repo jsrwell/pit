@@ -1,7 +1,7 @@
 ---
 code: "FE-OPS-01"
 name: "Build e publicação do frontend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Build e publicação do frontend
@@ -14,6 +14,11 @@ updated: "2026/10/18"
 | ------------------- | ----------- | ------------------------------------------------------------ |
 | `VITE_API_BASE_URL` | `/api`      | Base da API; só muda em hospedagem sem proxy                 |
 | `VITE_APP_VERSION`  | `0.0.0-dev` | Versão exibida no rodapé; preenchida pelo release            |
+| `VITE_STORE_WHATSAPP` | `11987654321` | WhatsApp da loja, só dígitos com DDD (IMP05)          |
+| `VITE_STORE_PHONE`  | `1140028922` | Telefone da loja, só dígitos com DDD (IMP05)                |
+| `VITE_STORE_EMAIL`  | `contato@cupcakesgourmet.example` | E-mail de atendimento (IMP05)            |
+
+Os contatos padrão são fictícios, próprios da demonstração; uma loja real os define no build.
 
 Variáveis `VITE_*` são fixadas no build. Localmente podem vir de `frontend/.env` (modelo em `.env.example`).
 

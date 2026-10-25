@@ -220,7 +220,7 @@
 .site-footer__grid {
   display: grid;
   gap: var(--space-7) var(--space-6);
-  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1.3fr);
   padding-block: clamp(3.5rem, 7vw, 5rem);
 }
 
@@ -257,6 +257,64 @@
 
 .site-footer__column a:hover {
   color: var(--color-ivory);
+}
+
+.contact-channels {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__column .contact-channels a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 2.75rem;
+  overflow-wrap: anywhere;
+}
+
+.contact-channels svg {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  padding: 0.5rem;
+  border: 1px solid rgb(220 195 148 / 35%);
+  border-radius: 50%;
+  fill: none;
+  stroke: var(--color-gold-light);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition:
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.contact-channels a:hover svg,
+.contact-channels a:focus-visible svg {
+  border-color: var(--color-gold);
+  background: rgb(184 147 90 / 14%);
+}
+
+.contact-channels span {
+  display: grid;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.contact-channels small {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(250 246 240 / 50%);
+}
+
+.site-footer__note {
+  font-size: 0.82rem;
+  color: rgb(250 246 240 / 50%);
 }
 
 .site-footer__bottom {
@@ -586,5 +644,9 @@
 
   .site-footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer__contact {
+    grid-column: 1 / -1;
   }
 }

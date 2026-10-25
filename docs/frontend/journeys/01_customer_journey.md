@@ -62,6 +62,10 @@ Imagem ampliada, categoria, nome com o coração de favorito ao lado, sabor, pre
 - **Meus pedidos:** número, data, modalidade, total e status de cada pedido.
 - **Acompanhamento:** status atual, data de criação, linha do tempo com o horário de cada etapa (com "Em rota de entrega" apenas para entregas), modalidade, endereço, pagamento, observações e resumo de valores. A tela se atualiza sozinha a cada 30 segundos.
 
+## Atendimento (IMP05)
+
+A coluna "Atendimento" do rodapé, presente em todas as páginas, traz WhatsApp, telefone e e-mail da loja como links: o WhatsApp abre uma conversa em nova aba com a mensagem inicial preenchida, o telefone usa `tel:` e o e-mail usa `mailto:`. Cada link tem rótulo para leitores de tela e área de toque de pelo menos 2,75rem; no celular, a coluna ocupa a largura toda.
+
 ## Encomendas especiais (US12)
 
 Formulário com descrição, quantidade (mínimo de 6), data desejada e observações, ao lado da lista de solicitações com status (em análise, aprovada ou recusada), valor proposto e resposta da loja.
