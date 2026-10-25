@@ -84,4 +84,5 @@ O layout é pensado primeiro para celular, como pedem os requisitos não funcion
 - **Destaques em carrossel:** rolagem com encaixe e setas quando há mais de três itens; no celular, um card e parte do próximo ficam visíveis.
 - **Cards de produto:** imagem em 5:4, categoria, nome, sabor e rodapé com preço e ação, separados por linha fina.
 - **Ações por estado:** botões só aparecem quando a ação é possível (por exemplo, próximos status de um pedido no painel).
+- **Atualização sem salto:** ao refazer uma consulta, o conteúdo anterior fica a 45% de opacidade, sem cliques, com uma barra de progresso de 2px posicionada no espaço entre a barra de filtros e a grade, de modo que nada se desloca; o estado é anunciado por `role="status"` e `aria-busy`.
 - **Retorno imediato:** toda ação mostra estado de envio no botão e confirmação ou erro ao lado.

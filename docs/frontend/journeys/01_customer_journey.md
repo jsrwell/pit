@@ -30,7 +30,7 @@ Telas usadas por visitantes e clientes, na ordem natural de uso. Rotas marcadas 
 - Destaques em carrossel, seguidos da vitrine completa em grade.
 - Cada card mostra nome, imagem, preço (com preço promocional quando houver), categoria, sabor, selos de destaque, promoção ou indisponível, o botão de adicionar e o coração de favorito (IMP02).
 - A opção "Favoritos", no rodapé da barra de filtros, mostra só os cupcakes marcados neste navegador, com a contagem ao lado; sem nenhum marcado, a vitrine explica como favoritar.
-- Barra de filtros por nome, categoria, sabor e faixa de preço. A busca espera 300 ms após a digitação antes de consultar; enquanto há filtro ativo, os destaques ficam ocultos e um botão limpa os filtros.
+- Barra de filtros por nome, categoria, sabor e faixa de preço. A busca espera 300 ms após a digitação antes de consultar, enquanto categoria e sabor consultam na hora. Durante a atualização, os cards atuais ficam atenuados, uma linha dourada corre acima da grade e leitores de tela ouvem "Atualizando a vitrine..." (IMP03). Enquanto há filtro ativo, os destaques ficam ocultos e um botão limpa os filtros.
 
 ## Detalhe do produto (US03, US06)
 

@@ -1,4 +1,4 @@
-import { useCallback, useState, type ReactNode } from 'react'
+import { useCallback, useMemo, useState, type ReactNode } from 'react'
 
 import { AsyncContent } from '@/shared/components/AsyncContent'
 import { useAsync } from '@/shared/hooks/use-async'
@@ -25,9 +25,16 @@ export function Storefront({ renderProductAction }: StorefrontProps) {
   const [filters, setFilters] = useState<ProductFilters>({})
   const [onlyFavorites, setOnlyFavorites] = useState(false)
   const favorites = useFavorites()
-  const appliedFilters = useDebouncedValue(filters)
+  const typedSearch = filters.search ?? ''
+  const search = useDebouncedValue(typedSearch)
+  const { category_id, flavor_id, min_price, max_price } = filters
+  const appliedFilters = useMemo<ProductFilters>(
+    () => ({ category_id, flavor_id, min_price, max_price, search }),
+    [category_id, flavor_id, min_price, max_price, search],
+  )
   const load = useCallback(() => listProducts(appliedFilters), [appliedFilters])
-  const { state } = useAsync(load)
+  const { state, refreshing } = useAsync(load)
+  const updating = refreshing || typedSearch !== search
   const filtering = onlyFavorites || isFiltering(appliedFilters)
 
   function visible(products: ProductSummary[]): ProductSummary[] {
@@ -64,16 +71,27 @@ export function Storefront({ renderProductAction }: StorefrontProps) {
           favoriteCount={favorites.length}
           onOnlyFavoritesChange={setOnlyFavorites}
         />
-        <AsyncContent state={state} loadingLabel="Carregando a vitrine...">
-          {(products) => {
-            const shown = visible(products)
-            return shown.length === 0 ? (
-              <p className="empty-state">{emptyMessage()}</p>
-            ) : (
-              <ProductGrid products={shown} renderAction={renderProductAction} />
-            )
-          }}
-        </AsyncContent>
+        <div
+          className={
+            updating ? 'storefront__results storefront__results--updating' : 'storefront__results'
+          }
+          aria-busy={updating}
+        >
+          <div className="storefront__progress" aria-hidden="true" />
+          <p role="status" className="visually-hidden">
+            {updating ? 'Atualizando a vitrine...' : ''}
+          </p>
+          <AsyncContent state={state} loadingLabel="Carregando a vitrine...">
+            {(products) => {
+              const shown = visible(products)
+              return shown.length === 0 ? (
+                <p className="empty-state">{emptyMessage()}</p>
+              ) : (
+                <ProductGrid products={shown} renderAction={renderProductAction} />
+              )
+            }}
+          </AsyncContent>
+        </div>
       </section>
     </div>
   )

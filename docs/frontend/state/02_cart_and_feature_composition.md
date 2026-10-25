@@ -42,5 +42,5 @@ Com isso, cada feature continua testável isoladamente, e as dependências entre
 
 ## Carregamento de dados
 
-- `useAsync` carrega dados ao montar a tela e oferece `reload`, usado depois de ações (como mudar a disponibilidade de um produto) e nas atualizações periódicas de pedidos.
+- `useAsync` carrega dados ao montar a tela e oferece `reload` e `refreshing`. `refreshing` vale `true` quando uma nova consulta corre sobre dados já exibidos, o que permite manter a tela anterior visível em vez de voltar ao "Carregando..."; a vitrine usa esse estado para atenuar a grade ao filtrar (IMP03). `reload` é usado depois de ações (como mudar a disponibilidade de um produto) e nas atualizações periódicas de pedidos.
 - A cotação do checkout é refeita automaticamente quando a modalidade ou o endereço mudam, mantendo o resumo anterior na tela até a nova resposta chegar.

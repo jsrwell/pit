@@ -1,7 +1,7 @@
 ---
 code: "IMP03"
 name: "Indicar progresso ao filtrar produtos"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -36,9 +36,9 @@ A vitrine exibe carregamento apenas na primeira abertura; ao alterar filtros, o 
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Expor o estado de atualização na listagem de produtos e atrasar a busca textual | 2h | Pendente |
-| 2 | Exibir indicador de progresso e atenuar a grade durante a atualização | 2h | Pendente |
-| 3 | Escrever testes da vitrine durante a atualização dos filtros | 1h | Pendente |
+| 1 | Expor o estado de atualização na listagem de produtos e atrasar a busca textual | 2h | Concluída |
+| 2 | Exibir indicador de progresso e atenuar a grade durante a atualização | 2h | Concluída |
+| 3 | Escrever testes da vitrine durante a atualização dos filtros | 1h | Concluída |
 | **Total** | | **5h** | |
 
 ## Relacionamentos

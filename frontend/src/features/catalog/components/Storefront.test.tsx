@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { renderWithRouter } from '@/test/render-with-router'
@@ -78,5 +78,32 @@ describe('Storefront', () => {
     await user.click(screen.getByRole('button', { name: /^Favoritos/ }))
 
     expect(screen.getByText(/ainda não tem favoritos/)).toBeInTheDocument()
+  })
+
+  it('keeps the products dimmed and announces progress while a search runs', async () => {
+    let finish: (products: ProductSummary[]) => void = () => undefined
+    const list = vi
+      .spyOn(listApi, 'listProducts')
+      .mockResolvedValueOnce([sampleProduct])
+      .mockImplementation(() => new Promise((resolve) => (finish = resolve)))
+    const user = userEvent.setup()
+
+    renderWithRouter(<Storefront />)
+    await screen.findByRole('article', { name: 'Red Velvet Imperial' })
+    await user.type(screen.getByLabelText('Buscar'), 'trufa')
+
+    const results = screen
+      .getByRole('article', { name: 'Red Velvet Imperial' })
+      .closest('[aria-busy]')
+    expect(results).toHaveAttribute('aria-busy', 'true')
+    expect(screen.getByText('Atualizando a vitrine...')).toBeInTheDocument()
+    await waitFor(() =>
+      expect(list).toHaveBeenLastCalledWith(expect.objectContaining({ search: 'trufa' })),
+    )
+    expect(list).toHaveBeenCalledTimes(2)
+
+    finish([{ ...sampleProduct, id: 2, name: 'Trufa de Ouro' }])
+    expect(await screen.findByRole('article', { name: 'Trufa de Ouro' })).toBeInTheDocument()
+    expect(results).toHaveAttribute('aria-busy', 'false')
   })
 })
