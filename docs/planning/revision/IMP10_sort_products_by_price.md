@@ -1,7 +1,7 @@
 ---
 code: "IMP10"
 name: "Ordenar a vitrine por preço"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -38,9 +38,9 @@ A barra de filtros pede preço mínimo e máximo, o que reduz a vitrine e exige 
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Adicionar parâmetro de ordenação por preço ao endpoint de listagem de produtos | 2h | Pendente |
-| 2 | Substituir os campos de faixa de preço pelo seletor de ordenação na barra de filtros | 2h | Pendente |
-| 3 | Escrever testes de API e de interface da ordenação | 3h | Pendente |
+| 1 | Adicionar parâmetro de ordenação por preço ao endpoint de listagem de produtos | 2h | Concluída |
+| 2 | Substituir os campos de faixa de preço pelo seletor de ordenação na barra de filtros | 2h | Concluída |
+| 3 | Escrever testes de API e de interface da ordenação | 3h | Concluída |
 | **Total** | | **7h** | |
 
 ## Relacionamentos

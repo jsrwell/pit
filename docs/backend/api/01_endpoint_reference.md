@@ -20,7 +20,7 @@ Legenda de acesso: **Público** não exige sessão; **Cliente** exige `Authoriza
 
 | Método | Caminho                          | Acesso  | Finalidade                                               |
 | ------ | -------------------------------- | ------- | -------------------------------------------------------- |
-| GET    | `/catalog/products`              | Público | Vitrine com filtros `category_id`, `flavor_id`, `min_price`, `max_price`, `search` |
+| GET    | `/catalog/products`              | Público | Vitrine com filtros `category_id`, `flavor_id`, `min_price`, `max_price`, `search` e ordem `sort` |
 | GET    | `/catalog/products/{product_id}` | Público | Detalhe com descrição, composição e diferenciais         |
 | GET    | `/catalog/images/{image_id}`     | Público | Conteúdo binário da imagem, com cache imutável           |
 | GET    | `/catalog/categories`            | Público | Opções de categoria para os filtros                      |

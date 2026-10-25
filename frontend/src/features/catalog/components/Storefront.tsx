@@ -27,15 +27,15 @@ export function Storefront({ renderProductAction }: StorefrontProps) {
   const favorites = useFavorites()
   const [search, setSearch] = useStorefrontSearch()
   const section = useRef<HTMLElement>(null)
-  const { category_id, flavor_id, min_price, max_price } = filters
+  const { category_id, flavor_id, sort } = filters
   const appliedFilters = useMemo<ProductFilters>(
-    () => ({ category_id, flavor_id, min_price, max_price, search }),
-    [category_id, flavor_id, min_price, max_price, search],
+    () => ({ category_id, flavor_id, search, sort }),
+    [category_id, flavor_id, search, sort],
   )
   const load = useCallback(() => listProducts(appliedFilters), [appliedFilters])
   const { state, refreshing } = useAsync(load)
   const updating = refreshing
-  const filtering = onlyFavorites || isFiltering(appliedFilters)
+  const filtering = onlyFavorites || isFiltering({ category_id, flavor_id, search })
 
   useEffect(() => {
     if (search !== '') section.current?.scrollIntoView?.({ behavior: 'smooth', block: 'start' })

@@ -5,6 +5,8 @@ status: "implemented"
 history:
   - date: "2026/10/25"
     description: "CA#3 reposicionado: a pesquisa textual sai da barra de filtros e passa ao cabeçalho de todas as páginas, levando à vitrine com o termo na URL, conforme a melhoria IMP09 originada nos testes com usuários."
+  - date: "2026/10/25"
+    description: "CA#2 alterado: a faixa de preço deixa a barra de filtros e dá lugar à ordenação por menor e maior preço, feita pela API com o preço efetivo, conforme a melhoria IMP10 originada nos testes com usuários."
 ---
 
 # US02 — Refinar a busca por cupcakes
@@ -23,7 +25,7 @@ A busca reduz ruído e acelera a decisão. Diminui abandono por excesso de opç�
 ## Critérios de aceitação
 
 - **CA#1:** O sistema deve permitir filtrar produtos por categoria.
-- **CA#2:** O sistema deve permitir filtrar por sabor e faixa de preço.
+- **CA#2:** O sistema deve permitir filtrar por sabor e ordenar a vitrine do menor para o maior preço e vice-versa ([IMP10](../revision/IMP10_sort_products_by_price.md)).
 - **CA#3:** O sistema deve permitir pesquisa textual por nome do cupcake, a partir do campo de busca do cabeçalho ([IMP09](../revision/IMP09_header_search.md)).
 
 ## Regras de negócio

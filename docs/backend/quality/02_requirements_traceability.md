@@ -17,6 +17,11 @@ Matriz entre os critérios de aceitação (CA) e regras de negócio (RN) dos car
 | US02   | CA#1, CA#2           | `catalog/test_filters.py::test_filters_by_category_and_flavor`, `test_filters_by_price_range` |
 | US02   | CA#3, RN#1           | `catalog/test_filters.py::test_searches_by_name_ignoring_case`             |
 | US02   | Validação            | `catalog/test_filters.py::test_inverted_price_range_is_rejected`, `test_lists_filter_options` |
+| IMP10  | CA#1, CA#3           | `catalog/test_filters.py::test_sorts_by_price_both_ways` |
+| IMP10  | RN#1                 | `catalog/test_filters.py::test_default_order_keeps_featured_first` |
+| IMP10  | RN#2                 | `catalog/test_filters.py::test_price_order_uses_running_promotions` |
+| IMP10  | RN#3                 | `catalog/test_filters.py::test_same_price_keeps_name_order` |
+| IMP10  | Validação            | `catalog/test_filters.py::test_unknown_sort_is_rejected` |
 | US03   | CA#1, CA#2           | `catalog/test_product_detail.py::test_detail_shows_full_information`       |
 | US03   | RN#1                 | `catalog/test_product_detail.py::test_inactive_product_is_not_found`       |
 | US04   | CA#1, RNF#1          | `accounts/test_registration.py::test_creates_account_with_hashed_password` |

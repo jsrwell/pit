@@ -79,7 +79,7 @@ Hooks compartilhados: `useAsync` (carregamento com recarga), `useSubmit` (envio 
 | Largura      | Mudança                                                                  |
 | ------------ | ------------------------------------------------------------------------ |
 | até 72rem    | Menu recolhível no cabeçalho, com a busca no topo do painel (IMP09)      |
-| até 64rem    | Filtros em duas colunas; destaques em duas por vez; rodapé em três colunas |
+| até 64rem    | Filtros em duas colunas, com a ordenação na linha inteira; destaques em duas por vez; rodapé em três colunas |
 | até 60rem    | Colunas laterais (resumos) passam para baixo do conteúdo                 |
 | até 52rem    | Hero sem ilustração; detalhe do produto e formulário de produto em uma coluna |
 | até 40rem    | Vitrine em duas colunas compactas; grades de formulário em uma coluna    |

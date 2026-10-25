@@ -24,7 +24,7 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | Cartão | O que é verificado                                                         | Teste                                           |
 | ------ | -------------------------------------------------------------------------- | ----------------------------------------------- |
 | US01   | Card com nome, imagem, preço e link; destaques e indisponíveis sinalizados | `catalog/components/Storefront.test.tsx`        |
-| US02   | Filtros por categoria, sabor e faixa de preço                              | `catalog/components/FilterBar.test.tsx`         |
+| US02   | Filtros por categoria e sabor                                              | `catalog/components/FilterBar.test.tsx`         |
 | US03   | Descrição, preço, imagem, composição, diferenciais e indisponibilidade     | `catalog/components/ProductDetailView.test.tsx` |
 | US04   | Envio dos campos e erros por campo vindos da API                           | `accounts/components/RegisterForm.test.tsx`     |
 | IMP04  | E-mail inválido barrado antes da API, máscara e limite do telefone, limites de tamanho | `accounts/components/RegisterForm.test.tsx`, `accounts/validation/account-fields.test.ts`, `shared/format/phone.test.ts` |
@@ -52,6 +52,7 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | IMP08  | Edição com validação, sessão atualizada, troca de senha, exclusão confirmada e bloqueada por pedidos | `accounts/components/AccountSettings.test.tsx` |
 | IMP09  | Busca do cabeçalho como região de busca, termo na URL e retorno à vitrine completa | `catalog/components/HeaderSearch.test.tsx` |
 | IMP09  | Vitrine filtrada pelo termo da URL, termo ativo com "Limpar busca", resultado vazio e barra sem campo de texto | `catalog/components/Storefront.test.tsx`, `catalog/components/FilterBar.test.tsx` |
+| IMP10  | Seletor de ordenação no lugar da faixa de preço; ordem enviada à API junto com a busca | `catalog/components/FilterBar.test.tsx`, `catalog/components/Storefront.test.tsx` |
 | US16   | Preço promocional, vitrine de combos e cadastro de campanha                | `shared/components/PriceTag.test.tsx`, `promotions/components/ComboShowcase.test.tsx`, `promotions/components/admin/PromotionManager.test.tsx` |
 
 Os caminhos são relativos a `frontend/src/features/`, exceto os que começam com `shared/` ou `app/`, relativos a `frontend/src/`.

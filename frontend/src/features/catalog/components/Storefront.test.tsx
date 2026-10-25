@@ -132,4 +132,21 @@ describe('Storefront', () => {
 
     expect(await screen.findByText(/Nenhum cupcake encontrado para “abacaxi”/)).toBeInTheDocument()
   })
+
+  it('asks the API for the price order together with the search', async () => {
+    vi.spyOn(classificationsApi, 'listCategories').mockResolvedValue([])
+    vi.spyOn(classificationsApi, 'listFlavors').mockResolvedValue([])
+    const list = vi.spyOn(listApi, 'listProducts').mockResolvedValue([sampleProduct])
+    const user = userEvent.setup()
+
+    renderWithRouter(<Storefront />, { route: '/?busca=red' })
+    await screen.findByRole('article', { name: 'Red Velvet Imperial' })
+    await user.selectOptions(screen.getByLabelText('Ordenar por'), 'price_desc')
+
+    await waitFor(() =>
+      expect(list).toHaveBeenLastCalledWith(
+        expect.objectContaining({ search: 'red', sort: 'price_desc' }),
+      ),
+    )
+  })
 })

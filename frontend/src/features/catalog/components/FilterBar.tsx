@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { listCategories, listFlavors } from '../api/list-classifications'
-import type { ProductFilters } from '../api/list-products'
+import { SORT_LABELS, type ProductFilters, type ProductSort } from '../api/list-products'
 import type { NamedItem } from '../api/product'
 
 interface FilterBarProps {
@@ -15,8 +15,14 @@ interface FilterBarProps {
   onClearAll: () => void
 }
 
+const SORT_OPTIONS = Object.keys(SORT_LABELS) as ProductSort[]
+
 function toId(value: string): number | undefined {
   return value === '' ? undefined : Number(value)
+}
+
+function toSort(value: string): ProductSort | undefined {
+  return SORT_OPTIONS.find((option) => option === value && option !== 'featured')
 }
 
 export function FilterBar({
@@ -88,29 +94,19 @@ export function FilterBar({
           ))}
         </select>
       </div>
-      <div className="field">
-        <label htmlFor="filter-min-price">Preço mínimo</label>
-        <input
-          id="filter-min-price"
-          type="number"
-          min="0"
-          step="0.01"
-          inputMode="decimal"
-          value={filters.min_price ?? ''}
-          onChange={(event) => onChange({ ...filters, min_price: event.target.value })}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="filter-max-price">Preço máximo</label>
-        <input
-          id="filter-max-price"
-          type="number"
-          min="0"
-          step="0.01"
-          inputMode="decimal"
-          value={filters.max_price ?? ''}
-          onChange={(event) => onChange({ ...filters, max_price: event.target.value })}
-        />
+      <div className="field filter-bar__sort">
+        <label htmlFor="filter-sort">Ordenar por</label>
+        <select
+          id="filter-sort"
+          value={filters.sort ?? 'featured'}
+          onChange={(event) => onChange({ ...filters, sort: toSort(event.target.value) })}
+        >
+          {SORT_OPTIONS.map((option) => (
+            <option key={option} value={option}>
+              {SORT_LABELS[option]}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="filter-bar__footer">
         <div className="pill-group" role="group" aria-label="Exibir">

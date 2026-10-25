@@ -31,7 +31,7 @@ describe('FilterBar', () => {
     vi.spyOn(classificationsApi, 'listFlavors').mockResolvedValue([{ id: 5, name: 'Pistache' }])
   })
 
-  it('emits category, flavor and price range criteria', async () => {
+  it('emits category, flavor and price order criteria', async () => {
     const onChange = vi.fn()
     const user = userEvent.setup()
     render(<Harness onChange={onChange} />)
@@ -39,15 +39,21 @@ describe('FilterBar', () => {
     await waitFor(() => expect(screen.getByRole('option', { name: 'Veganos' })).toBeInTheDocument())
     await user.selectOptions(screen.getByLabelText('Categoria'), '3')
     await user.selectOptions(screen.getByLabelText('Sabor'), '5')
-    await user.type(screen.getByLabelText('Preço mínimo'), '10')
-    await user.type(screen.getByLabelText('Preço máximo'), '20')
+    await user.selectOptions(screen.getByLabelText('Ordenar por'), 'Menor preço')
 
-    expect(onChange).toHaveBeenLastCalledWith({
-      category_id: 3,
-      flavor_id: 5,
-      min_price: '10',
-      max_price: '20',
-    })
+    expect(onChange).toHaveBeenLastCalledWith({ category_id: 3, flavor_id: 5, sort: 'price_asc' })
+    await user.selectOptions(screen.getByLabelText('Ordenar por'), 'Maior preço')
+    expect(onChange).toHaveBeenLastCalledWith(expect.objectContaining({ sort: 'price_desc' }))
+    await user.selectOptions(screen.getByLabelText('Ordenar por'), 'Destaques primeiro')
+    expect(onChange).toHaveBeenLastCalledWith(expect.objectContaining({ sort: undefined }))
+  })
+
+  it('offers the price order instead of price range fields', () => {
+    render(<Harness onChange={vi.fn()} />)
+
+    expect(screen.queryByLabelText('Preço mínimo')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Preço máximo')).not.toBeInTheDocument()
+    expect(screen.getByLabelText('Ordenar por')).toHaveValue('featured')
   })
 
   it('has no text search of its own', () => {
