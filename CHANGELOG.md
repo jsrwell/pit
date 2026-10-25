@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.8.0](https://github.com/jsrwell/pit/compare/v1.7.0...v1.8.0) (2026-10-25)
+
+### Features
+
+* **IMP01:** round the corners of add-to-cart buttons ([8368db9](https://github.com/jsrwell/pit/commit/8368db91632bf1b6818706d615e534bb859bcd2c))
+* **IMP02:** favorite products on the storefront ([b2e7cb0](https://github.com/jsrwell/pit/commit/b2e7cb0061a4a3baf140fd11b8e40099f1322347))
+* **IMP03:** show progress while the storefront updates ([93f4cbc](https://github.com/jsrwell/pit/commit/93f4cbc2ac8820c2310ea1e7f869cf2fcf6b1313))
+* **IMP04:** validate the format of sign-up fields ([38cc2ae](https://github.com/jsrwell/pit/commit/38cc2ae9774968dff9cb7fb0ac92d655edc5d769)), closes [CA#2](https://github.com/jsrwell/CA/issues/2)
+* **IMP05:** offer direct contact channels with the store ([3bd91ce](https://github.com/jsrwell/pit/commit/3bd91cef176965ce1c5370a962abc4bc3d8c85f7))
+* **IMP06:** apply discount coupons at checkout ([fd77a8f](https://github.com/jsrwell/pit/commit/fd77a8f0696267d6f570e0986339d43da78fc2e8))
+* **IMP07:** limit text fields and keep the mobile layout intact ([2000a17](https://github.com/jsrwell/pit/commit/2000a173602c0f3252529b16326cf6fee03132af))
+* **IMP08:** edit personal data and delete the own account ([1509f38](https://github.com/jsrwell/pit/commit/1509f38ee38811fd2a2a4aff9eff07231eb801a2))
+* **IMP09:** move the product search to the top menu ([1d5b3d9](https://github.com/jsrwell/pit/commit/1d5b3d9063ccce97429965caf0b453bb9aa6d818)), closes [CA#3](https://github.com/jsrwell/CA/issues/3)
+* **IMP10:** sort the storefront by price ([b80bf38](https://github.com/jsrwell/pit/commit/b80bf38edff258f16d8da87c7b3155092d4100f9)), closes [CA#2](https://github.com/jsrwell/CA/issues/2)
+* **IMP11:** autofill the address from the CEP ([53dfb68](https://github.com/jsrwell/pit/commit/53dfb683379a64a993a241f56109eaceaa008347)), closes [CA#4](https://github.com/jsrwell/CA/issues/4)
+
 ## [1.7.0](https://github.com/jsrwell/pit/compare/v1.6.0...v1.7.0) (2026-10-18)
 
 ### Features
