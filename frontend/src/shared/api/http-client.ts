@@ -44,6 +44,20 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   return body as T
 }
 
+export async function requestExternal<T>(url: string): Promise<T> {
+  let response: Response
+  try {
+    response = await fetch(url, { headers: { Accept: 'application/json' } })
+  } catch {
+    throw ApiError.network()
+  }
+  const body = await readBody(response)
+  if (!response.ok || body === undefined) {
+    throw ApiError.unexpected(response.status)
+  }
+  return body as T
+}
+
 export type WriteMethod = 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 export function sendJson<T>(path: string, method: WriteMethod, payload?: unknown): Promise<T> {

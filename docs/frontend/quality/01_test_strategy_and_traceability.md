@@ -53,6 +53,8 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | IMP09  | Busca do cabeçalho como região de busca, termo na URL e retorno à vitrine completa | `catalog/components/HeaderSearch.test.tsx` |
 | IMP09  | Vitrine filtrada pelo termo da URL, termo ativo com "Limpar busca", resultado vazio e barra sem campo de texto | `catalog/components/Storefront.test.tsx`, `catalog/components/FilterBar.test.tsx` |
 | IMP10  | Seletor de ordenação no lugar da faixa de preço; ordem enviada à API junto com a busca | `catalog/components/FilterBar.test.tsx`, `catalog/components/Storefront.test.tsx` |
+| IMP11  | Consulta ao ViaCEP sem token, CEP inexistente, falha de rede e máscara     | `accounts/api/zip-lookup.test.ts`               |
+| IMP11  | Preenchimento ao completar o CEP, campos editáveis, avisos no campo, anúncio da busca e preservação do que foi digitado | `accounts/components/AddressForm.test.tsx` |
 | US16   | Preço promocional, vitrine de combos e cadastro de campanha                | `shared/components/PriceTag.test.tsx`, `promotions/components/ComboShowcase.test.tsx`, `promotions/components/admin/PromotionManager.test.tsx` |
 
 Os caminhos são relativos a `frontend/src/features/`, exceto os que começam com `shared/` ou `app/`, relativos a `frontend/src/`.

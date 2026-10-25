@@ -1,7 +1,7 @@
 ---
 code: "FE-STA-01"
 name: "Sessão e cliente HTTP"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Sessão e cliente HTTP
@@ -43,6 +43,8 @@ Toda chamada passa por `request` ou `sendJson`, em `shared/api/http-client.ts`:
 | Erro sem Problem Details (ex.: 502) | Vira `ApiError` `CS-SYS-0001`                                   |
 | Falha de rede                       | Vira `ApiError` `CS-NET-0001`                                   |
 | `CS-SYS-0005`                       | Apaga a sessão; as rotas protegidas levam ao login              |
+
+Serviços públicos fora da API, como o ViaCEP (IMP11), usam `requestExternal(url)`, no mesmo arquivo: a URL é absoluta, nenhum token é enviado e as falhas também viram `ApiError` (`CS-NET-0001` sem conexão, `CS-SYS-0001` para resposta inesperada). Assim `fetch` continua sendo chamado num único lugar.
 
 ## Mensagens de erro
 

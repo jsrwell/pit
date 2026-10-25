@@ -79,6 +79,7 @@ Regras de dependência:
 - `request<T>(path, init)` em `shared/api/http-client.ts` prefixa `env.apiBaseUrl` (padrão `/api`), envia `Accept: application/json` e devolve o corpo já convertido.
 - Respostas não-2xx viram `ApiError`: com o Problem Details do backend quando o corpo é um, ou com `CS-SYS-0001` quando não é (por exemplo, um 502 do proxy).
 - Falha de rede vira `ApiError` com o código local `CS-NET-0001` e status `0`.
+- Serviços externos de apoio, hoje só o ViaCEP, passam por `requestExternal`, também em `shared/api/http-client.ts`, sem cabeçalho de autenticação; a indisponibilidade deles nunca bloqueia um fluxo, apenas desliga o auxílio.
 - Com sessão ativa, `request` envia `Authorization: Bearer`; uma resposta `CS-SYS-0005` (sessão ausente ou expirada) apaga a sessão, e as rotas protegidas por `RequireAuth` levam o usuário ao login.
 - Cada feature expõe funções nomeadas pelo caso de uso (`getHealth`, `listProducts`) em `features/<módulo>/api/`, com os tipos de entrada e saída espelhando os schemas do backend.
 

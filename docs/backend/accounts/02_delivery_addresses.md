@@ -1,7 +1,7 @@
 ---
 code: "BE-ACC-02"
 name: "Endereços de entrega"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Endereços de entrega
@@ -46,3 +46,7 @@ Todas as rotas ficam em `/api/accounts/me/addresses` e só enxergam os endereço
 ## Uso pelos pedidos
 
 O módulo `orders` não importa o model de endereço. Ele chama `get_delivery_address`, que devolve uma cópia imutável (`DeliveryAddress`) com o endereço formatado. Essa cópia é gravada no pedido, então editar ou excluir o endereço depois não altera pedidos já feitos.
+
+## Preenchimento pelo CEP
+
+O preenchimento automático de rua e bairro (IMP11) é feito pelo frontend, que consulta o ViaCEP diretamente; a API não muda. A consulta é só um auxílio (RN#1): o endereço continua validado e gravado por estas rotas, com as mesmas regras, e a indisponibilidade do serviço externo não impede o cadastro (RNF#1). Detalhes em [Jornada do cliente](../../frontend/journeys/01_customer_journey.md).

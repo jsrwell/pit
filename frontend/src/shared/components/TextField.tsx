@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes } from 'react'
+import type { InputHTMLAttributes, Ref } from 'react'
 
 import { CharacterCounter } from './CharacterCounter'
 
@@ -8,6 +8,7 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string
   hint?: string
   showCounter?: boolean
+  ref?: Ref<HTMLInputElement>
 }
 
 export function TextField({
@@ -16,6 +17,7 @@ export function TextField({
   error,
   hint,
   showCounter = false,
+  ref,
   ...inputProps
 }: TextFieldProps) {
   const { maxLength, value } = inputProps
@@ -27,6 +29,7 @@ export function TextField({
     <div className="field">
       <label htmlFor={id}>{label}</label>
       <input
+        ref={ref}
         id={id}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy}

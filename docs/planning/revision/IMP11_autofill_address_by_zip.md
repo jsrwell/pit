@@ -1,7 +1,7 @@
 ---
 code: "IMP11"
 name: "Preencher o endereço a partir do CEP"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -38,9 +38,9 @@ O formulário de endereço pede CEP, logradouro e bairro, todos digitados manual
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Criar cliente de consulta ao ViaCEP no módulo de contas do frontend | 2h | Pendente |
-| 2 | Integrar a consulta ao formulário de endereço com estados de carregamento e erro | 3h | Pendente |
-| 3 | Escrever testes do preenchimento, do CEP inexistente e da falha do serviço | 2h | Pendente |
+| 1 | Criar cliente de consulta ao ViaCEP no módulo de contas do frontend | 2h | Concluída |
+| 2 | Integrar a consulta ao formulário de endereço com estados de carregamento e erro | 3h | Concluída |
+| 3 | Escrever testes do preenchimento, do CEP inexistente e da falha do serviço | 2h | Concluída |
 | **Total** | | **7h** | |
 
 ## Relacionamentos

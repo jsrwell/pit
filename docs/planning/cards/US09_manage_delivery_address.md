@@ -2,7 +2,9 @@
 code: "US09"
 name: "Registrar endereço para entrega"
 status: "implemented"
-history: []
+history:
+  - date: "2026/10/25"
+    description: "Inclusão do CA#4: ao completar o CEP, logradouro e bairro são preenchidos pela consulta ao ViaCEP, sem impedir o preenchimento manual, conforme a melhoria IMP11 originada nos testes com usuários."
 ---
 
 # US09 — Registrar endereço para entrega
@@ -23,6 +25,7 @@ Endereço mal especificado é fonte direta de erro operacional.
 - **CA#1:** O sistema deve permitir cadastrar CEP, rua, número, complemento, bairro e referência.
 - **CA#2:** O sistema deve validar os campos obrigatórios do endereço.
 - **CA#3:** O sistema deve permitir definir um endereço principal.
+- **CA#4:** O sistema deve preencher rua e bairro a partir do CEP informado, mantendo os campos editáveis ([IMP11](../revision/IMP11_autofill_address_by_zip.md)).
 
 ## Regras de negócio
 

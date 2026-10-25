@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import * as addressApi from '../api/addresses'
+import * as zipApi from '../api/zip-lookup'
 import { AddressBook } from './AddressBook'
 
 const home: addressApi.Address = {
@@ -20,6 +21,7 @@ describe('AddressBook', () => {
   it('registers a new address with every field', async () => {
     vi.spyOn(addressApi, 'listAddresses').mockResolvedValue([])
     const create = vi.spyOn(addressApi, 'createAddress').mockResolvedValue(home)
+    vi.spyOn(zipApi, 'lookupZip').mockResolvedValue(null)
     const user = userEvent.setup()
 
     render(<AddressBook />)
@@ -34,7 +36,7 @@ describe('AddressBook', () => {
 
     expect(create).toHaveBeenCalledWith(
       expect.objectContaining({
-        zip_code: '01310100',
+        zip_code: '01310-100',
         street: 'Avenida Paulista',
         complement: 'Apto 12',
         reference: 'Metrô',

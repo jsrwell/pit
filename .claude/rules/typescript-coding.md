@@ -37,8 +37,9 @@ Organização, camadas e convenções completas em
 
 ## Comunicação com a API
 
-- Toda a chamada HTTP passa por `request` em `src/shared/api/http-client.ts`;
-  nunca chamar `fetch` diretamente fora dele.
+- Toda a chamada HTTP passa por `request` (API) ou `requestExternal`
+  (serviços públicos) em `src/shared/api/http-client.ts`; nunca chamar
+  `fetch` diretamente fora dele.
 - Erros chegam como `ApiError`; o texto exibido é `error.message`, já
   traduzido pelo código.
 
