@@ -39,6 +39,8 @@ class OrderRead(BaseModel):
     payment_reference: str
     subtotal: Decimal
     discount: Decimal
+    coupon_code: str | None
+    coupon_discount: Decimal
     delivery_fee: Decimal
     total: Decimal
     notes: str

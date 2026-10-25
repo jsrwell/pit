@@ -1,7 +1,7 @@
 ---
 code: "BE-ORD-01"
 name: "Modalidade de recebimento e cotação"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Modalidade de recebimento e cotação
@@ -16,6 +16,7 @@ Calcula o pedido sem criá-lo, a partir do carrinho atual e da modalidade escolh
 | -------------------- | ------------------------------------------------ |
 | `fulfillment_method` | `pickup` (retirada na loja) ou `delivery` (entrega) |
 | `address_id`         | Obrigatório na entrega; ignorado na retirada     |
+| `coupon_code`        | Opcional; vazio equivale a nenhum cupom ([Cupons de desconto](../promotions/02_discount_coupons.md)) |
 
 | Campo de saída    | Conteúdo                                                  |
 | ----------------- | --------------------------------------------------------- |
@@ -23,8 +24,10 @@ Calcula o pedido sem criá-lo, a partir do carrinho atual e da modalidade escolh
 | `address`         | Cópia do endereço escolhido, ou nulo na retirada          |
 | `subtotal`        | Soma dos itens                                            |
 | `discount`        | Economia dos combos                                       |
+| `coupon_code`     | Cupom aplicado, em maiúsculas, ou nulo                    |
+| `coupon_discount` | Percentual do cupom sobre os itens, após os combos        |
 | `delivery_fee`    | `0.00` na retirada; `STORE__DELIVERY_FEE` na entrega      |
-| `total`           | `subtotal - discount + delivery_fee`                      |
+| `total`           | `subtotal - discount - coupon_discount + delivery_fee`    |
 | `pickup_address`  | Endereço da loja, `STORE__PICKUP_ADDRESS`, para exibição  |
 
 ## Regras de negócio
@@ -38,6 +41,7 @@ Calcula o pedido sem criá-lo, a partir do carrinho atual e da modalidade escolh
 | RN#2: entrega exige endereço cadastrado válido                | Endereço obrigatório e da própria conta     | `CS-ORD-0001`, `CS-ACC-0005` |
 | Carrinho precisa ter itens                                    | Verificação antes do cálculo                | `CS-ORD-0002` |
 | Carrinho sem itens indisponíveis                              | Verificação antes do cálculo                | `CS-ORD-0003` |
+| IMP06 CA#3: cupom inexistente, inativo ou fora da vigência    | `apply_coupon`                              | `CS-PRM-0007` |
 
 ## Cálculo único
 

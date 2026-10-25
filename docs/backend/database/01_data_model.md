@@ -1,7 +1,7 @@
 ---
 code: "BE-DB-01"
 name: "Modelo de dados"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Modelo de dados
@@ -26,6 +26,7 @@ erDiagram
     orders ||--|{ order_items : "contém"
     orders ||--|{ order_status_changes : "registra"
     combos ||--|{ combo_items : "reúne"
+    coupons
 ```
 
 ## Tabelas por módulo
@@ -36,11 +37,11 @@ erDiagram
 | `accounts`   | `users`, `addresses`                                           | US04, US05, US09              |
 | `cart`       | `cart_items`                                                   | US06, US07                    |
 | `orders`     | `orders`, `order_items`, `order_status_changes`, `custom_orders` | US08, US10, US11, US12, US15 |
-| `promotions` | `promotions`, `combos`, `combo_items`                          | US16                          |
+| `promotions` | `promotions`, `combos`, `combo_items`, `coupons`               | US16, IMP06                   |
 
 ## Decisões de modelagem
 
-- **Preços congelados no pedido:** `order_items` copia nome e preço unitário do produto, e `orders` grava subtotal, desconto, taxa e total. Mudanças posteriores no catálogo não alteram pedidos já feitos.
+- **Preços congelados no pedido:** `order_items` copia nome e preço unitário do produto, e `orders` grava subtotal, desconto de combos, código e desconto do cupom, taxa e total; o código do cupom é copiado como texto, sem chave estrangeira, para que excluir um cupom não altere pedidos. Mudanças posteriores no catálogo não alteram pedidos já feitos.
 - **Endereço como cópia:** o pedido guarda o endereço de entrega em texto (`delivery_address`), e não uma chave para `addresses`; o cliente pode editar ou excluir endereços sem afetar o histórico.
 - **Inativação em vez de exclusão:** produtos têm `is_active`; nunca são apagados, para preservar pedidos e carrinhos que os referenciam.
 - **Histórico de status:** cada mudança gera uma linha em `order_status_changes`, inclusive o recebimento no checkout.
@@ -71,5 +72,6 @@ erDiagram
 | `20261018_1655`   | Histórico de status de pedido               | US11   |
 | `20261018_1701`   | Encomendas especiais                        | US12   |
 | `20261018_1706`   | Promoções, combos e desconto no pedido      | US16   |
+| `20261025_1420`   | Cupons e cupom aplicado no pedido           | IMP06  |
 
 Migrações são sempre geradas por `alembic revision --autogenerate` e nunca editadas à mão; o CI confere com `alembic check` que nenhum model ficou sem migração.

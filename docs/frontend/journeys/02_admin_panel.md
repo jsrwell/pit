@@ -1,7 +1,7 @@
 ---
 code: "FE-JRN-02"
 name: "Painel administrativo"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Painel administrativo
@@ -40,6 +40,7 @@ updated: "2026/10/18"
 ## Promoções (US16)
 
 - **Campanhas:** nome, produto, preço promocional, início e fim; a lista indica se cada campanha está em vigor e permite excluí-la.
+- **Cupons (IMP06):** código (convertido em maiúsculas), percentual de 1% a 100%, início e fim; a lista mostra o código em destaque, o percentual, a vigência e a situação (em vigor, fora da vigência ou desativado), com "Ativar", "Desativar" e "Excluir".
 - **Combos:** nome, preço do conjunto, início, fim, descrição e dois ou mais produtos com quantidades; a lista mostra a composição e a vigência.
 - **Destaques:** lista de produtos com marcação de destaque, aplicada na hora.
 

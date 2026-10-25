@@ -3,6 +3,7 @@ import { useAsync } from '@/shared/hooks/use-async'
 
 import { listAllProducts } from '../../api/promotions'
 import { ComboManager } from './ComboManager'
+import { CouponManager } from './CouponManager'
 import { FeaturedManager } from './FeaturedManager'
 import { PromotionManager } from './PromotionManager'
 
@@ -16,6 +17,7 @@ export function PromotionsPanel() {
       {(products) => (
         <div className="admin-split">
           <PromotionManager products={products} />
+          <CouponManager />
           <ComboManager products={products} />
           <FeaturedManager products={products} onChanged={reload} />
         </div>

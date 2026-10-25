@@ -53,14 +53,14 @@ Imagem ampliada, categoria, nome com o coração de favorito ao lado, sabor, pre
 ## Checkout (US08, US09, US10)
 
 1. **Recebimento:** retirada na loja (sem taxa, com o endereço da loja) ou entrega (escolha ou cadastro de endereço ali mesmo).
-2. **Pagamento:** Pix, cartão de crédito (número, nome, validade e CVV) ou dinheiro na retirada ou entrega, mais observações do pedido.
-3. **Resumo:** itens, subtotal, descontos, taxa e total, recalculados pela API a cada mudança de modalidade ou endereço.
+2. **Pagamento:** Pix, cartão de crédito (número, nome, validade e CVV) ou dinheiro na retirada ou entrega, mais observações do pedido e o campo "Cupom de desconto" (IMP06). "Aplicar" valida o código na API sem apagar o que já foi preenchido; um cupom aceito vira um selo com o valor descontado e a opção "Remover cupom", e um cupom recusado é explicado no próprio campo, sem impedir a compra sem ele.
+3. **Resumo:** itens, subtotal, descontos de combos, cupom aplicado, taxa e total, recalculados pela API a cada mudança de modalidade ou endereço.
 4. **Confirmação:** tela com o número do pedido, o total, a situação do pagamento e o botão "Acompanhar pedido".
 
 ## Pedidos (US11)
 
 - **Meus pedidos:** número, data, modalidade, total e status de cada pedido.
-- **Acompanhamento:** status atual, data de criação, linha do tempo com o horário de cada etapa (com "Em rota de entrega" apenas para entregas), modalidade, endereço, pagamento, observações e resumo de valores. A tela se atualiza sozinha a cada 30 segundos.
+- **Acompanhamento:** status atual, data de criação, linha do tempo com o horário de cada etapa (com "Em rota de entrega" apenas para entregas), modalidade, endereço, pagamento, observações e resumo de valores, inclusive o cupom usado. A tela se atualiza sozinha a cada 30 segundos.
 
 ## Atendimento (IMP05)
 

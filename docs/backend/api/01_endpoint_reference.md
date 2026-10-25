@@ -1,7 +1,7 @@
 ---
 code: "BE-API-01"
 name: "Referência de endpoints"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Referência de endpoints
@@ -64,7 +64,7 @@ Legenda de acesso: **Público** não exige sessão; **Cliente** exige `Authoriza
 
 | Método | Caminho              | Acesso  | Finalidade                                         |
 | ------ | -------------------- | ------- | -------------------------------------------------- |
-| POST   | `/orders/quote`      | Cliente | Total para retirada ou entrega, sem criar pedido   |
+| POST   | `/orders/quote`      | Cliente | Total para retirada ou entrega, com cupom opcional, sem criar pedido |
 | POST   | `/orders`            | Cliente | Checkout: pagamento e criação do pedido            |
 | GET    | `/orders`            | Cliente | Pedidos do cliente, mais recentes primeiro         |
 | GET    | `/orders/{order_id}` | Cliente | Acompanhamento com histórico de status             |
@@ -94,6 +94,11 @@ Legenda de acesso: **Público** não exige sessão; **Cliente** exige `Authoriza
 | POST   | `/promotions/admin/combos`                     | Admin   | Novo combo                         |
 | PUT    | `/promotions/admin/combos/{combo_id}`          | Admin   | Edição de combo                    |
 | DELETE | `/promotions/admin/combos/{combo_id}`          | Admin   | Exclusão de combo                  |
+| GET    | `/promotions/admin/coupons`                    | Admin   | Cupons, com indicação de vigência  |
+| POST   | `/promotions/admin/coupons`                    | Admin   | Novo cupom                         |
+| PUT    | `/promotions/admin/coupons/{coupon_id}`        | Admin   | Edição de cupom                    |
+| PATCH  | `/promotions/admin/coupons/{coupon_id}/active` | Admin   | Ativa ou desativa o cupom          |
+| DELETE | `/promotions/admin/coupons/{coupon_id}`        | Admin   | Exclusão de cupom                  |
 
 ## Convenções
 

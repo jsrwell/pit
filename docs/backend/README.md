@@ -1,7 +1,7 @@
 ---
 code: "BE-00"
 name: "Documentação do backend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Documentação do backend
@@ -25,6 +25,7 @@ API REST da Loja Virtual de Cupcakes Gourmet, em Python 3.13 com FastAPI, SQLAlc
 | Disponibilidade propagada à loja e ao carrinho   | US14             | [Controle de disponibilidade](catalog/03_availability_control.md)  |
 | Painel operacional com máquina de estados        | US15             | [Ciclo de vida do pedido](orders/03_order_lifecycle.md)            |
 | Campanhas, destaques e combos                    | US16             | [Campanhas, destaques e combos](promotions/01_campaigns_featured_and_combos.md) |
+| Cupons de desconto no checkout                   | US10, US16, IMP06 | [Cupons de desconto](promotions/02_discount_coupons.md)            |
 
 ## Índice
 
@@ -49,6 +50,7 @@ API REST da Loja Virtual de Cupcakes Gourmet, em Python 3.13 com FastAPI, SQLAlc
 | BE-ORD-03   | [Ciclo de vida e acompanhamento do pedido](orders/03_order_lifecycle.md)   |
 | BE-ORD-04   | [Encomendas especiais](orders/04_custom_orders.md)                         |
 | BE-PRM-01   | [Campanhas, destaques e combos](promotions/01_campaigns_featured_and_combos.md) |
+| BE-PRM-02   | [Cupons de desconto](promotions/02_discount_coupons.md)                    |
 | BE-OPS-01   | [Configuração do backend](operations/01_configuration.md)                  |
 | BE-OPS-02   | [Publicação no Render](operations/02_render_deployment.md)                 |
 | BE-QA-01    | [Estratégia de testes](quality/01_test_strategy.md)                        |

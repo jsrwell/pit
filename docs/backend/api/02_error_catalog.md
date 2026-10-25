@@ -1,7 +1,7 @@
 ---
 code: "BE-API-02"
 name: "Catálogo de erros"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Catálogo de erros
@@ -71,6 +71,9 @@ Toda falha da API é respondida em Problem Details (RFC 9457) com o campo `code`
 | `CS-PRM-0002` | 404  | `PromotionNotFound`       | Campanha inexistente                         |
 | `CS-PRM-0003` | 404  | `ComboNotFound`           | Combo inexistente                            |
 | `CS-PRM-0004` | 404  | `PromotedProductNotFound` | Campanha ou combo com produto inexistente    |
+| `CS-PRM-0005` | 404  | `CouponNotFound`          | Cupom inexistente na manutenção              |
+| `CS-PRM-0006` | 409  | `CouponCodeTaken`         | Código de cupom já usado por outro cupom     |
+| `CS-PRM-0007` | 422  | `CouponNotApplicable`     | Cupom informado no pedido inexistente, inativo ou fora da vigência |
 
 ## Regras de manutenção
 

@@ -13,6 +13,8 @@ interface OrderSummaryProps {
   lines: SummaryLine[]
   subtotal: string
   discount: string
+  couponCode?: string | null
+  couponDiscount?: string
   deliveryFee: string
   total: string
   children?: ReactNode
@@ -22,6 +24,8 @@ export function OrderSummary({
   lines,
   subtotal,
   discount,
+  couponCode = null,
+  couponDiscount = '0',
   deliveryFee,
   total,
   children,
@@ -47,6 +51,14 @@ export function OrderSummary({
         <div className="summary__row summary__discount">
           <span>Descontos de combos</span>
           <span>− {formatPrice(discount)}</span>
+        </div>
+      )}
+      {couponCode !== null && (
+        <div className="summary__row summary__discount" data-testid="coupon-discount">
+          <span>
+            Cupom <code className="coupon-code">{couponCode}</code>
+          </span>
+          <span>− {formatPrice(couponDiscount)}</span>
         </div>
       )}
       <div className="summary__row">

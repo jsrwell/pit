@@ -5,6 +5,7 @@ export type FulfillmentMethod = 'pickup' | 'delivery'
 export interface FulfillmentInput {
   fulfillment_method: FulfillmentMethod
   address_id: number | null
+  coupon_code: string | null
 }
 
 export interface DeliveryAddress {
@@ -32,6 +33,8 @@ export interface Quote {
   address: DeliveryAddress | null
   subtotal: string
   discount: string
+  coupon_code: string | null
+  coupon_discount: string
   delivery_fee: string
   total: string
   pickup_address: string

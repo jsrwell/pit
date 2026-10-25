@@ -2,7 +2,9 @@
 code: "US16"
 name: "Potencializar venda por campanhas e combinações"
 status: "implemented"
-history: []
+history:
+  - date: "2026/10/25"
+    description: "Inclusão do CA#4 para manter cupons de desconto com código, percentual e vigência, conforme a melhoria IMP06 originada nos testes com usuários."
 ---
 
 # US16 — Potencializar venda por campanhas e combinações
@@ -23,6 +25,7 @@ Introduz camada de estratégia comercial. A vitrine deixa de ser estática.
 - **CA#1:** O sistema deve permitir cadastrar promoções com período de vigência.
 - **CA#2:** O sistema deve permitir marcar produtos para destaque na vitrine.
 - **CA#3:** O sistema deve permitir criar combinações promocionais de produtos.
+- **CA#4:** O sistema deve permitir cadastrar, ativar e desativar cupons de desconto com código, percentual e período de vigência ([IMP06](../revision/IMP06_discount_coupons.md)).
 
 ## Regras de negócio
 

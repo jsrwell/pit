@@ -1,7 +1,7 @@
 ---
 code: "BE-DB-03"
 name: "Dados iniciais"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Dados iniciais
@@ -14,6 +14,7 @@ Migrações só alteram esquema. Os dados que um ambiente novo precisa para ser 
 | -------------------- | ------------------------------------------------ | ---------------------------------------------------------------- |
 | Administrador        | `ADMIN__EMAIL` e `ADMIN__PASSWORD` definidos     | Cria a conta com papel `admin`, ou promove uma conta existente com o mesmo e-mail |
 | Catálogo demonstrativo | `SEED__DEMO_CATALOG=true` e nenhum produto cadastrado | 11 cupcakes em 4 categorias e 10 sabores, com ilustração SVG, composição e diferenciais |
+| Cupom de boas-vindas | `SEED__DEMO_CATALOG=true` e nenhum cupom `BEMVINDO10` | Cupom `BEMVINDO10` de 10%, válido por um ano a partir da carga (IMP06) |
 
 O catálogo demonstrativo inclui produtos em destaque e um produto indisponível, para que vitrine, destaques e indisponibilidade possam ser vistos logo no primeiro acesso.
 
@@ -21,6 +22,7 @@ O catálogo demonstrativo inclui produtos em destaque e um produto indisponível
 
 - O administrador só é criado se o e-mail não existir; a senha de uma conta existente nunca é alterada.
 - O catálogo só é inserido se a tabela de produtos estiver vazia; um catálogo com qualquer produto, demonstrativo ou não, é preservado.
+- O cupom de boas-vindas só é criado se nenhum cupom usar o código `BEMVINDO10`; um cupom com esse código editado ou desativado no painel é preservado.
 - Tudo roda numa única transação: ou o seed inteiro é aplicado, ou nada.
 
 ## Execução

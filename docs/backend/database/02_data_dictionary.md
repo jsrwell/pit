@@ -96,6 +96,8 @@ Restrição única em `(user_id, product_id)`.
 | `payment_reference`  | varchar(40)   |                                         | Identificador da cobrança (só final do cartão) |
 | `subtotal`           | numeric(10,2) |                                         | Soma dos itens                              |
 | `discount`           | numeric(10,2) | padrão `0`                              | Desconto de combos                          |
+| `coupon_code`        | varchar(30)   | opcional                                | Cupom aplicado, copiado como texto (IMP06)  |
+| `coupon_discount`    | numeric(10,2) | padrão `0`                              | Desconto do cupom (IMP06)                   |
 | `delivery_fee`       | numeric(10,2) |                                         | Taxa de entrega                             |
 | `total`              | numeric(10,2) |                                         | Valor cobrado                               |
 | `notes`              | text          | padrão vazio                            | Observações do cliente                      |
@@ -147,6 +149,17 @@ Restrição única em `(user_id, product_id)`.
 | `starts_at`         | timestamptz   |                            | Início da vigência        |
 | `ends_at`           | timestamptz   | posterior a `starts_at`    | Fim da vigência           |
 | `is_active`         | boolean       | padrão `true`              | Campanha habilitada       |
+
+## `coupons` (auditoria)
+
+| Coluna             | Tipo        | Regras                     | Descrição                         |
+| ------------------ | ----------- | -------------------------- | --------------------------------- |
+| `id`               | integer     | PK                         | Identificador                     |
+| `code`             | varchar(30) | único, maiúsculas          | Código digitado pelo cliente      |
+| `discount_percent` | smallint    | de 1 a 100                 | Percentual sobre os itens         |
+| `starts_at`        | timestamptz |                            | Início da vigência                |
+| `ends_at`          | timestamptz | posterior a `starts_at`    | Fim da vigência                   |
+| `is_active`        | boolean     | padrão `true`              | Cupom habilitado                  |
 
 ## `combos` (auditoria) e `combo_items`
 

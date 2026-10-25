@@ -71,6 +71,8 @@ export function OrderTracking({ orderId }: { orderId: number }) {
             }))}
             subtotal={order.subtotal}
             discount={order.discount}
+            couponCode={order.coupon_code}
+            couponDiscount={order.coupon_discount}
             deliveryFee={order.delivery_fee}
             total={order.total}
           />

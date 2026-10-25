@@ -33,6 +33,8 @@ class QuoteRead(BaseModel):
     address: DeliveryAddressRead | None
     subtotal: Decimal
     discount: Decimal
+    coupon_code: str | None
+    coupon_discount: Decimal
     delivery_fee: Decimal
     total: Decimal
     pickup_address: str

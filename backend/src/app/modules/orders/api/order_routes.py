@@ -26,6 +26,9 @@ from app.modules.orders.services.payment_gateway import (
     get_payment_gateway,
 )
 from app.modules.orders.services.place_order import place_order
+from app.modules.promotions.errors.coupon_not_applicable import (
+    CouponNotApplicable,
+)
 from app.shared.config.settings import Settings, get_settings
 from app.shared.database.session import get_session
 from app.shared.errors.authentication_required import AuthenticationRequired
@@ -69,6 +72,7 @@ def read_my_order(
         CartHasUnavailableItems,
         AddressRequired,
         AddressNotFound,
+        CouponNotApplicable,
         InvalidCard,
         PaymentDeclined,
         AuthenticationRequired,
@@ -92,5 +96,6 @@ def create_order(
         notes=data.notes,
         store=settings.store,
         gateway=gateway,
+        coupon_code=data.coupon_code,
     )
     return OrderRead.model_validate(order)

@@ -1,4 +1,4 @@
-import { useCallback, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
 
 import { AsyncContent } from '@/shared/components/AsyncContent'
@@ -11,6 +11,7 @@ import { useSubmit } from '@/shared/hooks/use-submit'
 import type { Order, PaymentMethod } from '../api/order'
 import { placeOrder, type CardInput } from '../api/place-order'
 import { quoteOrder, type FulfillmentMethod } from '../api/quote'
+import { CouponField } from './CouponField'
 import { FulfillmentSelector } from './FulfillmentSelector'
 import { OrderSummary } from './OrderSummary'
 import { PaymentSelector, type CardFields } from './PaymentSelector'
@@ -23,6 +24,13 @@ export interface AddressSlotProps {
 interface CheckoutViewProps {
   renderAddressPicker: (props: AddressSlotProps) => ReactNode
   onPlaced?: (order: Order) => void
+}
+
+const COUPON_NOT_APPLICABLE = 'CS-PRM-0007'
+
+interface AppliedCoupon {
+  code: string
+  discount: string
 }
 
 const EMPTY_CARD: CardFields = { number: '', holder_name: '', expiry: '', cvv: '' }
@@ -45,17 +53,35 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
   const [card, setCard] = useState<CardFields>(EMPTY_CARD)
   const [notes, setNotes] = useState('')
   const [placed, setPlaced] = useState<Order | null>(null)
+  const [coupon, setCoupon] = useState<AppliedCoupon | null>(null)
+  const [couponNotice, setCouponNotice] = useState<string | null>(null)
   const needsAddress = method === 'delivery' && addressId === null
-  const load = useCallback(
-    () =>
+  const couponCode = coupon?.code ?? null
+  const quoteFor = useCallback(
+    (code: string | null) =>
       quoteOrder({
         fulfillment_method: needsAddress ? 'pickup' : method,
         address_id: method === 'delivery' ? addressId : null,
+        coupon_code: code,
       }),
     [method, addressId, needsAddress],
   )
+  const load = useCallback(() => quoteFor(couponCode), [quoteFor, couponCode])
   const { state } = useAsync(load)
   const confirm = useSubmit(placeOrder)
+
+  useEffect(() => {
+    if (state.status === 'error' && state.error.code === COUPON_NOT_APPLICABLE) {
+      setCoupon(null)
+      setCouponNotice(state.error.message)
+    }
+  }, [state])
+
+  async function applyCoupon(code: string) {
+    const priced = await quoteFor(code)
+    setCouponNotice(null)
+    setCoupon({ code: priced.coupon_code ?? code, discount: priced.coupon_discount })
+  }
 
   async function handleConfirm() {
     const order = await confirm.submit({
@@ -64,6 +90,7 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
       payment_method: payment,
       card: payment === 'credit_card' ? toCardInput(card) : null,
       notes,
+      coupon_code: couponCode,
     })
     if (order !== null) {
       setPlaced(order)
@@ -108,6 +135,12 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
             value={notes}
             onChange={(event) => setNotes(event.target.value)}
           />
+          <CouponField
+            applied={coupon}
+            notice={couponNotice}
+            onApply={applyCoupon}
+            onRemove={() => setCoupon(null)}
+          />
         </section>
       </div>
       <AsyncContent state={state} loadingLabel="Calculando o total...">
@@ -116,6 +149,8 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
             lines={quote.lines}
             subtotal={quote.subtotal}
             discount={quote.discount}
+            couponCode={quote.coupon_code}
+            couponDiscount={quote.coupon_discount}
             deliveryFee={quote.delivery_fee}
             total={quote.total}
           >

@@ -65,7 +65,7 @@ As pastas de `features/` usam os mesmos nomes dos módulos do backend, o que tor
 | `accounts`   | Cadastro, login, endereços                               | US04, US05, US09             |
 | `cart`       | Carrinho                                                 | US06, US07                   |
 | `orders`     | Checkout, acompanhamento, encomenda, painel de pedidos   | US08, US10, US11, US12, US15 |
-| `promotions` | Destaques na vitrine e painel de campanhas               | US16                         |
+| `promotions` | Destaques na vitrine e painel de campanhas e cupons      | US16, IMP06                  |
 
 Regras de dependência:
 

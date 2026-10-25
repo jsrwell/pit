@@ -2,7 +2,9 @@
 code: "US10"
 name: "Concluir a compra com segurança"
 status: "implemented"
-history: []
+history:
+  - date: "2026/10/25"
+    description: "Inclusão do CA#4 e ajuste da RN#2 para aceitar um cupom de desconto opcional na etapa de pagamento, recalculado pela API, conforme a melhoria IMP06 originada nos testes com usuários."
 ---
 
 # US10 — Concluir a compra com segurança
@@ -23,11 +25,12 @@ Ponto de fechamento comercial. O sistema precisa eliminar ambiguidade e transmit
 - **CA#1:** O sistema deve apresentar resumo final dos itens do pedido.
 - **CA#2:** O sistema deve exibir valor total, incluindo eventual taxa de entrega.
 - **CA#3:** O sistema deve permitir selecionar a forma de pagamento e confirmar o pedido.
+- **CA#4:** O sistema deve permitir informar um cupom de desconto antes da confirmação, exibindo o desconto no resumo ([IMP06](../revision/IMP06_discount_coupons.md)).
 
 ## Regras de negócio
 
 - **RN#1:** O pedido só pode ser concluído com carrinho válido e modalidade de recebimento definida.
-- **RN#2:** O valor final deve refletir exatamente os itens ativos, quantidades e taxa aplicável.
+- **RN#2:** O valor final deve refletir exatamente os itens ativos, quantidades, descontos vigentes, cupom aplicado e taxa aplicável.
 
 ## Requisito não funcional
 

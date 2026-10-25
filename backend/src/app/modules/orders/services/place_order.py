@@ -26,6 +26,7 @@ def place_order(
     notes: str,
     store: StoreSettings,
     gateway: PaymentGateway,
+    coupon_code: str | None = None,
 ) -> Order:
     """Price the cart, charge it and turn it into an order.
 
@@ -35,7 +36,7 @@ def place_order(
 
     Raises:
         EmptyCart, CartHasUnavailableItems, AddressRequired,
-        AddressNotFound: The order cannot be priced.
+        AddressNotFound, CouponNotApplicable: The order cannot be priced.
         InvalidCard, PaymentDeclined: The payment failed.
     """
     priced = price_order(
@@ -44,6 +45,7 @@ def place_order(
         fulfillment_method=fulfillment_method,
         address_id=address_id,
         store=store,
+        coupon_code=coupon_code,
     )
     payment = gateway.charge(priced.total, payment_method, card)
     order = Order(
@@ -60,6 +62,8 @@ def place_order(
         payment_reference=payment.reference,
         subtotal=priced.subtotal,
         discount=priced.discount,
+        coupon_code=priced.coupon_code,
+        coupon_discount=priced.coupon_discount,
         delivery_fee=priced.delivery_fee,
         total=priced.total,
         notes=notes.strip(),

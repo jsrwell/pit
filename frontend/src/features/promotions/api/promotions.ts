@@ -35,6 +35,17 @@ export interface Combo extends ComboInput {
   is_running: boolean
 }
 
+export interface CouponInput extends Period {
+  code: string
+  discount_percent: number
+  is_active: boolean
+}
+
+export interface Coupon extends CouponInput {
+  id: number
+  is_running: boolean
+}
+
 export interface ProductOption {
   id: number
   name: string
@@ -89,4 +100,22 @@ export function saveCombo(input: ComboInput, comboId?: number): Promise<Combo> {
 
 export async function deleteCombo(comboId: number): Promise<void> {
   await sendJson<unknown>(`${ADMIN}/combos/${comboId}`, 'DELETE')
+}
+
+export function listCoupons(): Promise<Coupon[]> {
+  return request<Coupon[]>(`${ADMIN}/coupons`)
+}
+
+export function createCoupon(input: CouponInput): Promise<Coupon> {
+  return sendJson<Coupon>(`${ADMIN}/coupons`, 'POST', input)
+}
+
+export function setCouponActive(couponId: number, isActive: boolean): Promise<Coupon> {
+  return sendJson<Coupon>(`${ADMIN}/coupons/${couponId}/active`, 'PATCH', {
+    is_active: isActive,
+  })
+}
+
+export async function deleteCoupon(couponId: number): Promise<void> {
+  await sendJson<unknown>(`${ADMIN}/coupons/${couponId}`, 'DELETE')
 }

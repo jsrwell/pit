@@ -15,6 +15,8 @@ const order: storeApi.StoreOrder = {
   payment_reference: 'CASH',
   subtotal: '30.00',
   discount: '0.00',
+  coupon_code: null,
+  coupon_discount: '0.00',
   delivery_fee: '12.00',
   total: '42.00',
   notes: 'Tocar o interfone.',

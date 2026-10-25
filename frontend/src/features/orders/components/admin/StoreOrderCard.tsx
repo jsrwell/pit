@@ -85,7 +85,15 @@ export function StoreOrderCard({ order, onChanged }: StoreOrderCardProps) {
         ))}
       </ul>
       <footer className="store-order__footer">
-        <strong>Total {formatPrice(order.total)}</strong>
+        <div className="store-order__total">
+          <strong>Total {formatPrice(order.total)}</strong>
+          {order.coupon_code !== null && (
+            <span className="muted">
+              Cupom <code className="coupon-code">{order.coupon_code}</code> −{' '}
+              {formatPrice(order.coupon_discount)}
+            </span>
+          )}
+        </div>
         <div className="row">
           {order.next_statuses.map((status) => (
             <button

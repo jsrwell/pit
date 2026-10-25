@@ -39,6 +39,10 @@ const MESSAGES: Record<string, string> = {
   'CS-PRM-0002': 'Promoção não encontrada.',
   'CS-PRM-0003': 'Combo não encontrado.',
   'CS-PRM-0004': 'Produto da promoção não encontrado.',
+  'CS-PRM-0005': 'Cupom não encontrado.',
+  'CS-PRM-0006': 'Já existe um cupom com este código.',
+  'CS-PRM-0007':
+    'Cupom inválido, inativo ou fora da validade. Confira o código ou finalize sem cupom.',
   [NETWORK_ERROR_CODE]: 'Não foi possível conectar ao servidor. Verifique sua conexão.',
 }
 

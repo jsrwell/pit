@@ -65,3 +65,10 @@ Matriz entre os critérios de aceitação (CA) e regras de negócio (RN) dos car
 | US16   | RN#1                 | `promotions/test_promotions.py::test_campaign_outside_period_does_not_change_price`, `test_period_must_end_after_start` |
 | US16   | CA#2                 | `promotions/test_promotions.py::test_marks_product_as_featured`            |
 | US16   | CA#3                 | `promotions/test_promotions.py::test_combo_discount_applies_to_complete_sets` |
+| IMP06  | CA#1, RN#1           | `promotions/test_coupons.py::test_admin_registers_and_switches_a_coupon`, `test_code_is_unique_regardless_of_case` |
+| IMP06  | RN#2                 | `promotions/test_coupons.py::test_percent_must_be_between_one_and_a_hundred`, `test_quote_shows_the_coupon_discount_on_items_only`, `test_full_discount_never_goes_below_zero` |
+| IMP06  | CA#2                 | `promotions/test_coupons.py::test_quote_shows_the_coupon_discount_on_items_only` |
+| IMP06  | CA#3                 | `promotions/test_coupons.py::test_unusable_coupon_is_refused`, `test_unknown_coupon_does_not_block_ordering_without_it` |
+| IMP06  | CA#4, RN#4           | `promotions/test_coupons.py::test_confirmed_order_records_coupon_and_discount` |
+| IMP06  | RN#3                 | `promotions/test_coupons.py::test_coupon_adds_to_running_promotional_prices` |
+| IMP06  | Acesso e vigência    | `promotions/test_coupons.py::test_customers_cannot_manage_coupons`, `test_missing_coupon_is_reported`, `test_period_must_end_after_start` |

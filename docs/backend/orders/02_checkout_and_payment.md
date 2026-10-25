@@ -1,7 +1,7 @@
 ---
 code: "BE-ORD-02"
 name: "Checkout e pagamento"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Checkout e pagamento
@@ -58,4 +58,4 @@ Cartões para teste: `4111 1111 1111 1111` é aprovado; `4000 0000 0000 0002` é
 
 - O pagamento acontece antes de qualquer gravação. Se ele falhar, nenhum pedido existe e o carrinho continua intacto.
 - O carrinho só é esvaziado depois que o pedido foi gravado, dentro da mesma transação.
-- O pedido guarda subtotal, desconto, taxa, total, itens e endereço como estavam no momento da compra.
+- O pedido guarda subtotal, desconto de combos, cupom e desconto do cupom, taxa, total, itens e endereço como estavam no momento da compra (IMP06).

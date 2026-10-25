@@ -1,7 +1,7 @@
 ---
 code: "BE-ARCH"
 name: "Arquitetura do backend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Arquitetura do backend
@@ -70,7 +70,7 @@ Cada módulo corresponde a um conjunto de histórias de usuário de [Planejament
 | `accounts`   | `ACC`   | Cadastro, autenticação, sessão e endereços de entrega               | US04, US05, US09             |
 | `cart`       | `CRT`   | Carrinho do cliente e recálculo de totais                           | US06, US07                   |
 | `orders`     | `ORD`   | Modalidade de recebimento, checkout, pagamento, status e encomendas | US08, US10, US11, US12, US15 |
-| `promotions` | `PRM`   | Campanhas e combinações promocionais                                | US16                         |
+| `promotions` | `PRM`   | Campanhas, combinações promocionais e cupons de desconto            | US16, IMP06                  |
 
 Cada módulo é criado quando o primeiro cartão dele é implementado.
 

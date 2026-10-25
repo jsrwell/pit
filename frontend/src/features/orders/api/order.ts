@@ -31,6 +31,8 @@ export interface Order {
   payment_reference: string
   subtotal: string
   discount: string
+  coupon_code: string | null
+  coupon_discount: string
   delivery_fee: string
   total: string
   notes: string

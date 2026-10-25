@@ -299,6 +299,19 @@ p {
   color: var(--color-success);
 }
 
+.coupon-code {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border: 1px dashed var(--color-gold);
+  border-radius: var(--radius-sm);
+  background: #fdfaf4;
+  color: var(--color-gold-dark);
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
 .panel {
   min-width: 0;
   padding: clamp(1.5rem, 3vw, 2.25rem);

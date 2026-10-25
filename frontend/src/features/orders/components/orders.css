@@ -152,6 +152,50 @@
   font-size: 1.35rem;
 }
 
+.store-order__total {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.store-order__total .muted {
+  font-size: 0.85rem;
+}
+
+.coupon-field {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-line);
+}
+
+.coupon-field__row {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.coupon-field__row input {
+  flex: 1;
+  min-width: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.coupon-field__row input::placeholder {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.coupon-field--applied {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid rgb(63 107 71 / 30%);
+  border-radius: var(--radius);
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
 .custom-orders {
   display: grid;
   gap: clamp(2rem, 4vw, 3rem);

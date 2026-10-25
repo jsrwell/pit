@@ -1,6 +1,7 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
+import { ApiError } from '@/shared/api/api-error'
 import { renderWithRouter } from '@/test/render-with-router'
 
 import type { Order } from '../api/order'
@@ -22,6 +23,8 @@ const pickup: quoteApi.Quote = {
   address: null,
   subtotal: '20.00',
   discount: '0.00',
+  coupon_code: null,
+  coupon_discount: '0.00',
   delivery_fee: '0.00',
   total: '20.00',
   pickup_address: 'Rua das Confeitarias, 100',
@@ -54,7 +57,11 @@ describe('CheckoutView', () => {
     await user.click(screen.getByLabelText(/Entrega/))
     await user.click(screen.getByRole('button', { name: 'Escolher endereço' }))
 
-    expect(quote).toHaveBeenLastCalledWith({ fulfillment_method: 'delivery', address_id: 5 })
+    expect(quote).toHaveBeenLastCalledWith({
+      fulfillment_method: 'delivery',
+      address_id: 5,
+      coupon_code: null,
+    })
     expect(await screen.findByText(/32,00/)).toBeInTheDocument()
   })
 
@@ -71,6 +78,8 @@ describe('CheckoutView', () => {
       payment_reference: 'CARD-****1111',
       subtotal: '20.00',
       discount: '0.00',
+      coupon_code: null,
+      coupon_discount: '0.00',
       delivery_fee: '0.00',
       total: '20.00',
       notes: '',
@@ -103,8 +112,53 @@ describe('CheckoutView', () => {
         cvv: '123',
       },
       notes: '',
+      coupon_code: null,
     })
     expect(await screen.findByText(/pedido nº 42/)).toBeInTheDocument()
     expect(onPlaced).toHaveBeenCalledWith(order)
+  })
+
+  it('applies a coupon, shows the discount and sends it with the order', async () => {
+    const withCoupon = { ...pickup, coupon_code: 'DOCE10', coupon_discount: '2.00', total: '18.00' }
+    const quote = vi
+      .spyOn(quoteApi, 'quoteOrder')
+      .mockImplementation(async (input) => (input.coupon_code === 'DOCE10' ? withCoupon : pickup))
+    const place = vi.spyOn(placeApi, 'placeOrder').mockRejectedValue(ApiError.network())
+    const user = userEvent.setup()
+
+    renderWithRouter(<CheckoutView renderAddressPicker={() => null} />)
+    await user.type(await screen.findByLabelText('Cupom de desconto'), 'doce10')
+    await user.click(screen.getByRole('button', { name: 'Aplicar' }))
+
+    expect(await screen.findByTestId('coupon-discount')).toHaveTextContent('2,00')
+    expect(screen.getByTestId('order-total')).toHaveTextContent('18,00')
+    expect(screen.getByText(/aplicado/)).toBeInTheDocument()
+    expect(quote).toHaveBeenLastCalledWith(expect.objectContaining({ coupon_code: 'DOCE10' }))
+    await user.click(screen.getByRole('button', { name: 'Confirmar pedido' }))
+    expect(place).toHaveBeenCalledWith(expect.objectContaining({ coupon_code: 'DOCE10' }))
+  })
+
+  it('refuses an unusable coupon in the field and keeps the order possible', async () => {
+    vi.spyOn(quoteApi, 'quoteOrder').mockImplementation(async (input) => {
+      if (input.coupon_code !== null) {
+        throw new ApiError({ type: 'urn:x', title: 'No', status: 422, code: 'CS-PRM-0007' })
+      }
+      return pickup
+    })
+    const user = userEvent.setup()
+
+    renderWithRouter(<CheckoutView renderAddressPicker={() => null} />)
+    await user.type(await screen.findByLabelText('Observações do pedido'), 'Sem açúcar')
+    await user.type(screen.getByLabelText('Cupom de desconto'), 'VENCIDO')
+    await user.click(screen.getByRole('button', { name: 'Aplicar' }))
+
+    const field = screen.getByLabelText('Cupom de desconto')
+    expect(
+      await within(field.closest('form') as HTMLElement).findByRole('alert'),
+    ).toHaveTextContent(/Cupom inválido/)
+    expect(field).toHaveAttribute('aria-invalid', 'true')
+    expect(screen.getByLabelText('Observações do pedido')).toHaveValue('Sem açúcar')
+    expect(screen.getByTestId('order-total')).toHaveTextContent('20,00')
+    expect(screen.getByRole('button', { name: 'Confirmar pedido' })).toBeEnabled()
   })
 })

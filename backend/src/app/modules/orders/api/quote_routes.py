@@ -14,6 +14,9 @@ from app.modules.orders.errors.empty_cart import EmptyCart
 from app.modules.orders.schemas.quote_input import FulfillmentInput
 from app.modules.orders.schemas.quote_read import QuoteRead
 from app.modules.orders.services.price_order import price_order
+from app.modules.promotions.errors.coupon_not_applicable import (
+    CouponNotApplicable,
+)
 from app.shared.config.settings import Settings, get_settings
 from app.shared.database.session import get_session
 from app.shared.errors.authentication_required import AuthenticationRequired
@@ -30,6 +33,7 @@ router = APIRouter(prefix='/orders', tags=['Orders'])
         CartHasUnavailableItems,
         AddressRequired,
         AddressNotFound,
+        CouponNotApplicable,
         AuthenticationRequired,
     ),
 )
@@ -46,6 +50,7 @@ def quote_order(
         fulfillment_method=data.fulfillment_method,
         address_id=data.address_id,
         store=settings.store,
+        coupon_code=data.coupon_code,
     )
     return QuoteRead.model_validate(
         {
@@ -54,6 +59,8 @@ def quote_order(
             'address': priced.address,
             'subtotal': priced.subtotal,
             'discount': priced.discount,
+            'coupon_code': priced.coupon_code,
+            'coupon_discount': priced.coupon_discount,
             'delivery_fee': priced.delivery_fee,
             'total': priced.total,
             'pickup_address': settings.store.pickup_address,

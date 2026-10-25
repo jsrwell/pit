@@ -1,7 +1,7 @@
 ---
 code: "IMP06"
 name: "Aplicar cupom de desconto no checkout"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -40,11 +40,11 @@ O cupom entra no módulo de promoções existente como um percentual de desconto
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Criar modelo e migração de cupons no módulo de promoções | 2h | Pendente |
-| 2 | Implementar rotas administrativas de cupons e a validação de cupom na cotação do pedido | 4h | Pendente |
-| 3 | Registrar cupom e desconto no pedido confirmado | 2h | Pendente |
-| 4 | Adicionar gestão de cupons na tela de promoções e campo de cupom no checkout | 3h | Pendente |
-| 5 | Escrever testes de API e de interface dos cupons | 3h | Pendente |
+| 1 | Criar modelo e migração de cupons no módulo de promoções | 2h | Concluída |
+| 2 | Implementar rotas administrativas de cupons e a validação de cupom na cotação do pedido | 4h | Concluída |
+| 3 | Registrar cupom e desconto no pedido confirmado | 2h | Concluída |
+| 4 | Adicionar gestão de cupons na tela de promoções e campo de cupom no checkout | 3h | Concluída |
+| 5 | Escrever testes de API e de interface dos cupons | 3h | Concluída |
 | **Total** | | **14h** | |
 
 ## Relacionamentos
