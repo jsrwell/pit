@@ -7,13 +7,22 @@ import type { NamedItem } from '../api/product'
 interface FilterBarProps {
   filters: ProductFilters
   onChange: (filters: ProductFilters) => void
+  onlyFavorites: boolean
+  favoriteCount: number
+  onOnlyFavoritesChange: (onlyFavorites: boolean) => void
 }
 
 function toId(value: string): number | undefined {
   return value === '' ? undefined : Number(value)
 }
 
-export function FilterBar({ filters, onChange }: FilterBarProps) {
+export function FilterBar({
+  filters,
+  onChange,
+  onlyFavorites,
+  favoriteCount,
+  onOnlyFavoritesChange,
+}: FilterBarProps) {
   const [categories, setCategories] = useState<NamedItem[]>([])
   const [flavors, setFlavors] = useState<NamedItem[]>([])
 
@@ -26,7 +35,13 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
       .catch(() => setFlavors([]))
   }, [])
 
-  const hasFilters = Object.values(filters).some((value) => value !== undefined && value !== '')
+  const hasFilters =
+    onlyFavorites || Object.values(filters).some((value) => value !== undefined && value !== '')
+
+  function clear() {
+    onChange({})
+    onOnlyFavoritesChange(false)
+  }
 
   return (
     <form className="filter-bar" role="search" onSubmit={(event) => event.preventDefault()}>
@@ -94,15 +109,34 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
           onChange={(event) => onChange({ ...filters, max_price: event.target.value })}
         />
       </div>
-      {hasFilters && (
-        <button
-          type="button"
-          className="link-button filter-bar__clear"
-          onClick={() => onChange({})}
-        >
-          Limpar filtros
-        </button>
-      )}
+      <div className="filter-bar__footer">
+        <div className="pill-group" role="group" aria-label="Exibir">
+          <button
+            type="button"
+            className="pill"
+            aria-pressed={!onlyFavorites}
+            onClick={() => onOnlyFavoritesChange(false)}
+          >
+            Todos
+          </button>
+          <button
+            type="button"
+            className="pill pill--favorites"
+            aria-pressed={onlyFavorites}
+            onClick={() => onOnlyFavoritesChange(true)}
+          >
+            Favoritos
+            <span className="pill__count" aria-label={`${favoriteCount} marcados`}>
+              {favoriteCount}
+            </span>
+          </button>
+        </div>
+        {hasFilters && (
+          <button type="button" className="link-button" onClick={clear}>
+            Limpar filtros
+          </button>
+        )}
+      </div>
     </form>
   )
 }

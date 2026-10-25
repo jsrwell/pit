@@ -1,7 +1,7 @@
 ---
 code: "FE-00"
 name: "Documentação do frontend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Documentação do frontend
@@ -12,7 +12,7 @@ SPA da Loja Virtual de Cupcakes Gourmet, em React e TypeScript com Vite. Impleme
 
 | Área                       | O que o usuário faz                                                     | Cartões          | Documento                                               |
 | -------------------------- | ----------------------------------------------------------------------- | ---------------- | ------------------------------------------------------- |
-| Vitrine                    | Explora destaques, combos e o catálogo; filtra e busca                  | US01, US02, US16 | [Jornada do cliente](journeys/01_customer_journey.md)   |
+| Vitrine                    | Explora destaques, combos e o catálogo; filtra, busca e favorita        | US01, US02, US16, IMP02 | [Jornada do cliente](journeys/01_customer_journey.md)   |
 | Produto                    | Vê detalhes, composição e diferenciais e adiciona ao carrinho           | US03, US06       | [Jornada do cliente](journeys/01_customer_journey.md)   |
 | Conta                      | Cria conta, entra, mantém dados e endereços                             | US04, US05, US09 | [Jornada do cliente](journeys/01_customer_journey.md)   |
 | Compra                     | Ajusta o carrinho, escolhe recebimento e pagamento e confirma           | US06, US07, US08, US10 | [Jornada do cliente](journeys/01_customer_journey.md) |

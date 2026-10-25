@@ -1,7 +1,7 @@
 ---
 code: "IMP02"
 name: "Favoritar produtos na vitrine"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -38,10 +38,10 @@ Os favoritos ficam guardados no próprio navegador, sem novo modelo nem rota na 
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Criar armazenamento de favoritos no navegador no módulo de catálogo do frontend | 2h | Pendente |
-| 2 | Adicionar o botão de coração ao card e ao detalhe do produto | 2h | Pendente |
-| 3 | Adicionar a opção "Favoritos" à barra de filtros da vitrine | 1h | Pendente |
-| 4 | Escrever testes de marcação, persistência e filtro de favoritos | 2h | Pendente |
+| 1 | Criar armazenamento de favoritos no navegador no módulo de catálogo do frontend | 2h | Concluída |
+| 2 | Adicionar o botão de coração ao card e ao detalhe do produto | 2h | Concluída |
+| 3 | Adicionar a opção "Favoritos" à barra de filtros da vitrine | 1h | Concluída |
+| 4 | Escrever testes de marcação, persistência e filtro de favoritos | 2h | Concluída |
 | **Total** | | **7h** | |
 
 ## Relacionamentos

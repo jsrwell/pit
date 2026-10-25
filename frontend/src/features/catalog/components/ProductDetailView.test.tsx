@@ -35,6 +35,7 @@ describe('ProductDetailView', () => {
     expect(screen.getByText('Farinha, pistache, manteiga.')).toBeInTheDocument()
     expect(screen.getByText('Pétalas comestíveis')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Comprar' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Adicionar aos favoritos/ })).toBeInTheDocument()
   })
 
   it('clearly flags an unavailable product', async () => {

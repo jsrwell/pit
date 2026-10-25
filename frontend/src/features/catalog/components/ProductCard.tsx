@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { PriceTag } from '@/shared/components/PriceTag'
 
 import type { ProductSummary } from '../api/product'
+import { FavoriteButton } from './FavoriteButton'
 import { ProductImage } from './ProductImage'
 
 interface ProductCardProps {
@@ -26,6 +27,11 @@ export function ProductCard({ product, action }: ProductCardProps) {
           {!product.is_available && <span className="badge badge--muted">Indisponível</span>}
         </span>
       </Link>
+      <FavoriteButton
+        productId={product.id}
+        productName={product.name}
+        className="product-card__favorite"
+      />
       <div className="product-card__body">
         <span className="eyebrow">{product.category.name}</span>
         <h3>

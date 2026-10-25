@@ -15,6 +15,9 @@ function Harness({ onChange }: { onChange: (filters: ProductFilters) => void }) 
         setFilters(next)
         onChange(next)
       }}
+      onlyFavorites={false}
+      favoriteCount={0}
+      onOnlyFavoritesChange={vi.fn()}
     />
   )
 }

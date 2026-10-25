@@ -70,6 +70,7 @@
 }
 
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -119,6 +120,7 @@
 .product-card__badges {
   position: absolute;
   top: var(--space-4);
+  right: 4rem;
   left: var(--space-4);
   display: flex;
   flex-wrap: wrap;
@@ -186,9 +188,86 @@
   box-shadow: var(--shadow-soft);
 }
 
-.filter-bar__clear {
+.filter-bar__footer {
+  display: flex;
+  flex-wrap: wrap;
   grid-column: 1 / -1;
-  justify-self: end;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.pill__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  margin-left: var(--space-2);
+  padding-inline: 0.3rem;
+  border-radius: 999px;
+  background: var(--color-cream);
+  color: var(--color-ink-soft);
+  font-size: 0.66rem;
+}
+
+.pill[aria-pressed='true'] .pill__count {
+  background: var(--color-heart);
+  color: var(--color-ivory);
+}
+
+.favorite-button {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 92%);
+  color: var(--color-ink-soft);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.favorite-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  transition: fill 0.2s var(--ease);
+}
+
+.favorite-button:hover {
+  border-color: var(--color-heart);
+  color: var(--color-heart);
+}
+
+.favorite-button:active {
+  transform: scale(0.92);
+}
+
+.favorite-button[aria-pressed='true'] {
+  border-color: var(--color-heart);
+  color: var(--color-heart);
+}
+
+.favorite-button[aria-pressed='true'] svg {
+  fill: currentColor;
+}
+
+.product-card__favorite {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
 }
 
 .product-detail {
@@ -241,6 +320,13 @@
 .product-detail__heading {
   display: grid;
   gap: var(--space-3);
+}
+
+.product-detail__title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
 }
 
 .product-detail__flavor {
@@ -380,7 +466,20 @@
 
   .product-card__badges {
     top: var(--space-2);
+    right: 3rem;
     left: var(--space-2);
+  }
+
+  .product-card__favorite {
+    top: var(--space-2);
+    right: var(--space-2);
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .product-card__favorite svg {
+    width: 1.05rem;
+    height: 1.05rem;
   }
 
   .product-card__badges .badge {

@@ -1,7 +1,7 @@
 ---
 code: "FE-QA-01"
 name: "Estratégia de testes e rastreabilidade do frontend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Estratégia de testes e rastreabilidade do frontend
@@ -40,6 +40,8 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | US13   | Upload de imagem e cadastro completo; explicação de publicação incompleta  | `catalog/components/admin/ProductForm.test.tsx` |
 | US14   | Alternância de disponibilidade                                             | `catalog/components/admin/AvailabilityToggle.test.tsx` |
 | US15   | Dados do cliente, observações e apenas os próximos passos válidos          | `orders/components/admin/StoreOrderCard.test.tsx` |
+| IMP02  | Marcar e desmarcar, persistência no navegador e falha do armazenamento     | `catalog/hooks/favorites-store.test.ts`         |
+| IMP02  | Coração no card e no detalhe; opção "Favoritos" e estado vazio             | `catalog/components/Storefront.test.tsx`, `catalog/components/ProductDetailView.test.tsx` |
 | US16   | Preço promocional, vitrine de combos e cadastro de campanha                | `shared/components/PriceTag.test.tsx`, `promotions/components/ComboShowcase.test.tsx`, `promotions/components/admin/PromotionManager.test.tsx` |
 
 Os caminhos são relativos a `frontend/src/features/`, exceto os que começam com `shared/`, relativos a `frontend/src/`.

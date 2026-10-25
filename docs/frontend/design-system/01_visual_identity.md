@@ -1,7 +1,7 @@
 ---
 code: "FE-UI-01"
 name: "Identidade visual"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Identidade visual
@@ -24,6 +24,7 @@ Todas as cores são tokens em `app/global.css`; componentes nunca usam cores sol
 | `--color-gold`        | `#b8935a` | Destaques, foco e marcações ativas                 |
 | `--color-gold-light`  | `#dcc394` | Dourado sobre fundo escuro                         |
 | `--color-gold-dark`   | `#8c6c39` | Rótulos de seção e links                           |
+| `--color-heart`       | `#b4495a` | Coração e contagem de favoritos                    |
 | `--color-success`     | `#3f6b47` | Disponível, aprovado, descontos                    |
 | `--color-danger`      | `#9c3434` | Erros, indisponível, ações destrutivas             |
 

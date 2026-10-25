@@ -1,7 +1,7 @@
 ---
 code: "FE-JRN-01"
 name: "Jornada do cliente"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Jornada do cliente
@@ -28,12 +28,13 @@ Telas usadas por visitantes e clientes, na ordem natural de uso. Rotas marcadas 
 - Hero com chamada para a vitrine e para encomendas especiais.
 - Combos em vigor, com o preço normal riscado, o preço do combo e o botão "Adicionar combo".
 - Destaques em carrossel, seguidos da vitrine completa em grade.
-- Cada card mostra nome, imagem, preço (com preço promocional quando houver), categoria, sabor, selos de destaque, promoção ou indisponível, e o botão de adicionar.
+- Cada card mostra nome, imagem, preço (com preço promocional quando houver), categoria, sabor, selos de destaque, promoção ou indisponível, o botão de adicionar e o coração de favorito (IMP02).
+- A opção "Favoritos", no rodapé da barra de filtros, mostra só os cupcakes marcados neste navegador, com a contagem ao lado; sem nenhum marcado, a vitrine explica como favoritar.
 - Barra de filtros por nome, categoria, sabor e faixa de preço. A busca espera 300 ms após a digitação antes de consultar; enquanto há filtro ativo, os destaques ficam ocultos e um botão limpa os filtros.
 
 ## Detalhe do produto (US03, US06)
 
-Imagem ampliada, categoria, nome, sabor, preço, situação de disponibilidade, descrição, composição e diferenciais. A área de compra combina seletor de quantidade e botão de adicionar; produtos indisponíveis mostram o aviso no lugar da compra.
+Imagem ampliada, categoria, nome com o coração de favorito ao lado, sabor, preço, situação de disponibilidade, descrição, composição e diferenciais. A área de compra combina seletor de quantidade e botão de adicionar; produtos indisponíveis mostram o aviso no lugar da compra.
 
 ## Conta (US04, US05, US09)
 

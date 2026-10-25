@@ -7,6 +7,7 @@ import { useAsync } from '@/shared/hooks/use-async'
 
 import { getProduct } from '../api/get-product'
 import type { ProductDetail } from '../api/product'
+import { FavoriteButton } from './FavoriteButton'
 import { ProductImage } from './ProductImage'
 
 import './catalog.css'
@@ -39,7 +40,10 @@ export function ProductDetailView({ productId, renderPurchase }: ProductDetailVi
                   <span className="badge badge--success">Promoção</span>
                 )}
               </div>
-              <h1>{product.name}</h1>
+              <div className="product-detail__title">
+                <h1>{product.name}</h1>
+                <FavoriteButton productId={product.id} productName={product.name} />
+              </div>
               <p className="product-detail__flavor">Sabor {product.flavor.name}</p>
             </div>
             <div className="row">
