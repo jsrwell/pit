@@ -9,7 +9,7 @@ import { useAsync } from '@/shared/hooks/use-async'
 import { useSubmit } from '@/shared/hooks/use-submit'
 
 import type { Order, PaymentMethod } from '../api/order'
-import { placeOrder, type CardInput } from '../api/place-order'
+import { CHECKOUT_LIMITS, placeOrder, type CardInput } from '../api/place-order'
 import { quoteOrder, type FulfillmentMethod } from '../api/quote'
 import { CouponField } from './CouponField'
 import { FulfillmentSelector } from './FulfillmentSelector'
@@ -131,7 +131,7 @@ export function CheckoutView({ renderAddressPicker, onPlaced }: CheckoutViewProp
             id="order-notes"
             label="Observações do pedido"
             placeholder="Mensagem para cartão, preferências de entrega..."
-            maxLength={500}
+            maxLength={CHECKOUT_LIMITS.notes}
             value={notes}
             onChange={(event) => setNotes(event.target.value)}
           />

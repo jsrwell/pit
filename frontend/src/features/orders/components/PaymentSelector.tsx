@@ -2,6 +2,7 @@ import { TextField } from '@/shared/components/TextField'
 import type { FieldErrors } from '@/shared/api/field-errors'
 
 import { PAYMENT_LABELS, type PaymentMethod } from '../api/order'
+import { CHECKOUT_LIMITS } from '../api/place-order'
 
 export interface CardFields {
   number: string
@@ -53,6 +54,7 @@ export function PaymentSelector({ method, card, errors, onMethod, onCard }: Paym
             label="Número do cartão"
             inputMode="numeric"
             autoComplete="cc-number"
+            maxLength={CHECKOUT_LIMITS.cardNumber}
             value={card.number}
             error={errors['card.number']}
             onChange={(event) => onCard({ ...card, number: event.target.value })}
@@ -61,6 +63,7 @@ export function PaymentSelector({ method, card, errors, onMethod, onCard }: Paym
             id="card-holder"
             label="Nome impresso no cartão"
             autoComplete="cc-name"
+            maxLength={CHECKOUT_LIMITS.holderName}
             value={card.holder_name}
             error={errors['card.holder_name']}
             onChange={(event) => onCard({ ...card, holder_name: event.target.value })}
@@ -72,6 +75,7 @@ export function PaymentSelector({ method, card, errors, onMethod, onCard }: Paym
               inputMode="numeric"
               autoComplete="cc-exp"
               placeholder="12/29"
+              maxLength={CHECKOUT_LIMITS.expiry}
               value={card.expiry}
               error={errors['card.expiry_month'] ?? errors['card.expiry_year']}
               onChange={(event) => onCard({ ...card, expiry: event.target.value })}
@@ -81,6 +85,7 @@ export function PaymentSelector({ method, card, errors, onMethod, onCard }: Paym
               label="CVV"
               inputMode="numeric"
               autoComplete="cc-csc"
+              maxLength={CHECKOUT_LIMITS.cvv}
               value={card.cvv}
               error={errors['card.cvv']}
               onChange={(event) => onCard({ ...card, cvv: event.target.value })}

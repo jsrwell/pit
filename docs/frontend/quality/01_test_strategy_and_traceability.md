@@ -47,6 +47,8 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | IMP05  | WhatsApp com mensagem inicial, telefone e e-mail como links no rodapé      | `app/layout/SiteFooter.test.tsx`                |
 | IMP06  | Cupom aplicado no resumo e enviado no pedido; cupom recusado no campo sem perder dados | `orders/components/CheckoutView.test.tsx` |
 | IMP06  | Cadastro e desativação de cupons no painel                                 | `promotions/components/admin/CouponManager.test.tsx` |
+| IMP07  | Contador de caracteres, parada no limite e contador opcional em campos de linha única | `shared/components/TextAreaField.test.tsx`, `shared/components/TextField.test.tsx` |
+| IMP07  | Limites de descrição e observações da encomenda iguais aos da API          | `orders/components/CustomOrderForm.test.tsx`    |
 | US16   | Preço promocional, vitrine de combos e cadastro de campanha                | `shared/components/PriceTag.test.tsx`, `promotions/components/ComboShowcase.test.tsx`, `promotions/components/admin/PromotionManager.test.tsx` |
 
 Os caminhos são relativos a `frontend/src/features/`, exceto os que começam com `shared/` ou `app/`, relativos a `frontend/src/`.

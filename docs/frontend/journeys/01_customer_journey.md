@@ -40,7 +40,7 @@ Imagem ampliada, categoria, nome com o coração de favorito ao lado, sabor, pre
 
 - **Cadastro:** nome, e-mail, telefone e senha, com erro indicado em cada campo. Antes do envio, o formulário recusa e-mail sem usuário, `@` e domínio e telefone sem DDD, leva o foco ao primeiro campo inválido e descreve o erro no próprio campo; o telefone aceita só dígitos, recebe a máscara `(00) 00000-0000` e para em 11 dígitos, e nome, e-mail e senha param no limite da API (IMP04). Concluído o cadastro, o cliente já entra logado.
 - **Entrar:** e-mail e senha; tentativas excessivas mostram o aviso de bloqueio temporário. Clientes vão para "Minha conta" e administradores para o painel.
-- **Minha conta:** dados do cliente, atalhos para pedidos, encomendas e carrinho, e o caderno de endereços, com cadastro, edição, exclusão e escolha do principal.
+- **Minha conta:** dados do cliente, atalhos para pedidos, encomendas e carrinho, e o caderno de endereços, com cadastro, edição, exclusão e escolha do principal. Cada campo de endereço para no tamanho aceito pela API (IMP07).
 - **Sair:** limpa a sessão do navegador. Sessão expirada leva automaticamente ao login.
 
 ## Carrinho (US06, US07)
@@ -68,4 +68,4 @@ A coluna "Atendimento" do rodapé, presente em todas as páginas, traz WhatsApp,
 
 ## Encomendas especiais (US12)
 
-Formulário com descrição, quantidade (mínimo de 6), data desejada e observações, ao lado da lista de solicitações com status (em análise, aprovada ou recusada), valor proposto e resposta da loja.
+Formulário com descrição (até 1000 caracteres), quantidade (mínimo de 6), data desejada e observações (até 500), com contador de caracteres restantes nas áreas de texto (IMP07), ao lado da lista de solicitações com status (em análise, aprovada ou recusada), valor proposto e resposta da loja.

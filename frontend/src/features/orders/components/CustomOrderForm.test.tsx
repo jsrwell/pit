@@ -54,4 +54,13 @@ describe('CustomOrderForm', () => {
 
     expect(await screen.findByRole('alert')).toHaveTextContent('antecedência mínima')
   })
+
+  it('limits description and notes to the API sizes with a counter', () => {
+    render(<CustomOrderForm onRequested={vi.fn()} />)
+
+    expect(screen.getByLabelText('O que você deseja?')).toHaveAttribute('maxlength', '1000')
+    expect(screen.getByLabelText('Observações')).toHaveAttribute('maxlength', '500')
+    expect(screen.getByText('1000 caracteres restantes')).toBeInTheDocument()
+    expect(screen.getByText('500 caracteres restantes')).toBeInTheDocument()
+  })
 })

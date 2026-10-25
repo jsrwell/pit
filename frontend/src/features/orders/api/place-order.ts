@@ -3,6 +3,14 @@ import { sendJson } from '@/shared/api/http-client'
 import type { Order, PaymentMethod } from './order'
 import type { FulfillmentInput } from './quote'
 
+export const CHECKOUT_LIMITS = {
+  notes: 500,
+  cardNumber: 23,
+  holderName: 80,
+  expiry: 5,
+  cvv: 4,
+} as const
+
 export interface CardInput {
   number: string
   holder_name: string

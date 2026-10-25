@@ -1,5 +1,15 @@
 import { request, sendJson } from '@/shared/api/http-client'
 
+export const ADDRESS_LIMITS = {
+  label: 40,
+  zip_code: 9,
+  street: 120,
+  number: 10,
+  complement: 60,
+  district: 60,
+  reference: 120,
+} as const
+
 export interface AddressInput {
   label: string
   zip_code: string

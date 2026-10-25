@@ -4,7 +4,13 @@ import { ErrorMessage } from '@/shared/components/ErrorMessage'
 import { TextField } from '@/shared/components/TextField'
 import { useSubmit } from '@/shared/hooks/use-submit'
 
-import { createAddress, updateAddress, type Address, type AddressInput } from '../api/addresses'
+import {
+  ADDRESS_LIMITS,
+  createAddress,
+  updateAddress,
+  type Address,
+  type AddressInput,
+} from '../api/addresses'
 
 interface AddressFormProps {
   address?: Address
@@ -47,6 +53,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
           id="address-label"
           label="Identificação"
           placeholder="Casa, Trabalho..."
+          maxLength={ADDRESS_LIMITS.label}
           value={values.label}
           error={fields.label}
           onChange={(event) => update('label', event.target.value)}
@@ -57,6 +64,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
           inputMode="numeric"
           autoComplete="postal-code"
           placeholder="00000-000"
+          maxLength={ADDRESS_LIMITS.zip_code}
           value={values.zip_code}
           error={fields.zip_code}
           onChange={(event) => update('zip_code', event.target.value)}
@@ -66,6 +74,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
         id="address-street"
         label="Rua"
         autoComplete="address-line1"
+        maxLength={ADDRESS_LIMITS.street}
         value={values.street}
         error={fields.street}
         onChange={(event) => update('street', event.target.value)}
@@ -74,6 +83,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
         <TextField
           id="address-number"
           label="Número"
+          maxLength={ADDRESS_LIMITS.number}
           value={values.number}
           error={fields.number}
           onChange={(event) => update('number', event.target.value)}
@@ -82,6 +92,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
           id="address-complement"
           label="Complemento"
           autoComplete="address-line2"
+          maxLength={ADDRESS_LIMITS.complement}
           value={values.complement}
           error={fields.complement}
           onChange={(event) => update('complement', event.target.value)}
@@ -90,6 +101,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
       <TextField
         id="address-district"
         label="Bairro"
+        maxLength={ADDRESS_LIMITS.district}
         value={values.district}
         error={fields.district}
         onChange={(event) => update('district', event.target.value)}
@@ -97,6 +109,7 @@ export function AddressForm({ address, onSaved, onCancel }: AddressFormProps) {
       <TextField
         id="address-reference"
         label="Ponto de referência"
+        maxLength={ADDRESS_LIMITS.reference}
         value={values.reference}
         error={fields.reference}
         onChange={(event) => update('reference', event.target.value)}

@@ -5,7 +5,7 @@ import { TextAreaField } from '@/shared/components/TextAreaField'
 import { TextField } from '@/shared/components/TextField'
 import { useSubmit } from '@/shared/hooks/use-submit'
 
-import { requestCustomOrder, type CustomOrder } from '../api/custom-orders'
+import { CUSTOM_ORDER_LIMITS, requestCustomOrder, type CustomOrder } from '../api/custom-orders'
 
 interface CustomOrderFormProps {
   onRequested: (customOrder: CustomOrder) => void
@@ -44,6 +44,7 @@ export function CustomOrderForm({ onRequested }: CustomOrderFormProps) {
         id="custom-description"
         label="O que você deseja?"
         placeholder="Tema, sabores, cores, decoração..."
+        maxLength={CUSTOM_ORDER_LIMITS.description}
         value={values.description}
         error={fields.description}
         onChange={(event) => update('description', event.target.value)}
@@ -73,6 +74,7 @@ export function CustomOrderForm({ onRequested }: CustomOrderFormProps) {
         id="custom-notes"
         label="Observações"
         placeholder="Restrições alimentares, horário, mensagem..."
+        maxLength={CUSTOM_ORDER_LIMITS.notes}
         value={values.notes}
         error={fields.notes}
         onChange={(event) => update('notes', event.target.value)}

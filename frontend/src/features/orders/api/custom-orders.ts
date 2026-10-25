@@ -31,6 +31,8 @@ export interface CustomOrderReview {
   response: string
 }
 
+export const CUSTOM_ORDER_LIMITS = { description: 1000, notes: 500 } as const
+
 export const CUSTOM_STATUS_LABELS: Record<CustomOrderStatus, string> = {
   pending_review: 'Em análise',
   approved: 'Aprovada',

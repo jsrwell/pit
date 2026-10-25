@@ -1,7 +1,7 @@
 ---
 code: "IMP07"
 name: "Limitar o tamanho dos campos de texto e preservar o layout móvel"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -36,10 +36,10 @@ A API já limita os textos (por exemplo, 1000 caracteres na descrição da encom
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Adicionar suporte a limite e contador nos componentes compartilhados de campo | 2h | Pendente |
-| 2 | Aplicar os limites nos formulários de encomenda, endereço e checkout | 2h | Pendente |
-| 3 | Ajustar a quebra de textos longos nas telas de pedido e encomenda | 1h | Pendente |
-| 4 | Escrever testes dos limites e do contador | 1h | Pendente |
+| 1 | Adicionar suporte a limite e contador nos componentes compartilhados de campo | 2h | Concluída |
+| 2 | Aplicar os limites nos formulários de encomenda, endereço e checkout | 2h | Concluída |
+| 3 | Ajustar a quebra de textos longos nas telas de pedido e encomenda | 1h | Concluída |
+| 4 | Escrever testes dos limites e do contador | 1h | Concluída |
 | **Total** | | **6h** | |
 
 ## Relacionamentos

@@ -60,12 +60,19 @@ Os botões de adicionar (`add-to-cart__button`), na vitrine, no detalhe e nos co
 | ----------------- | ------------------------------- | ------------------------------------------------------- |
 | `AsyncContent`    | `shared/components/`            | Mostra carregando, erro ou conteúdo de uma chamada      |
 | `ErrorMessage`    | `shared/components/`            | Alerta de erro com `role="alert"`                       |
-| `TextField`, `TextAreaField` | `shared/components/` | Campo com rótulo, dica e erro ligados por `aria`        |
+| `TextField`, `TextAreaField` | `shared/components/` | Campo com rótulo, dica, erro e contador ligados por `aria-describedby` |
+| `CharacterCounter` | `shared/components/`           | "N caracteres restantes", em dourado escuro nos últimos 10% do limite |
 | `QuantityStepper` | `shared/components/`            | Seletor de quantidade com limites                       |
 | `PriceTag`        | `shared/components/`            | Preço, ou preço riscado e preço promocional             |
 | `Brand`, `SiteHeader`, `SiteFooter`, `AdminLayout` | `app/layout/` | Estrutura comum das páginas      |
 
 Hooks compartilhados: `useAsync` (carregamento com recarga), `useSubmit` (envio com erro geral e erros por campo) e `useDebouncedValue` (atraso de digitação na busca).
+
+## Limites de texto (IMP07)
+
+- Todo campo de texto dos formulários do cliente recebe `maxLength` igual ao validado pela API, por isso a digitação para no limite e nada se perde no envio. Os valores ficam ao lado dos contratos de cada feature (`ADDRESS_LIMITS`, `CHECKOUT_LIMITS`, `CUSTOM_ORDER_LIMITS`, `ACCOUNT_LIMITS`), escritos uma vez e usados pela tela.
+- `TextAreaField` mostra o contador sempre que há `maxLength`; `TextField` só com `showCounter`. O contador entra na descrição acessível do campo, depois da dica ou do erro.
+- Títulos, parágrafos, itens de lista e valores de `facts` usam `overflow-wrap: anywhere`, de modo que palavras longas sem espaços quebram linha em vez de criar rolagem horizontal. Vitrine, carrinho, checkout, encomendas e acompanhamento foram conferidos a 320px de largura sem rolagem lateral.
 
 ## Pontos de quebra
 

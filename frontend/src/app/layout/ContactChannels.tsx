@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import { storeContact } from '@/shared/config/store-contact'
 
 function WhatsAppIcon() {
@@ -59,7 +61,18 @@ export function ContactChannels() {
           <MailIcon />
           <span>
             <small>E-mail</small>
-            {email.label}
+            <span className="contact-channels__email">
+              {email.label.split('@').map((part, index) => (
+                <Fragment key={part}>
+                  {index > 0 && (
+                    <>
+                      @<wbr />
+                    </>
+                  )}
+                  {part}
+                </Fragment>
+              ))}
+            </span>
           </span>
         </a>
       </li>

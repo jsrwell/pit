@@ -108,5 +108,7 @@
 
   .add-to-cart--full .row .button {
     flex: 1;
+    min-width: 0;
+    padding-inline: var(--space-4);
   }
 }

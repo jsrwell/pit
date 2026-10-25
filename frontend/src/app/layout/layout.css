@@ -304,6 +304,11 @@
   line-height: 1.35;
 }
 
+.contact-channels .contact-channels__email {
+  display: inline;
+  overflow-wrap: break-word;
+}
+
 .contact-channels small {
   font-size: 0.62rem;
   font-weight: 600;

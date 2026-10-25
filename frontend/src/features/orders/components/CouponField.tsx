@@ -45,7 +45,7 @@ export function CouponField({ applied, onApply, onRemove, notice }: CouponFieldP
         <div className="coupon-field__row">
           <input
             id="coupon-code"
-            placeholder="Digite o código"
+            placeholder="Código"
             autoComplete="off"
             autoCapitalize="characters"
             spellCheck={false}
