@@ -26,6 +26,10 @@ O frontend nunca calcula preços, subtotais ou descontos: sempre exibe o que a A
 - A opção "Favoritos" filtra a resposta da vitrine pelos identificadores guardados; produtos inativos não vêm da API e, portanto, nunca aparecem, mesmo que continuem na lista.
 - Leituras e gravações ficam em `try/catch`: com o armazenamento bloqueado ou corrompido, os favoritos funcionam só em memória durante a visita e a vitrine segue normal.
 
+## Termo de busca
+
+O termo da busca vive na URL (`?busca=`), não em estado de tela: `useStorefrontSearch` (`features/catalog/hooks/`) lê e altera o parâmetro, `HeaderSearch` navega para `/?busca=termo` e a `Storefront` consulta a API com ele. Assim o resultado pode ser compartilhado por link, sobrevive a recarregar a página e combina com os filtros e favoritos mantidos na própria vitrine (IMP09).
+
 ## Composição entre features
 
 Features não importam umas das outras. Quando uma tela precisa de uma ação de outra área, ela oferece uma propriedade de renderização e a camada `app/routes/` encaixa ali o componente da outra feature.

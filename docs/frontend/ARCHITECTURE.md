@@ -108,7 +108,7 @@ Regras de dependência:
 - Layout pensado primeiro para celular, como pedem os requisitos não funcionais dos cartões.
 - `app/global.css` define os tokens (cores, tipografia, escala de espaços `--space-*`, raios, sombras, `--gutter` e `--section-gap`) e as classes utilitárias compartilhadas (`container`, `page`, `panel`, `two-column`, `facts`, `pill`). É importado antes de qualquer componente em `main.tsx`, para que os estilos das features possam refiná-lo sem serem sobrescritos.
 - Espaçamentos usam propriedades lógicas (`padding-inline`, `padding-block`) em vez do atalho `padding`, para que classes combinadas num mesmo elemento (`container page`) não anulem umas às outras.
-- O cabeçalho vira menu recolhível abaixo de 64rem; grades de produtos passam a duas colunas no celular, e os destaques usam carrossel com encaixe de rolagem.
+- O cabeçalho traz a busca de catálogo (`HeaderSearch`, encaixada por `app/layout/SiteHeader.tsx`) e vira menu recolhível abaixo de 72rem, com busca e navegação no mesmo painel; grades de produtos passam a duas colunas no celular, e os destaques usam carrossel com encaixe de rolagem.
 - Estados de carregamento usam `role="status"` e erros usam `role="alert"`, o que melhora a acessibilidade e permite testar pelo papel do elemento.
 
 ## Testes

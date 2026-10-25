@@ -66,7 +66,7 @@ Os botões de adicionar (`add-to-cart__button`), na vitrine, no detalhe e nos co
 | `PriceTag`        | `shared/components/`            | Preço, ou preço riscado e preço promocional             |
 | `Brand`, `SiteHeader`, `SiteFooter`, `AdminLayout` | `app/layout/` | Estrutura comum das páginas      |
 
-Hooks compartilhados: `useAsync` (carregamento com recarga), `useSubmit` (envio com erro geral e erros por campo) e `useDebouncedValue` (atraso de digitação na busca).
+Hooks compartilhados: `useAsync` (carregamento com recarga), `useSubmit` (envio com erro geral e erros por campo).
 
 ## Limites de texto (IMP07)
 
@@ -78,7 +78,8 @@ Hooks compartilhados: `useAsync` (carregamento com recarga), `useSubmit` (envio 
 
 | Largura      | Mudança                                                                  |
 | ------------ | ------------------------------------------------------------------------ |
-| até 64rem    | Menu recolhível no cabeçalho; filtros em duas colunas; destaques em duas por vez |
+| até 72rem    | Menu recolhível no cabeçalho, com a busca no topo do painel (IMP09)      |
+| até 64rem    | Filtros em duas colunas; destaques em duas por vez; rodapé em três colunas |
 | até 60rem    | Colunas laterais (resumos) passam para baixo do conteúdo                 |
 | até 52rem    | Hero sem ilustração; detalhe do produto e formulário de produto em uma coluna |
 | até 40rem    | Vitrine em duas colunas compactas; grades de formulário em uma coluna    |
@@ -92,4 +93,5 @@ O layout é pensado primeiro para celular, como pedem os requisitos não funcion
 - **Cards de produto:** imagem em 5:4, categoria, nome, sabor e rodapé com preço e ação, separados por linha fina.
 - **Ações por estado:** botões só aparecem quando a ação é possível (por exemplo, próximos status de um pedido no painel).
 - **Atualização sem salto:** ao refazer uma consulta, o conteúdo anterior fica a 45% de opacidade, sem cliques, com uma barra de progresso de 2px posicionada no espaço entre a barra de filtros e a grade, de modo que nada se desloca; o estado é anunciado por `role="status"` e `aria-busy`.
+- **Busca no cabeçalho:** campo em pílula com botão circular escuro e lupa dourada; no menu do celular ocupa a largura toda, com 3rem de altura.
 - **Retorno imediato:** toda ação mostra estado de envio no botão e confirmação ou erro ao lado.

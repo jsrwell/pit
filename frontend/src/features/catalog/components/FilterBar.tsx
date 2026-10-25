@@ -10,6 +10,9 @@ interface FilterBarProps {
   onlyFavorites: boolean
   favoriteCount: number
   onOnlyFavoritesChange: (onlyFavorites: boolean) => void
+  search: string
+  onClearSearch: () => void
+  onClearAll: () => void
 }
 
 function toId(value: string): number | undefined {
@@ -22,6 +25,9 @@ export function FilterBar({
   onlyFavorites,
   favoriteCount,
   onOnlyFavoritesChange,
+  search,
+  onClearSearch,
+  onClearAll,
 }: FilterBarProps) {
   const [categories, setCategories] = useState<NamedItem[]>([])
   const [flavors, setFlavors] = useState<NamedItem[]>([])
@@ -36,25 +42,22 @@ export function FilterBar({
   }, [])
 
   const hasFilters =
-    onlyFavorites || Object.values(filters).some((value) => value !== undefined && value !== '')
-
-  function clear() {
-    onChange({})
-    onOnlyFavoritesChange(false)
-  }
+    onlyFavorites ||
+    search !== '' ||
+    Object.values(filters).some((value) => value !== undefined && value !== '')
 
   return (
-    <form className="filter-bar" role="search" onSubmit={(event) => event.preventDefault()}>
-      <div className="field filter-bar__search">
-        <label htmlFor="filter-search">Buscar</label>
-        <input
-          id="filter-search"
-          type="search"
-          placeholder="Nome do cupcake"
-          value={filters.search ?? ''}
-          onChange={(event) => onChange({ ...filters, search: event.target.value })}
-        />
-      </div>
+    <div className="filter-bar" role="group" aria-label="Filtros da vitrine">
+      {search !== '' && (
+        <div className="filter-bar__term">
+          <span>
+            Resultados para <strong>“{search}”</strong>
+          </span>
+          <button type="button" className="link-button" onClick={onClearSearch}>
+            Limpar busca
+          </button>
+        </div>
+      )}
       <div className="field">
         <label htmlFor="filter-category">Categoria</label>
         <select
@@ -132,11 +135,11 @@ export function FilterBar({
           </button>
         </div>
         {hasFilters && (
-          <button type="button" className="link-button" onClick={clear}>
+          <button type="button" className="link-button" onClick={onClearAll}>
             Limpar filtros
           </button>
         )}
       </div>
-    </form>
+    </div>
   )
 }

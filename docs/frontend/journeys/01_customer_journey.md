@@ -12,7 +12,7 @@ Telas usadas por visitantes e clientes, na ordem natural de uso. Rotas marcadas 
 
 | Rota                | Tela                      | Acesso     | Cartões          |
 | ------------------- | ------------------------- | ---------- | ---------------- |
-| `/`                 | Vitrine                   | Público    | US01, US02, US16 |
+| `/`                 | Vitrine (`?busca=` filtra pelo termo) | Público | US01, US02, US16, IMP09 |
 | `/produtos/:id`     | Detalhe do produto        | Público    | US03, US06       |
 | `/cadastro`         | Criar conta               | Público    | US04             |
 | `/entrar`           | Entrar                    | Público    | US05             |
@@ -30,7 +30,8 @@ Telas usadas por visitantes e clientes, na ordem natural de uso. Rotas marcadas 
 - Destaques em carrossel, seguidos da vitrine completa em grade.
 - Cada card mostra nome, imagem, preço (com preço promocional quando houver), categoria, sabor, selos de destaque, promoção ou indisponível, o botão de adicionar e o coração de favorito (IMP02).
 - A opção "Favoritos", no rodapé da barra de filtros, mostra só os cupcakes marcados neste navegador, com a contagem ao lado; sem nenhum marcado, a vitrine explica como favoritar.
-- Barra de filtros por nome, categoria, sabor e faixa de preço. A busca espera 300 ms após a digitação antes de consultar, enquanto categoria e sabor consultam na hora. Durante a atualização, os cards atuais ficam atenuados, uma linha dourada corre acima da grade e leitores de tela ouvem "Atualizando a vitrine..." (IMP03). Enquanto há filtro ativo, os destaques ficam ocultos e um botão limpa os filtros.
+- **Busca no cabeçalho (IMP09):** o campo "Buscar cupcakes" fica no cabeçalho de todas as páginas (dentro do menu no celular). Ao enviar, leva à vitrine com o termo em `?busca=`, rola até a grade e fecha o menu; enviar vazio volta à vitrine completa. Como a consulta só acontece no envio, não há uma requisição por tecla (IMP03, RN#1).
+- Barra de filtros por categoria, sabor e faixa de preço, que se combinam com o termo da busca e com os favoritos. Com busca ativa, a barra mostra "Resultados para “termo”" e "Limpar busca"; sem resultado, a vitrine sugere outro termo. Categoria e sabor consultam na hora. Durante a atualização, os cards atuais ficam atenuados, uma linha dourada corre acima da grade e leitores de tela ouvem "Atualizando a vitrine..." (IMP03). Enquanto há filtro ativo, os destaques ficam ocultos e um botão limpa os filtros.
 
 ## Detalhe do produto (US03, US06)
 

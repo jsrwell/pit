@@ -1,7 +1,7 @@
 ---
 code: "IMP09"
 name: "Mover a busca para o menu superior"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -36,9 +36,9 @@ A pesquisa textual hoje faz parte da barra de filtros da vitrine. A busca passa 
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Criar o campo de pesquisa no cabeçalho com navegação para a vitrine | 2h | Pendente |
-| 2 | Ler o termo da URL na vitrine e removê-lo da barra de filtros | 2h | Pendente |
-| 3 | Escrever testes da pesquisa pelo cabeçalho | 1h | Pendente |
+| 1 | Criar o campo de pesquisa no cabeçalho com navegação para a vitrine | 2h | Concluída |
+| 2 | Ler o termo da URL na vitrine e removê-lo da barra de filtros | 2h | Concluída |
+| 3 | Escrever testes da pesquisa pelo cabeçalho | 1h | Concluída |
 | **Total** | | **5h** | |
 
 ## Relacionamentos

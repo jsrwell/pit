@@ -18,6 +18,9 @@ function Harness({ onChange }: { onChange: (filters: ProductFilters) => void }) 
       onlyFavorites={false}
       favoriteCount={0}
       onOnlyFavoritesChange={vi.fn()}
+      search=""
+      onClearSearch={vi.fn()}
+      onClearAll={vi.fn()}
     />
   )
 }
@@ -28,7 +31,7 @@ describe('FilterBar', () => {
     vi.spyOn(classificationsApi, 'listFlavors').mockResolvedValue([{ id: 5, name: 'Pistache' }])
   })
 
-  it('emits category, flavor, price range and text search criteria', async () => {
+  it('emits category, flavor and price range criteria', async () => {
     const onChange = vi.fn()
     const user = userEvent.setup()
     render(<Harness onChange={onChange} />)
@@ -38,14 +41,18 @@ describe('FilterBar', () => {
     await user.selectOptions(screen.getByLabelText('Sabor'), '5')
     await user.type(screen.getByLabelText('Preço mínimo'), '10')
     await user.type(screen.getByLabelText('Preço máximo'), '20')
-    await user.type(screen.getByLabelText('Buscar'), 'red')
 
     expect(onChange).toHaveBeenLastCalledWith({
       category_id: 3,
       flavor_id: 5,
       min_price: '10',
       max_price: '20',
-      search: 'red',
     })
+  })
+
+  it('has no text search of its own', () => {
+    render(<Harness onChange={vi.fn()} />)
+
+    expect(screen.queryByRole('searchbox')).not.toBeInTheDocument()
   })
 })
