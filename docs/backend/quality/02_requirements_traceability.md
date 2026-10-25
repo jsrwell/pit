@@ -1,7 +1,7 @@
 ---
 code: "BE-QA-02"
 name: "Rastreabilidade de requisitos no backend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Rastreabilidade de requisitos no backend
@@ -23,6 +23,8 @@ Matriz entre os critérios de aceitação (CA) e regras de negócio (RN) dos car
 | US04   | CA#2                 | `accounts/test_registration.py::test_required_fields_are_validated`        |
 | US04   | CA#3, RN#1           | `accounts/test_registration.py::test_duplicate_email_is_rejected`          |
 | US04   | RN#2                 | `accounts/test_registration.py::test_weak_password_is_rejected`            |
+| IMP04  | CA#4, RN#1           | `accounts/test_registration.py::test_phone_is_stored_with_digits_only`, `test_invalid_phone_is_rejected`, `test_landline_phone_is_accepted` |
+| IMP04  | CA#1, CA#3           | `accounts/test_registration.py::test_malformed_or_oversized_fields_are_rejected` |
 | US05   | CA#1, CA#3           | `accounts/test_login.py::test_valid_credentials_return_a_token`            |
 | US05   | CA#2                 | `accounts/test_login.py::test_wrong_password_is_reported`                  |
 | US05   | RN#1                 | `accounts/test_login.py::test_repeated_failures_lock_the_account`          |

@@ -1,7 +1,7 @@
 ---
 code: "FE-ARCH"
 name: "Arquitetura do frontend"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Arquitetura do frontend
@@ -42,12 +42,13 @@ frontend/
     │   └── <módulo>/
     │       ├── api/            funções de chamada e tipos do contrato do módulo
     │       ├── components/     componentes e telas do módulo
+    │       ├── validation/     validações de formulário anteriores ao envio, espelhando as da API
     │       └── hooks/          estado e efeitos reutilizados dentro do módulo
     ├── shared/
     │   ├── api/                cliente HTTP, ApiError, Problem Details e mensagens de erro
     │   ├── auth/               sessão do usuário (token, expiração e conta) guardada no navegador
     │   ├── config/             leitura das variáveis VITE_*
-    │   ├── format/             formatação de moeda e datas em pt-BR
+    │   ├── format/             formatação de moeda, datas e telefone em pt-BR
     │   ├── hooks/              estado reutilizado, como o carregamento assíncrono
     │   └── components/         componentes visuais genéricos (botão, campo, alerta)
     └── test/                   setup do Vitest
@@ -84,6 +85,7 @@ Regras de dependência:
 ## Tratamento de erros
 
 - `shared/api/error-messages.ts` é o catálogo de mensagens em português, chaveado pelo `code` da API; um código desconhecido cai na mensagem genérica de erro inesperado.
+- Validações em `features/<módulo>/validation/` só antecipam o retorno ao usuário (formato e tamanho); a API continua validando tudo e seus erros por campo são exibidos da mesma forma.
 - `ApiError.message` já é a mensagem para o usuário; componentes exibem `error.message` e não montam textos a partir da resposta.
 - Em `422`, `error.problem.errors` traz cada campo inválido como JSON Pointer (`/body/email`), que o formulário usa para marcar o campo correspondente.
 - Todo erro novo declarado no backend ganha sua entrada no catálogo de mensagens no mesmo cartão.

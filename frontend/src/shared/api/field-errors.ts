@@ -6,6 +6,7 @@ const FIELD_MESSAGES: Record<string, string> = {
   string_too_long: 'Valor muito longo.',
   string_pattern_mismatch: 'Formato inválido.',
   value_error: 'Valor inválido.',
+  phone_format: 'Informe o telefone com DDD, com 10 ou 11 dígitos.',
   greater_than_equal: 'Valor abaixo do mínimo permitido.',
   greater_than: 'Valor abaixo do mínimo permitido.',
   less_than_equal: 'Valor acima do máximo permitido.',

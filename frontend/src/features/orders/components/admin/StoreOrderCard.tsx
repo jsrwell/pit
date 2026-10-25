@@ -1,6 +1,7 @@
 import { ErrorMessage } from '@/shared/components/ErrorMessage'
 import { formatPrice } from '@/shared/format/currency'
 import { formatDateTime } from '@/shared/format/date-time'
+import { formatPhone } from '@/shared/format/phone'
 import { useSubmit } from '@/shared/hooks/use-submit'
 
 import { PAYMENT_LABELS } from '../../api/order'
@@ -38,7 +39,7 @@ export function StoreOrderCard({ order, onChanged }: StoreOrderCardProps) {
                 {order.customer.name}
                 <br />
                 <span className="muted">
-                  {order.customer.phone} · {order.customer.email}
+                  {formatPhone(order.customer.phone)} · {order.customer.email}
                 </span>
               </>
             ) : (

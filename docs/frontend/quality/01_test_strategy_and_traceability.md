@@ -27,6 +27,7 @@ O CI executa também `format:check`, `lint`, `build` e o build da imagem.
 | US02   | Filtros por categoria, sabor, faixa de preço e texto                       | `catalog/components/FilterBar.test.tsx`         |
 | US03   | Descrição, preço, imagem, composição, diferenciais e indisponibilidade     | `catalog/components/ProductDetailView.test.tsx` |
 | US04   | Envio dos campos e erros por campo vindos da API                           | `accounts/components/RegisterForm.test.tsx`     |
+| IMP04  | E-mail inválido barrado antes da API, máscara e limite do telefone, limites de tamanho | `accounts/components/RegisterForm.test.tsx`, `accounts/validation/account-fields.test.ts`, `shared/format/phone.test.ts` |
 | US05   | Login grava a sessão; credencial errada mostra a mensagem                  | `accounts/components/LoginForm.test.tsx`        |
 | US05   | Sessão vencida é descartada; token enviado e sessão apagada em 401         | `shared/auth/session-store.test.ts`, `shared/api/http-client.test.ts` |
 | US06   | Quantidade escolhida, atualização do carrinho e login exigido              | `cart/components/AddToCart.test.tsx`            |

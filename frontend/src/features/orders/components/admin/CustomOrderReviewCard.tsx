@@ -5,6 +5,7 @@ import { TextAreaField } from '@/shared/components/TextAreaField'
 import { TextField } from '@/shared/components/TextField'
 import { formatPrice } from '@/shared/format/currency'
 import { formatDate } from '@/shared/format/date-time'
+import { formatPhone } from '@/shared/format/phone'
 import { useSubmit } from '@/shared/hooks/use-submit'
 
 import {
@@ -51,7 +52,7 @@ export function CustomOrderReviewCard({ customOrder, onReviewed }: CustomOrderRe
               <>
                 <br />
                 <span className="muted">
-                  {customOrder.customer.phone} · {customOrder.customer.email}
+                  {formatPhone(customOrder.customer.phone)} · {customOrder.customer.email}
                 </span>
               </>
             )}

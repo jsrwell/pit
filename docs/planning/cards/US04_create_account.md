@@ -2,7 +2,9 @@
 code: "US04"
 name: "Criar conta para comprar e acompanhar pedidos"
 status: "implemented"
-history: []
+history:
+  - date: "2026/10/25"
+    description: "CA#2 ampliado para validar também o formato de e-mail e telefone (10 ou 11 dígitos com DDD, gravado só com dígitos) e os limites de tamanho dos campos, conforme a melhoria IMP04 originada nos testes com usuários."
 ---
 
 # US04 — Criar conta para comprar e acompanhar pedidos
@@ -21,7 +23,7 @@ O cadastro organiza relacionamento, histórico de compras, endereços e acompanh
 ## Critérios de aceitação
 
 - **CA#1:** O sistema deve permitir cadastro com nome, e-mail, telefone e senha.
-- **CA#2:** O sistema deve validar campos obrigatórios antes de concluir o cadastro.
+- **CA#2:** O sistema deve validar campos obrigatórios, o formato de e-mail e telefone e o tamanho máximo dos campos antes de concluir o cadastro ([IMP04](../revision/IMP04_validate_signup_fields.md)).
 - **CA#3:** O sistema deve impedir duplicidade de cadastro com o mesmo e-mail.
 
 ## Regras de negócio

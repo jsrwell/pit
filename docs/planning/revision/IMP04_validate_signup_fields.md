@@ -1,7 +1,7 @@
 ---
 code: "IMP04"
 name: "Validar o formato dos campos do cadastro"
-status: "pending"
+status: "implemented"
 history: []
 ---
 
@@ -38,9 +38,9 @@ O formulário de cadastro desativa a validação do navegador e não limita o ta
 
 | # | Tarefa | Estimativa | Status |
 | --- | --- | ---: | --- |
-| 1 | Restringir o formato do telefone no esquema de cadastro da API | 2h | Pendente |
-| 2 | Adicionar validação de e-mail, máscara de telefone e limites de tamanho no formulário | 3h | Pendente |
-| 3 | Escrever testes de API e de interface para dados inválidos | 2h | Pendente |
+| 1 | Restringir o formato do telefone no esquema de cadastro da API | 2h | Concluída |
+| 2 | Adicionar validação de e-mail, máscara de telefone e limites de tamanho no formulário | 3h | Concluída |
+| 3 | Escrever testes de API e de interface para dados inválidos | 2h | Concluída |
 | **Total** | | **7h** | |
 
 ## Relacionamentos

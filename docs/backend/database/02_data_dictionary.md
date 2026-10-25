@@ -1,7 +1,7 @@
 ---
 code: "BE-DB-02"
 name: "Dicionário de dados"
-updated: "2026/10/18"
+updated: "2026/10/25"
 ---
 
 # Dicionário de dados
@@ -15,7 +15,7 @@ Colunas de todas as tabelas, conforme as migrações. Todas as colunas são obri
 | `id`                    | integer        | PK                                       | Identificador                      |
 | `name`                  | varchar(100)   |                                          | Nome completo                      |
 | `email`                 | varchar(254)   | único, gravado em minúsculas             | Login                              |
-| `phone`                 | varchar(20)    |                                          | Telefone de contato                |
+| `phone`                 | varchar(20)    |                                          | Telefone de contato, só dígitos (IMP04) |
 | `password_hash`         | varchar(100)   |                                          | Hash bcrypt; a senha nunca é gravada |
 | `role`                  | varchar(20)    | padrão `customer`; `customer` ou `admin` | Papel de acesso                    |
 | `failed_login_attempts` | integer        | padrão `0`                               | Falhas seguidas de login           |

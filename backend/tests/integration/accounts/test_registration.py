@@ -72,3 +72,67 @@ def test_weak_password_is_rejected(client: TestClient, password: str) -> None:
 
     assert response.status_code == 422
     assert response.json()['code'] == 'CS-ACC-0002'
+
+
+def test_phone_is_stored_with_digits_only(client: TestClient) -> None:
+    """IMP04 RN#1: the mask is dropped and only digits are kept."""
+    response = client.post(
+        '/api/accounts', json=registration(phone='(11) 98765-4321')
+    )
+
+    assert response.status_code == 201
+    assert response.json()['phone'] == '11987654321'
+
+
+@pytest.mark.parametrize(
+    'phone',
+    [
+        '98765-4321',
+        '(11) 98765-43210',
+        '(11) 9876a-4321',
+        '(01) 98765-4321',
+        '+55 11 98765-4321',
+        '1234567890123',
+    ],
+)
+def test_invalid_phone_is_rejected(client: TestClient, phone: str) -> None:
+    """IMP04 CA#4: phones need an area code and 10 or 11 digits."""
+    response = client.post('/api/accounts', json=registration(phone=phone))
+
+    assert response.status_code == 422
+    errors = response.json()['errors']
+    assert {'pointer': '/body/phone', 'code': 'phone_format'} in [
+        {'pointer': error['pointer'], 'code': error['code']}
+        for error in errors
+    ]
+
+
+def test_landline_phone_is_accepted(client: TestClient) -> None:
+    """IMP04 CA#4: a ten-digit landline with area code is valid."""
+    response = client.post(
+        '/api/accounts', json=registration(phone='(11) 3456-7890')
+    )
+
+    assert response.json()['phone'] == '1134567890'
+
+
+@pytest.mark.parametrize(
+    ('field', 'value'),
+    [
+        ('email', 'ana.example.com'),
+        ('email', f'{"a" * 250}@example.com'),
+        ('name', 'A' * 101),
+        ('password', 'doce1234' * 10),
+    ],
+)
+def test_malformed_or_oversized_fields_are_rejected(
+    client: TestClient, field: str, value: str
+) -> None:
+    """IMP04 CA#1 and CA#3: format and length limits of the API."""
+    response = client.post(
+        '/api/accounts', json=registration(**{field: value})
+    )
+
+    assert response.status_code == 422
+    pointers = [error['pointer'] for error in response.json()['errors']]
+    assert f'/body/{field}' in pointers

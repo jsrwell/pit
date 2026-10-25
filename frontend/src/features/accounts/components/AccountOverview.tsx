@@ -1,5 +1,6 @@
 import { AsyncContent } from '@/shared/components/AsyncContent'
 import { formatDateTime } from '@/shared/format/date-time'
+import { formatPhone } from '@/shared/format/phone'
 import { useAsync } from '@/shared/hooks/use-async'
 
 import { getMyAccount } from '../api/get-my-account'
@@ -24,7 +25,7 @@ export function AccountOverview() {
             </div>
             <div>
               <dt>Telefone</dt>
-              <dd>{account.phone}</dd>
+              <dd>{formatPhone(account.phone)}</dd>
             </div>
             <div>
               <dt>Cliente desde</dt>

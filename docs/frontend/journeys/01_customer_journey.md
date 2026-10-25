@@ -38,7 +38,7 @@ Imagem ampliada, categoria, nome com o coração de favorito ao lado, sabor, pre
 
 ## Conta (US04, US05, US09)
 
-- **Cadastro:** nome, e-mail, telefone e senha, com erro indicado em cada campo. Concluído o cadastro, o cliente já entra logado.
+- **Cadastro:** nome, e-mail, telefone e senha, com erro indicado em cada campo. Antes do envio, o formulário recusa e-mail sem usuário, `@` e domínio e telefone sem DDD, leva o foco ao primeiro campo inválido e descreve o erro no próprio campo; o telefone aceita só dígitos, recebe a máscara `(00) 00000-0000` e para em 11 dígitos, e nome, e-mail e senha param no limite da API (IMP04). Concluído o cadastro, o cliente já entra logado.
 - **Entrar:** e-mail e senha; tentativas excessivas mostram o aviso de bloqueio temporário. Clientes vão para "Minha conta" e administradores para o painel.
 - **Minha conta:** dados do cliente, atalhos para pedidos, encomendas e carrinho, e o caderno de endereços, com cadastro, edição, exclusão e escolha do principal.
 - **Sair:** limpa a sessão do navegador. Sessão expirada leva automaticamente ao login.
